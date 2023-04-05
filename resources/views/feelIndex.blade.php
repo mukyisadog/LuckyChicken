@@ -65,23 +65,23 @@
                                 </div>
                             </div>
                         @endforeach
-                        </div>
+                        </div>                       
                     </div>
-                    <br><br><br>
-                    <aside class="column2">
-                        <h1>-最新文章-</h1>
-                        @foreach($datas as $data)
-                            <div class="article2">
-                                <div class="article2Con">
-                                    <a href="/BigProject/public/feelDetail/{{$data->id}}">
-                                        <h4>{{$data->title}}</h4>
-                                    </a>
-                                    <p>作者：{{$data->uname}}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </aside>
                 </div>
+                <br><br><br>
+                <aside class="column2">
+                    <h1>-最新文章-</h1>
+                    @foreach($datas as $data)
+                        <div class="article2">
+                            <div class="article2Con">
+                                <a href="/BigProject/public/feelDetail/{{$data->id}}">
+                                    <h4>{{$data->title}}</h4>
+                                </a>
+                                <p>作者：{{$data->uname}}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </aside>
             </div>
         </div>
         <div id="abc"></div>
