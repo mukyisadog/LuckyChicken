@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/forumIndex.css">
-    <link rel="stylesheet" href="./css/ftest.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/NavFooter.css">
+    <link rel="stylesheet" href="./css/forumIndex.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>論壇首頁</title>
 </head>
 
@@ -43,79 +42,77 @@
             <div class="row">
                 <div class="column1">
                     <h1>論壇</h1>
-                <div id="tabContainer">
-                    <div class="tab">
-                        <button class="tablinks" onclick="openCity(event, 'abc')" id="defaultOpen">問題</button>
-                        <button class="tablinks" onclick="openCity(event, 'Paris')">揪團</button>
-                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">黑特</button>
-                    </div>
-                    <div id="abc" class="tabcontent">
-                        <form class="example" action="">
-                            <input type="text" placeholder="輸入關鍵字" name="search">
-                            <button type="submit">搜索</button>
-                        </form>
-                        <div id="articles">
-                            @foreach($questions as $question)
-                                    <div class="article">
-                                        <div class="articlePic">                 
-                                            <img src="data:image/jpeg;base64,{{base64_encode($question->pic)}}" >
-                                        </div>
-                                        <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/1/{{$question->id}}">
-                                                <h4>{{$question->title}}</h4>
-                                            </a>
-                                            <h5>作者：{{$question->uname}}</h5>
-                                            <h5>發布日期：{{$question->publishD}}</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforeach
+                    <div id="tabContainer">
+                        <div class="tab">
+                            <button class="tablinks" onclick="openCity(event, 'abc')" id="defaultOpen">問題</button>
+                            <button class="tablinks" onclick="openCity(event, 'Paris')">揪團</button>
+                            <button class="tablinks" onclick="openCity(event, 'Tokyo')">黑特</button>
                         </div>
-                    </div>
-                    <div id="Paris" class="tabcontent">
-                        <form class="example" action="">
-                            <input type="text" placeholder="輸入關鍵字" name="search">
-                            <button type="submit">搜索</button>
-                        </form>
-                        <div id="articles">
-                        @foreach($groups as $group)
-                                    <div class="article">
-                                        <div class="articlePic">                 
-                                            <img src="data:image/jpeg;base64,{{base64_encode($group->pic)}}" >
+                        <div id="abc" class="tabcontent">
+                            <form class="example" action="">
+                                <input type="text" placeholder="輸入關鍵字" name="search">
+                                <button type="submit">搜索</button>
+                            </form>
+                            <div id="articles">
+                                @foreach($questions as $question)
+                                        <div class="article">
+                                            <div class="articlePic">                 
+                                                <img src="data:image/jpeg;base64,{{base64_encode($question->pic)}}" >
+                                            </div>
+                                            <div class="articleCon">
+                                                <a href="/BigProject/public/forumDetail/1/{{$question->id}}">
+                                                    <h4>{{$question->title}}</h4>
+                                                </a>
+                                                <h5>作者：{{$question->uname}}</h5>
+                                                <h5>發布日期：{{$question->publishD}}</h5>
+                                            </div>
                                         </div>
-                                        <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/2/{{$group->id}}">
-                                                <h4>{{$group->title}}</h4>
-                                            </a>
-                                            <h5>作者：{{$group->uname}}</h5>
-                                            <h5>發布日期：{{$group->publishD}}</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                        @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                    <div id="Tokyo" class="tabcontent">
-                        <form class="example" action="">
-                            <input type="text" placeholder="輸入關鍵字" name="search">
-                            <button type="submit">搜索</button>
-                        </form>
-                        <div id="articles">
-                        @foreach($haters as $hater)
-                                    <div class="article">
-                                        <div class="articlePic">                 
-                                            <img src="data:image/jpeg;base64,{{base64_encode($hater->pic)}}" >
+                        <div id="Paris" class="tabcontent">
+                            <form class="example" action="">
+                                <input type="text" placeholder="輸入關鍵字" name="search">
+                                <button type="submit">搜索</button>
+                            </form>
+                            <div id="articles">
+                            @foreach($groups as $group)
+                                        <div class="article">
+                                            <div class="articlePic">                 
+                                                <img src="data:image/jpeg;base64,{{base64_encode($group->pic)}}" >
+                                            </div>
+                                            <div class="articleCon">
+                                                <a href="/BigProject/public/forumDetail/2/{{$group->id}}">
+                                                    <h4>{{$group->title}}</h4>
+                                                </a>
+                                                <h5>作者：{{$group->uname}}</h5>
+                                                <h5>發布日期：{{$group->publishD}}</h5>
+                                            </div>
                                         </div>
-                                        <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/3/{{$hater->id}}">
-                                                <h4>{{$hater->title}}</h4>
-                                            </a>
-                                            <h5>作者：{{$hater->uname}}</h5>
-                                            <h5>發布日期：{{$hater->publishD}}</h5>
-                                        </div>
-                                    </div>
-                                </a>
                             @endforeach
+                            </div>
+                        </div>
+                        <div id="Tokyo" class="tabcontent">
+                            <form class="example" action="">
+                                <input type="text" placeholder="輸入關鍵字" name="search">
+                                <button type="submit">搜索</button>
+                            </form>
+                            <div id="articles">
+                            @foreach($haters as $hater)
+                                        <div class="article">
+                                            <div class="articlePic">                 
+                                                <img src="data:image/jpeg;base64,{{base64_encode($hater->pic)}}" >
+                                            </div>
+                                            <div class="articleCon">
+                                                <a href="/BigProject/public/forumDetail/3/{{$hater->id}}">
+                                                    <h4>{{$hater->title}}</h4>
+                                                </a>
+                                                <h5>作者：{{$hater->uname}}</h5>
+                                                <h5>發布日期：{{$hater->publishD}}</h5>
+                                            </div>
+                                        </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,24 +133,25 @@
                                     <p>作者：{{$forumNew2->uname}}</p>
                                 </div>
                             </div>
-                        @endforeach
-                        
+                        @endforeach    
                     </aside>
                 </div>
             </div>
-            
-            <br><br>
-        </div>
 
-        <footer id="footer">
+            <div id="abcc"></div>
+
+            <footer id="footer">
             <div id="left">Copyright © 2023 the-sponger.com Rights Reserved.</div>
             <div id="links">
                 <a href="https://the-sponger.com/"><i class="bi bi-house"></i></a>&nbsp;&nbsp;&nbsp;
                 <a href="https://www.instagram.com/the.sponger/"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp;&nbsp;
                 <a href="mailto:thesponger91@gmail.com"><i class="bi bi-envelope"></i></a>
             </div>
-        </footer>
+            </footer>
 
+        </div>
+
+        
 </body>
 
 </html>
