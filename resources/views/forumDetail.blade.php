@@ -44,16 +44,16 @@
                     <div id="content">
                         @foreach($articles as $article)
                         <div>
-                        <img src="data:image/jpeg;base64,{{base64_encode( $article->upic)}}" >
-                            <div>{{$article->uname}}</div>
+                        <img src="data:image/jpeg;base64,{{base64_encode( $article->upicture)}}" >
+                            <div>{{$article->username}}</div>
                             <i class="bi bi-suit-heart-fill"></i>
                         </div>
                         <div>
                             <h1>{{$article->title}}</h1>
-                            <p>{{$article->publishD}}</p>
+                            <p>{{$article->createtime}}</p>
                         </div>
                         <div id="imgDiv">
-                            <img src="data:image/jpeg;base64,{{base64_encode( $article->pic)}}" >
+                            <img src="data:image/jpeg;base64,{{base64_encode( $article->fpicture)}}" >
                         </div>
                         <div>
                             {{$article->content}}
@@ -66,11 +66,11 @@
                     @foreach($FCquestions as $FCquestion)
                         <div class="headDiv">
                             <div class="headDivChi">
-                                <img src="data:image/jpeg;base64,{{base64_encode($FCquestion->upic)}}" >
-                                <p>{{$FCquestion->uname}}</p>
+                                <img src="data:image/jpeg;base64,{{base64_encode($FCquestion->upicture)}}" >
+                                <p>{{$FCquestion->username}}</p>
                             </div>
                             <div class="headDivChi2">
-                                <p>{{$FCquestion->fc}}</p>
+                                <p>{{$FCquestion->content}}</p>
                             </div>
                         </div>
                         <hr>
@@ -96,10 +96,10 @@
                         @foreach($forumNews as $forumNew)
                             <div class="article2">
                                 <div class="article2Con">
-                                    <a href="/BigProject/public/forumDetail/{{$forumNew->sid}}/{{$forumNew->id}}">
+                                    <a href="/BigProject/public/forumDetail/{{$forumNew->sfid}}/{{$forumNew->foid}}">
                                         <h4>{{$forumNew->title}}</h4>
                                     </a>
-                                    <p>作者：{{$forumNew->uname}}</p>
+                                    <p>作者：{{$forumNew->username}}</p>
                                 </div>
                             </div>
                         @endforeach

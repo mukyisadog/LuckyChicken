@@ -24,9 +24,9 @@ Route::get('/', function () {
 // 心得
 Route::get('/feelDetail/{id}',[FeelController::class,'feelDetail']);
 
-Route::get('/feelDetail',function () {
-    return view('feelDetail');
-});
+// Route::get('/feelDetail',function () {
+//     return view('feelDetail');
+// });
 
 Route::get('/feelIndex', [FeelController::class,'feelIndex']);
 

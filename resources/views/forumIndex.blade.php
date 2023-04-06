@@ -57,14 +57,14 @@
                                 @foreach($questions as $question)
                                         <div class="article">
                                             <div class="articlePic">                 
-                                                <img src="data:image/jpeg;base64,{{base64_encode($question->pic)}}" >
+                                                <img src="data:image/jpeg;base64,{{base64_encode($question->fpicture)}}" >
                                             </div>
                                             <div class="articleCon">
-                                                <a href="/BigProject/public/forumDetail/1/{{$question->id}}">
+                                                <a href="/BigProject/public/forumDetail/1/{{$question->foid}}">
                                                     <h4>{{$question->title}}</h4>
                                                 </a>
-                                                <h5>作者：{{$question->uname}}</h5>
-                                                <h5>發布日期：{{$question->publishD}}</h5>
+                                                <h5>作者：{{$question->username}}</h5>
+                                                <h5>發布日期：{{$question->createtime}}</h5>
                                             </div>
                                         </div>
                                 @endforeach
@@ -79,14 +79,14 @@
                             @foreach($groups as $group)
                                         <div class="article">
                                             <div class="articlePic">                 
-                                                <img src="data:image/jpeg;base64,{{base64_encode($group->pic)}}" >
+                                                <img src="data:image/jpeg;base64,{{base64_encode($group->fpicture)}}" >
                                             </div>
                                             <div class="articleCon">
-                                                <a href="/BigProject/public/forumDetail/2/{{$group->id}}">
+                                                <a href="/BigProject/public/forumDetail/2/{{$group->foid}}">
                                                     <h4>{{$group->title}}</h4>
                                                 </a>
-                                                <h5>作者：{{$group->uname}}</h5>
-                                                <h5>發布日期：{{$group->publishD}}</h5>
+                                                <h5>作者：{{$group->username}}</h5>
+                                                <h5>發布日期：{{$group->createtime}}</h5>
                                             </div>
                                         </div>
                             @endforeach
@@ -101,14 +101,14 @@
                             @foreach($haters as $hater)
                                         <div class="article">
                                             <div class="articlePic">                 
-                                                <img src="data:image/jpeg;base64,{{base64_encode($hater->pic)}}" >
+                                                <img src="data:image/jpeg;base64,{{base64_encode($hater->fpicture)}}" >
                                             </div>
                                             <div class="articleCon">
-                                                <a href="/BigProject/public/forumDetail/3/{{$hater->id}}">
+                                                <a href="/BigProject/public/forumDetail/3/{{$hater->foid}}">
                                                     <h4>{{$hater->title}}</h4>
                                                 </a>
-                                                <h5>作者：{{$hater->uname}}</h5>
-                                                <h5>發布日期：{{$hater->publishD}}</h5>
+                                                <h5>作者：{{$hater->username}}</h5>
+                                                <h5>發布日期：{{$hater->createtime}}</h5>
                                             </div>
                                         </div>
                                 @endforeach
@@ -127,10 +127,10 @@
                         @foreach($forumNew2s as $forumNew2)
                             <div class="article2">
                                 <div class="article2Con">
-                                    <a href="/BigProject/public/feelDetail/{{$forumNew2->id}}">
+                                    <a href="/BigProject/public/feelDetail/{{$forumNew2->foid}}">
                                         <h4>{{$forumNew2->title}}</h4>
                                     </a>
-                                    <p>作者：{{$forumNew2->uname}}</p>
+                                    <p>作者：{{$forumNew2->username}}</p>
                                 </div>
                             </div>
                         @endforeach    

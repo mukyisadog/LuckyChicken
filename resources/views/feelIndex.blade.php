@@ -55,14 +55,14 @@
                         @foreach($datas as $data)
                             <div class="article">
                                 <div class="articlePic">
-                                    <img src="data:image/jpeg;base64,{{base64_encode($data->pic)}}" >
+                                    <img src="data:image/jpeg;base64,{{base64_encode($data->upicture)}}" >
                                 </div>
                                 <div class="articleCon">
-                                    <a href="/BigProject/public/feelDetail/{{$data->id}}">
+                                    <a href="/BigProject/public/feelDetail/{{$data->fid}}">
                                         <h4>{{$data->title}}</h4>
                                     </a>
-                                    <h5>作者：{{$data->uname}}</h5>
-                                    <h5>發布日期：{{$data->publishD}}</h5>
+                                    <h5>作者：{{$data->username}}</h5>
+                                    <h5>發布日期：{{$data->createtime}}</h5>
                                 </div>
                             </div>
                         @endforeach
@@ -74,10 +74,10 @@
                     @foreach($datas as $data)
                         <div class="article2">
                             <div class="article2Con">
-                                <a href="/BigProject/public/feelDetail/{{$data->id}}">
+                                <a href="/BigProject/public/feelDetail/{{$data->fid}}">
                                     <h4>{{$data->title}}</h4>
                                 </a>
-                                <p>作者：{{$data->uname}}</p>
+                                <p>作者：{{$data->username}}</p>
                             </div>
                         </div>
                     @endforeach
