@@ -17,32 +17,33 @@
 
     <div id="container">
         <nav id="navbar">
-            <div class="logo"><a href="index.html"><img src="./img/logo.jpg"></a></div>
+            <div class="logo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
             <ul class="menu">
                 <li><a href="#">拼車</a></li>
-                <li><a href="all-memo.html">論壇</a></li>
-                <li><a href="map.html">心得</a></li>
-                <li><a href="what-to-eat.html"><img src="public/pic/addpic.png" alt=""></a></li>
+                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
+                <li><a href="/BigProject/public/feelIndex">心得</a></li>
+                <li><a href="#"><img src="public/pic/addpic.png" alt=""></a></li>
             </ul>
         </nav>
 
         <!-- navbar for mobile -->
         <nav id="mobileNavbar">
-            <div class="mobileLogo"><a href="index.html"><img src="./img/logo.jpg"></a></div>
+            <div class="mobileLogo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
             <label id="hamburgerIcon" for="hamburgerInput">
                 <i class="bi bi-list"></i>
             </label>
             <input type="checkbox" id="hamburgerInput">
             <ul class="menuForMobile">
-                <li><a href="index.html">拼車</a></li>
-                <li><a href="all-memo.html">論壇</a></li>
-                <li><a href="map.html">心得</a></li>
-                <li><a href="what-to-eat.html">個人頁面</a></li>
+                <li><a href="#">拼車</a></li>
+                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
+                <li><a href="/BigProject/public/feelIndex">心得</a></li>
+                <li><a href="#">個人頁面</a></li>
             </ul>
         </nav>
         <div id="content-container">
             <div class="row">
                 <div class="column1">
+                    <div class="abcc"></div>
                     <h1>心得</h1>
                     <div>
                         <form class="example" action="">
@@ -68,7 +69,6 @@
                         </div>                       
                     </div>
                 </div>
-                <br><br><br>
                 <aside class="column2">
                     <h1>-最新文章-</h1>
                     @foreach($datas as $data)
@@ -84,7 +84,7 @@
                 </aside>
             </div>
         </div>
-        <div id="abc"></div>
+        <div class="abc"></div>
         <footer id="footer">
             <div id="left">Copyright © 2023 the-sponger.com Rights Reserved.</div>
             <div id="links">

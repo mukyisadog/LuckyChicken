@@ -37,6 +37,7 @@
             </ul>
         </nav>
         <div id="content-container">
+            <div class="abc"></div>
             <div class="row">
                 <div class="column1">
                     <!-- 文章內容 -->
@@ -80,12 +81,12 @@
                         <form action="">
                             <div>
                                 <img src="./pic/admin.png" alt="頭像">
-                                <p>阿貓 ></p>
+                                <p>阿里 ></p>
                             </div>
-                            <div>
+
                                 <textarea name="" id="" cols="30" rows="10" placeholder="留言...."></textarea>
                                 <input type="submit" value="-送出-">
-                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -106,6 +107,7 @@
                 </div>
             </div>
         </div>
+        <div class="abcc"></div>
         <footer id="footer">
             <div id="left">Copyright © 2023 the-sponger.com Rights Reserved.</div>
             <div id="links">

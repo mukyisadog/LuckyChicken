@@ -4,8 +4,9 @@
   height: 50px;
 }
 
-h1 {
+h1{
   text-align: center;
+  margin-top: -10px;
   color: #664c43;
 }
 
@@ -25,13 +26,7 @@ input[type="text"] {
   font-size: 25px;
 }
 
-input[type="radio"] {
-  transform: scale(1.5);
-}
 
-#content {
-  font-size: 20px;
-}
 
 input[type="text"]:focus {
   outline: none; /* 隱藏預設的focus樣式 */
@@ -48,62 +43,74 @@ textarea {
 textarea:focus {
   outline: transparent;
 }
+
+#bt {
+  margin-left: 80%;
+}
+
 button {
   margin-top: 30px;
   border: transparent;
   font-size: 30px;
   background-color: #b1bba0;
   color: #664c43;
+  margin-left: 20px;
 }
-/* input[type="file"] {
-  display: none;
-} */
+
+input[type="submit"]{
+  margin-top: 30px;
+  border: transparent;
+  font-size: 30px;
+  background-color: #b1bba0;
+  color: #664c43;
+}
+
 
 label {
   cursor: pointer;
 }
-
-#bt{
-  margin-left: 75%;
-}
-
 label > img {
   max-width: 100%;
   height: auto;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width:1200px){
+  #bt {
+    margin-left: 75%;
+  }
+}
+
+
+@media screen and (max-width:600px){
+
   #FormContainer {
     background-color: #d8ddcf;
-    width: 60%;
-    margin-top: 2%;
-    margin-left: 15%;
+    width: 70%;
+    margin-left: 6%;
     font-size: 25px;
     padding: 50px;
     color: #333232;
   }
-}
 
-@media screen and (max-width: 760px) {
+  #bt {
+    margin-left: 70%;
+  }
+  
   button {
     margin-top: 30px;
     border: transparent;
     font-size: 20px;
+    background-color: #b1bba0;
+    color: #664c43;
+    margin-left: 10px;
   }
-
-  #FormContainer {
-    margin-left: 11%;
-  }
-
-  #bt {
-    margin-left: 50%;
-  }
-
-  input[type="radio"] {
-    transform: scale(1);
-  }
-
-  form {
+  
+  input[type="submit"]{
+    margin-top: 30px;
+    border: transparent;
     font-size: 20px;
+    background-color: #b1bba0;
+    color: #664c43;
   }
+
 }

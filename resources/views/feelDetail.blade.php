@@ -13,30 +13,31 @@
 <body>
     <div id="container">
         <nav id="navbar">
-            <div class="logo"><a href="index.html"><img src="./img/logo.jpg"></a></div>
+            <div class="logo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
             <ul class="menu">
-                <li><a href="index.html">拼車</a></li>
-                <li><a href="all-memo.html">論壇</a></li>
-                <li><a href="map.html">心得</a></li>
-                <li><a href="what-to-eat.html"><img src="./pic/admin.png" alt=""></a></li>
+                <li><a href="#">拼車</a></li>
+                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
+                <li><a href="/BigProject/public/feelIndex">心得</a></li>
+                <li><a href="#"><img src="./pic/admin.png" alt=""></a></li>
             </ul>
         </nav>
 
         <!-- navbar for mobile -->
         <nav id="mobileNavbar">
-            <div class="mobileLogo"><a href="index.html"><img src="./img/logo.jpg"></a></div>
+            <div class="mobileLogo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
             <label id="hamburgerIcon" for="hamburgerInput">
                 <i class="bi bi-list"></i>
             </label>
             <input type="checkbox" id="hamburgerInput">
             <ul class="menuForMobile">
-                <li><a href="index.html">拼車</a></li>
-                <li><a href="all-memo.html">論壇</a></li>
-                <li><a href="map.html">心得</a></li>
-                <li><a href="what-to-eat.html">個人頁面</a></li>
+                <li><a href="#">拼車</a></li>
+                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
+                <li><a href="/BigProject/public/feelIndex">心得</a></li>
+                <li><a href="#">個人頁面</a></li>
             </ul>
         </nav>
         <div id="content-container">
+            <div class="abc"></div>
             <div class="row">
                 <div class="column1">
                     <!-- 文章內容 -->
@@ -82,9 +83,9 @@
                         <!-- 這邊先寫死 後面記得改/BigProject/public/feelCom/1/1 因為不知道登入者是誰 -->
                         <form method="post" action="/BigProject/public/feelCom/1/1">
                             @csrf
-                            <div>
+                            <div class="formPic">
                                 <img src="./pic/admin.png" alt="頭像">
-                                <p>阿貓 ></p>
+                                <p>阿里 ></p>
                             </div>
                                 <textarea name="feelcom" id="" cols="30" rows="10" placeholder="留言...."></textarea>
                                 <input type="submit" value="-送出-">
@@ -93,7 +94,7 @@
                 </div>
                 <div class="column2">
                     <aside>
-                        <h1>最新文章</h1>
+                        <h1>-最新文章-</h1>
                         @foreach($datas as $data)
                             <div class="article2">
                                 <div class="article2Con">
@@ -108,6 +109,7 @@
                 </div>
             </div>
         </div>
+        <div class="abcc"></div>
         <footer id="footer">
             <div id="left">Copyright © 2023 the-sponger.com Rights Reserved.</div>
             <div id="links">

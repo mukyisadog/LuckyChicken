@@ -198,6 +198,12 @@ form.example::after {
     top: 10%;
     left: 0%;
     color: rgb(80, 78, 78);
+    cursor: pointer;
+}
+
+#btPublish:hover{
+  background-color: #c1cab2;
+  cursor: pointer;
 }
 
 /* 側邊欄 */
@@ -305,10 +311,12 @@ aside {
         background-color: #b1bba0;
         /* margin-left: 90%; */
         position: absolute;
-        top: 5%;
+        top: 6%;
         left: 0%;
         color: rgb(80, 78, 78);
+        
     }
+
 
     aside {
         display: none;
@@ -333,5 +341,11 @@ aside {
     #tabContainer {
       width: 100%;
       margin-left: 0%;
+  }
+
+  #abcc {
+    height: 100px;
+    border-right: 1px solid #B1BBA0;
+    border-left: 1px solid #B1BBA0;
   }
 }
