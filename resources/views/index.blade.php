@@ -23,8 +23,21 @@
 </style>
 
 <body>
+    @if(Auth::check())
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                            this.closest('form').submit();"
+                            id="BtLogin">
+                {{ __('登出') }}
+            </x-dropdown-link>
+        </form>
+    @else
+        <a href="{{ route('login') }}"><button id="BtLogin">登入/註冊</button></a>
+    @endif
 
-    <a href="/BigProject/public/login"><button id="BtLogin">登入/註冊</button></a>
+
 
     <div id="logo">與山同行LOGO</div>
     <br><br><br><br>
