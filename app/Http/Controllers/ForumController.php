@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\MyModel;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
+
 class ForumController extends Controller
 {
     private $model;
@@ -19,6 +21,7 @@ class ForumController extends Controller
         $questions = $this->model->question();
         $groups = $this->model->group();
         $haters = $this->model->hater();
+        
         return view('forumIndex',[
             'forumNew2s' => $forumNew2s,
             'questions' => $questions,
@@ -28,17 +31,33 @@ class ForumController extends Controller
     }
     public function forumDetail(Request $request)
     {
-        $id = $request->id;
-        $sid = $request->sid;
-        $articles = $this->model->forumDetail($sid,$id);
-        $FCquestions = $this->model->FCquestion($sid,$id);
-        $forumNews = $this->model->forumNew($sid);
+        $sfid = $request->sfid;
+        $foid = $request->foid;
+        $articles = $this->model->forumDetail($sfid,$foid);
+        $FCquestions = $this->model->FCquestion($foid);
+        $forumNews = $this->model->forumNew($sfid);
+        $uid = Auth::id();
+        $userDatas = $this->model->feelComPN($uid);
         return view('forumDetail',[
             'articles' => $articles,
             'FCquestions' => $FCquestions,
-            'forumNews' => $forumNews
+            'forumNews' => $forumNews,
+            'userDatas' => $userDatas,
+            'sfid' => $sfid,
+            'uid' => $uid,
+            'foid'=> $foid
         ]);
     }
+
+    public function forumCom(Request $request){
+        $uid = $request->uid;
+        $foid = $request->foid;
+        $sfid = $request->sfid;
+        $forumcom = $request->forumcom;
+        $this->model->forumCom($sfid,$foid, $uid, $forumcom);
+        return redirect("/forumDetail/{$sfid}/{$foid}");
+    }
+
 
     public function forumMes(Request $request)
     {

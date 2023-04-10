@@ -176,7 +176,7 @@
     top: -20px;
 }
 
-input[type="submit"]{
+input[type="submit"],input[type="button"]{
   font-size: 20px;
     border: transparent;
     background-color: #b1bba0;
@@ -190,6 +190,7 @@ input[type="submit"]{
 textarea {
     width: 90%;
     height: 100px;
+    margin-top: 20px;
     font-size: 20px;
     background-color: #d8ddcf;
     border: transparent;
@@ -199,6 +200,7 @@ textarea {
 }
 textarea:focus {
     outline: transparent;
+    
 }
 
 #mes > form > :last-child > input[type="submit"] {
@@ -213,6 +215,19 @@ textarea:focus {
     color: rgb(160, 155, 155);
     cursor: pointer;
 }
+
+.formPic img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+}
+
+
+.formPic p {
+    font-size: 20px;
+    margin-left: 5px;
+}
+
 
 /* 側邊欄 */
 

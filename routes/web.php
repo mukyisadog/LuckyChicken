@@ -52,22 +52,21 @@ Route::get('/feelMessage/{id}', function () {
 
 Route::post('/feelCom/{ftid}/{uid}',[FeelController::class,'feelCom']);
 
+
 Route::post('feelMes/{uid}', [FeelController::class,'feelMes']);
 
 // 論壇
 Route::get('/forumIndex',[ForumController::class,'forumIndex']);
 
-Route::get('/forumDetail/{sid}/{id}', [ForumController::class,'forumDetail']);
+Route::get('/forumDetail/{sfid}/{foid}', [ForumController::class,'forumDetail']);
 
 Route::get('/forumMessage/{id}', function () {
     return view('forumMessage');
 });
 
+Route::post('/forumCom/{sfid}/{foid}/{uid}',[ForumController::class,'forumCom']);
+
+
 Route::post('/forumMes/{uid}', [ForumController::class,'forumMes']);
-
-
-
-
-
 
 require __DIR__.'/auth.php';

@@ -63,7 +63,7 @@
                                                 <a href="/BigProject/public/forumDetail/1/{{$question->foid}}">
                                                     <h4>{{$question->title}}</h4>
                                                 </a>
-                                                <h5>作者：{{$question->username}}</h5>
+                                                <h5>作者：{{$question->name}}</h5>
                                                 <h5>發布日期：{{$question->createtime}}</h5>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                                 <a href="/BigProject/public/forumDetail/2/{{$group->foid}}">
                                                     <h4>{{$group->title}}</h4>
                                                 </a>
-                                                <h5>作者：{{$group->username}}</h5>
+                                                <h5>作者：{{$group->name}}</h5>
                                                 <h5>發布日期：{{$group->createtime}}</h5>
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                                                 <a href="/BigProject/public/forumDetail/3/{{$hater->foid}}">
                                                     <h4>{{$hater->title}}</h4>
                                                 </a>
-                                                <h5>作者：{{$hater->username}}</h5>
+                                                <h5>作者：{{$hater->name}}</h5>
                                                 <h5>發布日期：{{$hater->createtime}}</h5>
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                     <a href="/BigProject/public/feelDetail/{{$forumNew2->foid}}">
                                         <h4>{{$forumNew2->title}}</h4>
                                     </a>
-                                    <p>作者：{{$forumNew2->username}}</p>
+                                    <p>作者：{{$forumNew2->name}}</p>
                                 </div>
                             </div>
                         @endforeach    

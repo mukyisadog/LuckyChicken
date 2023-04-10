@@ -45,7 +45,7 @@
                     @foreach($article as $article1)
                         <div>
                             <img src="data:image/jpeg;base64,{{base64_encode( $article1->upicture)}}" >
-                            <div>{{$article1->username}}</div>
+                            <div>{{$article1->name}}</div>
                             <i class="bi bi-suit-heart-fill"></i>
                         </div>
                         <div>
@@ -61,35 +61,63 @@
                     @endforeach
                     </div>
                     <!-- 留言紀錄 -->
-
-                    <div id="mesHis">
-                    @foreach($comments as $comment)
-                        <div class="headDiv">
-                        
-                            <div class="headDivChi">
-                                <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $comment->upicture)}}" >
-                                <p>{{$comment->username}}</p>
+                    @if($comments == null)
+                        <div id="mesHis">
+                            <div class="headDiv"> 
+                                <div class="headDivChi">
+                                </div>
+                                <div class="headDivChi2">
+                                    <p>還沒有人留言喔～</p>
+                                    <p>快來當頭香～</p>
+                                </div>
                             </div>
-                            <div class="headDivChi2">
-                                <div>{{$comment->content}}</div>
-                            </div>
+                            <hr>
                         </div>
-                        <hr>
-                        @endforeach
-                    </div>
+                    @else
+                        <div id="mesHis">
+                            @foreach($comments as $comment)
+                                <div class="headDiv"> 
+                                    <div class="headDivChi">
+                                        <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $comment->upicture)}}" >
+                                        <p>{{$comment->name}}</p>
+                                    </div>
+                                    <div class="headDivChi2">
+                                        <div>{{$comment->content}}</div>
+                                    </div>
+                                </div>
+                                <hr>
+                            @endforeach
+                        </div>
+                    @endif
 
                     <!-- 留言 -->
                     <div id="mes">
-                        <!-- 這邊先寫死 後面記得改/BigProject/public/feelCom/1/1 因為不知道登入者是誰 -->
-                        <form method="post" action="/BigProject/public/feelCom/1/1">
+                    @if (Auth::check())
+                        <form method="post" action="/BigProject/public/feelCom/{{ $ftid }}/{{ $uid }}" id="myForm">
                             @csrf
+                            @foreach($userDatas as $userData)
                             <div class="formPic">
-                                <img src="./pic/admin.png" alt="頭像">
-                                <p>阿里 ></p>
+                                <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}" >
+                                <p>{{$userData->name}} ></p>
                             </div>
-                                <textarea name="feelcom" id="" cols="30" rows="10" placeholder="留言...."></textarea>
-                                <input type="submit" value="-送出-">
+                            @endforeach
+                                <textarea name="feelcom" id="feelcom" cols="30" rows="10" placeholder="留言...."></textarea>
+                                <input id="submitBtn" type="submit" value="-送出-">
                         </form>
+                        <script src="{{ asset('js/formtrim.js') }}"></script>
+                    @else
+                        <form method="post" action="#">
+                            @csrf
+                            @foreach($userDatas as $userData)
+                            <div class="formPic">
+                                <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}" >
+                                <p>{{$userData->name}} ></p>
+                            </div>
+                            @endforeach
+                                <textarea name="feelcom" id="" cols="30" rows="10" placeholder="你需要先登入才能留言喔～" disabled></textarea>
+                                <input type="button" value="-送出-">
+                        </form>
+                    @endif
                     </div>
                 </div>
                 <div class="column2">
@@ -101,7 +129,7 @@
                                     <a href="/BigProject/public/feelDetail/{{$data->fid}}">
                                         <h4>{{$data->title}}</h4>
                                     </a>
-                                    <p>作者：{{$data->username}}</p>
+                                    <p>作者：{{$data->name}}</p>
                                 </div>
                             </div>
                         @endforeach

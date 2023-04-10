@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\MyModel;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class FeelController extends Controller
 {
     private $model;
@@ -21,21 +24,30 @@ class FeelController extends Controller
 
     public function feelDetail(Request $request)
     {
-        $id = $request->id;
-        $article = $this->model->feelDetail($id);
+        $ftid = $request->id;
+        $article = $this->model->feelDetail($ftid);
         $datas = $this->model->feelIndex();
-        $comments = $this->model->feelComment($id);
-        return view('feelDetail', ['article' => $article, 'datas' => $datas, 'comments' => $comments]);
+        $comments = $this->model->feelComment($ftid);
+        $uid = Auth::id();
+        $userDatas = $this->model->feelComPN($uid);
+        return view('feelDetail', [
+            'article' => $article,
+            'datas' => $datas,
+            'comments' => $comments,
+            'userDatas' => $userDatas,
+            'uid' => $uid,
+            'ftid' => $ftid
+        ]);
     }
 
     public function feelCom(Request $request)
     {
-        $ftid = $request->ftid;
         $uid = $request->uid;
+        $ftid = $request->ftid;
         $feelcom = $request->feelcom;
         $this->model->feelCom($ftid, $uid, $feelcom);
-        return redirect("/feelDetail/{$ftid}");
 
+        return redirect("/feelDetail/{$ftid}");
     }
 
     public function feelMes(Request $request)
@@ -49,7 +61,7 @@ class FeelController extends Controller
         // 獲取文件的二進制內容
         $pic = $file->get();
 
-        $this->model->feelMes($uid,$title,$content,$pic);
+        $this->model->feelMes($uid, $title, $content, $pic);
         return redirect("/feelIndex");
     }
 
