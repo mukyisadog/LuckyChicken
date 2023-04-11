@@ -21,12 +21,14 @@ class ForumController extends Controller
         $questions = $this->model->question();
         $groups = $this->model->group();
         $haters = $this->model->hater();
+        $uid = Auth::id();
         
         return view('forumIndex',[
             'forumNew2s' => $forumNew2s,
             'questions' => $questions,
             'groups' => $groups,
-            'haters' => $haters
+            'haters' => $haters,
+            'uid' => $uid
         ]);
     }
     public function forumDetail(Request $request)
@@ -54,7 +56,8 @@ class ForumController extends Controller
         $foid = $request->foid;
         $sfid = $request->sfid;
         $forumcom = $request->forumcom;
-        $this->model->forumCom($sfid,$foid, $uid, $forumcom);
+        // return [$uid,$foid,$sfid,$forumcom];
+        $this->model->forumCom($uid,$sfid,$foid,$forumcom);
         return redirect("/forumDetail/{$sfid}/{$foid}");
     }
 
@@ -64,18 +67,38 @@ class ForumController extends Controller
         $uid = $request->uid;
         $title = $request->title;
         $content = $request->content;
-        $sid = $request->sid;
+        $sfid = $request->sfid;
 
         // 從請求中獲取文件實例
         $file = $request->file('pic');
         // 獲取文件的二進制內容
         $pic = $file->get();
-
-
-        $this->model->forumMes($sid,$uid,$title,$content,$pic);
-
+        $this->model->forumMes($sfid,$uid,$title,$content,$pic);
         return redirect("/forumIndex");
         // return $pic;
     }
+
+    public function forumSaved(Request $request)
+    {
+        $uid = $request->uid;
+        $ftid = $request->ftid;
+        $sfid = $request->sfid;
+        $this->model->forumSaved($uid,$ftid);
+        return redirect("/forumDetail/{$sfid}/{$ftid}");
+        // return $sfid;
+
+    }
+    
+    public function forumUnsaved(Request $request)
+    {
+        $uid = $request->uid;
+        $ftid = $request->ftid;
+        $sfid = $request->sfid;
+        $this->model->forumUnsaved($uid,$ftid);
+        return redirect("/forumDetail/{$sfid}/{$ftid}");
+        // return $sfid;
+
+    }
+    
 
 }

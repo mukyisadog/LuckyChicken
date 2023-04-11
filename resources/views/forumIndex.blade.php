@@ -118,8 +118,7 @@
                 </div>
             <script src="{{ asset('js/forumIndex.js') }}"></script>
             
-                    <!-- 這邊先寫死記得改 -->
-                <button id="btPublish" onclick="window.location.href='/BigProject/public/forumMessage/1'">
+                <button id="btPublish" onclick="window.location.href='/BigProject/public/forumMessage/{{$uid}}'">
                     發文
                 </button>
                     <aside class="column2">

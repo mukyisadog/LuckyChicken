@@ -19,8 +19,15 @@ $(".responsive").slick({
         {
             breakpoint: 1000,
             settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 850,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
             }
         },
         {

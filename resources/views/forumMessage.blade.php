@@ -41,7 +41,7 @@
             <br>
             <h1>論壇發表</h1>
             <div id="FormContainer">
-                <form method="post" action="/BigProject/public/forumMes/1" enctype="multipart/form-data">
+                <form method="post" action="/BigProject/public/forumMes/{{$uid}}" enctype="multipart/form-data">
                 @csrf
                     選擇封面：<br>
                     <p></p>
@@ -51,11 +51,11 @@
                     <input type="file" id="photo-upload" name="pic" accept="image/*">
                     <hr>
                     選看板：
-                    <input type="radio" name="sid" id="" value="1">問題
-                    <input type="radio" name="sid" id="" value="2">揪團
-                    <input type="radio" name="sid" id="" value="3">黑特
+                    <input type="radio" name="sfid" id="" value="1">問題
+                    <input type="radio" name="sfid" id="" value="2">揪團
+                    <input type="radio" name="sfid" id="" value="3">黑特
                     <hr>
-                    <input type="text" placeholder="輸入標題" name = "title">
+                    <input type="text" placeholder="輸入標題" name="title">
                     <br>
                     <textarea placeholder="輸入內容" name = "content"></textarea>
                     <br><br>

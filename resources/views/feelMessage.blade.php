@@ -42,8 +42,7 @@
             <br><br>
             <h1>分享心得</h1>
             <div id="FormContainer">
-                <!-- 這邊先寫死 等登入系統做好再來改 -->
-                <form method="post" action="/BigProject/public/feelMes/1" enctype="multipart/form-data">
+                <form method="post" action="/BigProject/public/feelMes/{{$uid}}" enctype="multipart/form-data">
                     @csrf
                     選擇封面：<br>
                     <p></p>

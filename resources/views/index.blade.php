@@ -73,7 +73,19 @@
     <h1>最新心得</h1>
     <div class="sliderContainer">
         <div class="slider responsive">
+        @foreach($feeldatas as $data)
             <div class="card">
+                <!-- <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%"> -->
+                <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
+                <h5>{{$data->title}}</h5>
+                <p>作者：{{$data->name}}</p>
+                <p>發表日期：{{$data->createtime}}</p>
+                <div style="margin: 24px 0;">
+                </div>
+                <p><button>閱讀</button></p>
+            </div>
+        @endforeach
+            <!-- <div class="card">
                 <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
                 <h5>玉山一日遊（一人獨行）</h5>
                 <p>作者：Tata Cheng</p>
@@ -81,104 +93,26 @@
                 <div style="margin: 24px 0;">
                 </div>
                 <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
+            </div> -->
         </div>
     </div>
     <br><br><br><br>
     <h1>最新討論</h1>
     <div class="sliderContainer">
         <div class="slider responsive">
+        @foreach($forumdatas as $data)
             <div class="card">
+                <!-- <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%"> -->
+                <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
+                <h5>{{$data->title}}</h5>
+                <p>作者：{{$data->name}}</p>
+                <p>發表日期：{{$data->createtime}}</p>
+                <div style="margin: 24px 0;">
+                </div>
+                <p><button>閱讀</button></p>
+            </div>
+        @endforeach
+            <!-- <div class="card">
                 <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
                 <h5>玉山一日遊（一人獨行）</h5>
                 <p>作者：Tata Cheng</p>
@@ -267,16 +201,7 @@
                 <div style="margin: 24px 0;">
                 </div>
                 <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
+            </div> -->
         </div>
 
     </div>

@@ -73,26 +73,35 @@
     left: 10%;
 }
 
-#content > div:nth-child(1) > i {
+#content > div:nth-child(1) > a {
     display: inline-block;
     position: relative;
     top: -40px;
     left: 70%;
-    color: crimson;
+    color: rgb(208, 4, 4);
     font-size: 40px;
     cursor: pointer;
 }
 
-#content > div:nth-child(1) > i:hover{
-  color: rgb(231, 30, 70);
+#content > div:nth-child(1) > a:hover{
+  color: rgb(255, 22, 69);
   font-size: 45px;
 }
 
+#content > div:nth-child(1) > a:visited{
+    /* color: rgb(2, 2, 2); */
+    font-size: 45px;
+  }
+
 #content > div:nth-child(3) {
     display: flex;
-    /* justify-content: center; */
     margin-bottom: 30px;
 }
+
+.text-danger {
+    color: rgb(92, 90, 90) !important;
+  }
+  
 
 /* 留言歷史 */
 #mesHis {

@@ -11,6 +11,7 @@ class MyModel extends Model
 {
     use HasFactory;
 
+
     // 心得
     function feelIndex(){
         $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime");
@@ -37,7 +38,19 @@ class MyModel extends Model
     }
 
     function feelMes($uid,$title,$content,$pic){
-        DB::insert("INSERT INTO `Feel_list` SET uid = ?, title = ?, content = ?,picture = ?",[$uid, $title, $content,$pic]);
+        DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ",[$uid, $title, $content,$pic]);
+        $answer = "ok";
+        return $answer;
+    }
+
+    function feelSaved($uid,$ftid){
+        DB::insert("INSERT INTO `Feel_Saved` SET uid = ?, fid = ?",[$uid,$ftid]);
+        $answer = "ok";
+        return $answer;
+    }
+
+    function feelUnsaved($uid,$ftid){
+        DB::delete("Delete from `Feel_Saved` WHERE uid = ? and fid = ?",[$uid,$ftid]);
         $answer = "ok";
         return $answer;
     }
@@ -75,7 +88,8 @@ class MyModel extends Model
     }
 
     function forumNew2(){
-        $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
+        // $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
+        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
         return $forumNew2s;
     }
     
@@ -85,15 +99,25 @@ class MyModel extends Model
         return $answer;
     }
 
+    function forumSaved($uid,$ftid){
+        DB::insert("INSERT INTO `Forum_Saved` SET uid = ?, foid = ?",[$uid,$ftid]);
+        $answer = "ok";
+        return $answer;
+    }
+    
+    function forumUnsaved($uid,$ftid){
+        DB::delete("Delete from `Forum_Saved` WHERE uid = ? and foid = ?",[$uid,$ftid]);
+        $answer = "ok";
+        return $answer;
+    }
     
 
 
-    // function forumMes($sid,$uid,$title,$content,$pic){
-    //     DB::insert("INSERT INTO `foruminfo` SET sid = ?, authorId = ?, title = ?, content = ?, pic = ?",[$sid, $uid, $title, $content, $pic]);
-    //     $answer = "ok";
-    //     return $answer;
-        
-    // }
+    function forumMes($sfid,$uid,$title,$content,$pic){
+        DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?",[$sfid, $uid, $title, $content, $pic]);
+        $answer = "ok";
+        return $answer;     
+    }
 
 
     

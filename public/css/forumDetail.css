@@ -73,7 +73,7 @@ margin-top: 1.8%;
   left: 10%;
 }
 
-#content > div:nth-child(1) > i {
+#content > div:nth-child(1) > a {
   display: inline-block;
   position: relative;
   top: -40px;
@@ -83,7 +83,7 @@ margin-top: 1.8%;
   cursor: pointer;
 }
 
-#content > div:nth-child(1) > i:hover{
+#content > div:nth-child(1) > a:hover{
 color: rgb(231, 30, 70);
 font-size: 45px;
 }
@@ -92,6 +92,10 @@ font-size: 45px;
   display: flex;
   /* justify-content: center; */
   margin-bottom: 30px;
+}
+
+.text-danger {
+  color: rgb(92, 90, 90) !important;
 }
 
 /* 留言歷史 */

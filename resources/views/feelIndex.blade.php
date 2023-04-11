@@ -94,8 +94,7 @@
             </div>
         </footer>
 
-        <!-- 這邊先寫死記得改 -->
-        <button id="btPublish" onclick="window.location.href='/BigProject/public/feelMessage/1'">
+        <button id="btPublish" onclick="window.location.href='/BigProject/public/feelMessage/{{$uid}}'">
             發文
         </button>
 </body>

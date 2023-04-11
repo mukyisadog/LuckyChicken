@@ -19,7 +19,11 @@ class FeelController extends Controller
     public function feelIndex()
     {
         $datas = $this->model->feelIndex();
-        return view('feelIndex', ['datas' => $datas]);
+        $uid = Auth::id();
+        return view('feelIndex', [
+            'datas' => $datas,
+            'uid' => $uid
+        ]);
     }
 
     public function feelDetail(Request $request)
@@ -46,7 +50,7 @@ class FeelController extends Controller
         $ftid = $request->ftid;
         $feelcom = $request->feelcom;
         $this->model->feelCom($ftid, $uid, $feelcom);
-
+        // return "ok";
         return redirect("/feelDetail/{$ftid}");
     }
 
@@ -63,6 +67,24 @@ class FeelController extends Controller
 
         $this->model->feelMes($uid, $title, $content, $pic);
         return redirect("/feelIndex");
+    }
+
+    public function feelSaved(Request $request)
+    {
+        $uid = $request->uid;
+        $ftid = $request->ftid;
+        $this->model->feelSaved($uid,$ftid);
+        return redirect("/feelDetail/{$ftid}");
+        // return $uid;
+
+    }
+
+    public function feelUnsaved(Request $request){
+        $uid = $request->uid;
+        $ftid = $request->ftid;
+        $this->model->feelUnsaved($uid,$ftid);
+        return redirect("/feelDetail/{$ftid}");
+        // return $uid ;
     }
 
 }
