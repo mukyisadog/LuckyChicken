@@ -15,7 +15,7 @@ class IndexController extends Controller
     }
     public function Index()
     {
-        $feeldatas = $this->model->feelIndex();
+        $feeldatas = $this->model->feelNews();
         $forumdatas = $this->model->forumNew2();
         
         return view('Index',[

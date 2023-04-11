@@ -82,7 +82,9 @@
                 <p>發表日期：{{$data->createtime}}</p>
                 <div style="margin: 24px 0;">
                 </div>
-                <p><button>閱讀</button></p>
+                <a href="/BigProject/public/feelDetail/{{$data->fid}}">
+                    <button>閱讀</button>
+                </a>
             </div>
         @endforeach
             <!-- <div class="card">
@@ -109,91 +111,12 @@
                 <p>發表日期：{{$data->createtime}}</p>
                 <div style="margin: 24px 0;">
                 </div>
-                <p><button>閱讀</button></p>
+                <a href="/BigProject/public/forumDetail/{{$data->sfid}}/{{$data->foid}}">
+                    <button>閱讀</button>
+                </a>
             </div>
         @endforeach
             <!-- <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div>
-            <div class="card">
                 <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
                 <h5>玉山一日遊（一人獨行）</h5>
                 <p>作者：Tata Cheng</p>

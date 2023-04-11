@@ -17,6 +17,10 @@ class MyModel extends Model
         $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime");
         return $datas;
     }
+    function feelNews(){
+        $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime LIMIT 10");
+        return $datas;
+    }
     function feelDetail($id){
         $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id where Feel_list.fid = ?",[$id]);
         return $datas;
@@ -89,7 +93,7 @@ class MyModel extends Model
 
     function forumNew2(){
         // $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
-        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
+        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime LIMIT 10");
         return $forumNew2s;
     }
     
