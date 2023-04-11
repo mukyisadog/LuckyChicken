@@ -49,9 +49,9 @@
                             <button class="tablinks" onclick="openCity(event, 'Tokyo')">黑特</button>
                         </div>
                         <div id="abc" class="tabcontent">
-                            <form class="example" action="">
-                                <input type="text" placeholder="輸入關鍵字" name="search">
-                                <button type="submit">搜索</button>
+                            <form class="example">
+                                <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
+                                <button type="button" id="searchbt">搜索</button>
                             </form>
                             <div id="articles">
                                 @foreach($questions as $question)
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="articleCon">
                                                 <a href="/BigProject/public/forumDetail/1/{{$question->foid}}">
-                                                    <h4>{{$question->title}}</h4>
+                                                    <h4 class="searchtitle">{{$question->title}}</h4>
                                                 </a>
                                                 <h5>作者：{{$question->name}}</h5>
                                                 <h5>發布日期：{{$question->createtime}}</h5>
@@ -71,9 +71,9 @@
                             </div>
                         </div>
                         <div id="Paris" class="tabcontent">
-                            <form class="example" action="">
-                                <input type="text" placeholder="輸入關鍵字" name="search">
-                                <button type="submit">搜索</button>
+                            <form class="example">
+                                <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
+                                <button type="button" id="searchbt">搜索</button>
                             </form>
                             <div id="articles">
                             @foreach($groups as $group)
@@ -83,7 +83,7 @@
                                             </div>
                                             <div class="articleCon">
                                                 <a href="/BigProject/public/forumDetail/2/{{$group->foid}}">
-                                                    <h4>{{$group->title}}</h4>
+                                                    <h4 class="searchtitle">{{$group->title}}</h4>
                                                 </a>
                                                 <h5>作者：{{$group->name}}</h5>
                                                 <h5>發布日期：{{$group->createtime}}</h5>
@@ -93,9 +93,9 @@
                             </div>
                         </div>
                         <div id="Tokyo" class="tabcontent">
-                            <form class="example" action="">
-                                <input type="text" placeholder="輸入關鍵字" name="search">
-                                <button type="submit">搜索</button>
+                            <form class="example">
+                                <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
+                                <button type="button" id="searchbt">搜索</button>
                             </form>
                             <div id="articles">
                             @foreach($haters as $hater)
@@ -105,7 +105,7 @@
                                             </div>
                                             <div class="articleCon">
                                                 <a href="/BigProject/public/forumDetail/3/{{$hater->foid}}">
-                                                    <h4>{{$hater->title}}</h4>
+                                                    <h4 class="searchtitle">{{$hater->title}}</h4>
                                                 </a>
                                                 <h5>作者：{{$hater->name}}</h5>
                                                 <h5>發布日期：{{$hater->createtime}}</h5>
@@ -115,12 +115,61 @@
                             </div>
                         </div>
                     </div>
+                    <script>
+                        bt = document.getElementById("searchbt")
+                        bt.onclick = function () {
+                            event.preventDefault();
+                            const titles = Array.from(document.querySelectorAll(".searchtitle")).map(title => title.textContent);
+                            console.log(titles);
+                            const searchinput = document.getElementById("search-input");
+                            const articles = Array.from(document.querySelectorAll(".article"));
+                            // console.log(articles);
+
+                            let reg1 = /\w/g
+                            let reg2 = /[\u4E00-\u9FFF]/g
+                            if (reg1.test(searchinput.value.trim()) == true || reg2.test(searchinput.value.trim()) == true) {
+                                if (searchinput.value.trim() == "") {
+                                    alert("請輸入關鍵字");
+                                    articles.forEach(article => article.classList.remove("unmatched"));
+                                }
+                                else {
+                                    b = new RegExp(`${searchinput.value.trim()}`, 'gi')
+                                    // console.log(b)
+                                    let arr = []
+                                    for (let i = 0; i < titles.length; i++) {
+                                        result = titles[i].matchAll(b);
+                                        
+                                        if (Array.from(result).length > 0) {
+                                            arr.push(titles[i]);
+                                            articles[i].classList.remove("unmatched");
+                                        }else{
+                                            articles[i].classList.add("unmatched");    
+                                        }
+                                    }
+                                    if (arr == "") {
+                                        alert("找不到相關內容");
+                                        articles.forEach(article => article.classList.remove("unmatched"));
+                                        // console.log('123');
+                                    } 
+                                    else { 
+                                        
+                                    }
+                                }
+                            }else{
+                                alert("請輸入關鍵字");
+                                articles.forEach(article => article.classList.remove("unmatched"));
+                            }
+                            
+                        }
+                    </script>
+
                 </div>
             <script src="{{ asset('js/forumIndex.js') }}"></script>
-            
+            @auth
                 <button id="btPublish" onclick="window.location.href='/BigProject/public/forumMessage/{{$uid}}'">
                     發文
                 </button>
+            @endauth
                     <aside class="column2">
                         <h1>-最新文章-</h1>
                         @foreach($forumNew2s as $forumNew2)

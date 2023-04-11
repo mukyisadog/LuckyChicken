@@ -53,8 +53,8 @@
                             @endauth
                         </div>   
                         <div>
-                            <h1>標題：{{ $article1->title}}</h1>
-                            <p>時間:{{ $article1->createtime}}</p>
+                            <h1>{{ $article1->title}}</h1>
+                            <p>{{ $article1->createtime}}</p>
                         </div>
                         <div id="imgDiv">
                         <img src="data:image/jpeg;base64,{{base64_encode( $article1->fpicture)}}" >
