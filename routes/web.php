@@ -56,6 +56,7 @@ Route::get('/feelSaved/{uid}/{ftid}',[FeelController::class,'feelSaved']);
 
 Route::get('/feelUnsaved/{uid}/{ftid}',[FeelController::class,'feelUnsaved']);
 
+Route::post('feelMesSaved/{uid}', [FeelController::class,'feelMesSaved']);
 
 // 論壇
 Route::get('/forumIndex',[ForumController::class,'forumIndex']);
@@ -73,5 +74,8 @@ Route::post('/forumMes/{uid}', [ForumController::class,'forumMes']);
 Route::get('/forumSaved/{sfid}/{uid}/{ftid}', [ForumController::class,'forumSaved']);
 
 Route::get('/forumUnsaved/{sfid}/{uid}/{ftid}',[ForumController::class,'forumUnsaved']);
+
+Route::post('/forumMesSaved/{uid}', [ForumController::class,'forumMesSaved']);
+
 
 require __DIR__.'/auth.php';

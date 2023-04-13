@@ -63,6 +63,7 @@ input[type="submit"]{
   font-size: 30px;
   background-color: #b1bba0;
   color: #664c43;
+  cursor: pointer;
 }
 
 

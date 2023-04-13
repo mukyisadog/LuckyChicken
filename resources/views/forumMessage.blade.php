@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/forumMessage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/NavFooter.css') }}">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
 </head>
 
 <body>
@@ -41,30 +42,54 @@
             <br>
             <h1>論壇發表</h1>
             <div id="FormContainer">
-                <form method="post" action="/BigProject/public/forumMes/{{$uid}}" enctype="multipart/form-data">
-                @csrf
+                <form method="post" action="/BigProject/public/forumMes/{{$uid}}" enctype="multipart/form-data" id="myForm">
+                    @csrf
                     選擇封面：<br>
                     <p></p>
-                    <!-- <label for="photo-upload">
-                        <img src="./pic/addpic.png" alt="">
-                    </label> -->
-                    <input type="file" id="photo-upload" name="pic" accept="image/*">
+                    <input type="file" id="photo-upload" name="pic" accept="image/*" required>
+                    <div id="preview"></div>
+                    <script src="{{asset('js/mesCanva.js')}}"></script>
                     <hr>
                     選看板：
-                    <input type="radio" name="sfid" id="" value="1">問題
-                    <input type="radio" name="sfid" id="" value="2">揪團
-                    <input type="radio" name="sfid" id="" value="3">黑特
+                    <input type="radio" name="sfid" id="" value="1" required>問題
+                    <input type="radio" name="sfid" id="" value="2" required>揪團
+                    <input type="radio" name="sfid" id="" value="3" required>黑特
                     <hr>
-                    <input type="text" placeholder="輸入標題" name="title">
+                    <input type="text" placeholder="輸入標題" name="title" minlength="5" required>
                     <br>
-                    <textarea placeholder="輸入內容" name = "content"></textarea>
+                    <textarea placeholder="輸入內容" name = "content" minlength="10" required></textarea>
                     <br><br>
                     <hr>
                     <div id="bt">
                         <input type="submit" value="發布">
-                        <button>儲存</button>
+                        <input type="submit" value="儲存" onclick="changeAction()">
                     </div>
                 </form>
+                <script>
+                    function changeAction(){
+                        // alert("123");
+                        document.getElementById('myForm').action = "/BigProject/public/forumMesSaved/{{$uid}}";
+                    }
+                    // document.getElementById('myForm').addEventListener('submit', function(event) {
+                    //     event.preventDefault();
+                    //     var formData = new FormData(event.target);
+                    //     fetch(event.target.action, {
+                    //         method: 'POST',
+                    //         body: formData
+                    //     })
+                    //     .then(response => {
+                    //     if (response.ok) {
+                    //         alert('儲存成功');
+                    //     } else {
+                    //         throw new Error('表單提交失敗');
+                    //     }
+                    //     })
+                    //     .catch(error => {
+                    //         console.error('表單提交失敗:', error);
+                    //     });
+                    // });
+                
+                </script>
             </div>
             <br><br>
         </div>

@@ -99,6 +99,24 @@ class ForumController extends Controller
         // return $sfid;
 
     }
+
+
+    public function forumMesSaved(Request $request)
+    {
+        $uid = $request->uid;
+        $title = $request->title;
+        $content = $request->content;
+        $sfid = $request->sfid;
+
+        // 從請求中獲取文件實例
+        $file = $request->file('pic');
+        // 獲取文件的二進制內容
+        $pic = $file->get();
+        $this->model->forumMesSaved($sfid,$uid,$title,$content,$pic);
+        return redirect("/forumMes/{uid}");
+        // return ;
+    }
+    
     
 
 }

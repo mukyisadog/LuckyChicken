@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/feelMessage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/NavFooter.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
 </head>
 
 <body>
@@ -42,26 +42,51 @@
             <br><br>
             <h1>分享心得</h1>
             <div id="FormContainer">
-                <form method="post" action="/BigProject/public/feelMes/{{$uid}}" enctype="multipart/form-data">
+                <form method="post" action="/BigProject/public/feelMes/{{$uid}}" enctype="multipart/form-data" id="myForm">
                     @csrf
                     選擇封面：<br>
                     <p></p>
-                    <!-- <label for="photo-upload">
-                        <img src="public/pic/addpic.png" alt="">
-                    </label> -->
-                    <input type="file" id="photo-upload" name="pic" accept="image/*">
+                    <input type="file" id="photo-upload" name="pic" accept="image/*" required>
+                    <div id="preview"></div>
+                    <script src="{{asset('js/mesCanva.js')}}"></script>
                     <hr>
-                    <input type="text" placeholder="輸入標題" name="title">
+                    <input type="text" placeholder="輸入標題" name="title" id="title" minlength="5" required>
                     <br>
-                    <textarea placeholder="輸入內容" name="content"></textarea>
+                    <textarea placeholder="輸入內容" name="content" id="textarea" minlength="10" required></textarea>
                     <br><br>
                     <hr>
                     <div id="bt">
                         <input type="submit" value="發布">
-                        <button>儲存</button>
+                        <input type="submit" value="儲存" onclick="changeAction()">
                     </div>
                 </form>
-        
+                <!-- <script src="{{asset('js/feelMesSaved.js')}}"></script> -->
+
+                <script>
+                    function changeAction(){
+                            document.getElementById('myForm').action = "/BigProject/public/feelMesSaved/{{$uid}}";
+                    }
+                //     document.getElementById('myForm').addEventListener('submit', function(event) {
+                //     event.preventDefault();
+                //     var formData = new FormData(event.target);
+                //     fetch(event.target.action, {
+                //         method: 'POST',
+                //         body: formData
+                //     })
+                //     .then(response => {
+                //         if (response.ok) {
+                //             alert('儲存成功');
+                //         } else {
+                //             throw new Error('表單提交失敗');
+                //         }
+                //     })
+                //     .catch(error => {
+                //         console.error('表單提交失敗:', error);
+                //     });
+                // });
+
+                
+                </script>
             </div>
             <br><br>
         </div>

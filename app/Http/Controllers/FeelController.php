@@ -86,5 +86,19 @@ class FeelController extends Controller
         return redirect("/feelDetail/{$ftid}");
         // return $uid ;
     }
+    public function feelMesSaved(Request $request){
+        $uid = $request->uid;      
+        $title = $request->title;
+        $content = $request->content;
+        // 從請求中獲取文件實例
+        $file = $request->file('pic');
+        // 獲取文件的二進制內容
+        $pic = $file->get();
+        $this->model->feelMesSaved($uid,$title,$content,$pic);
+        return redirect("/feelMessage/{$uid}");
+        // return $uid ;
+    }
+
+    
 
 }

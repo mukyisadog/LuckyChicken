@@ -59,6 +59,12 @@ class MyModel extends Model
         return $answer;
     }
 
+    function feelMesSaved($uid,$title,$content,$pic){
+        DB::insert("INSERT INTO FeelMes_saved SET uid = ?, title = ?, content = ?,fpicture = ? ",[$uid, $title, $content,$pic]);
+        $answer = "ok";
+        return $answer;
+    }
+
     // 論壇
 
     function question(){
@@ -122,6 +128,13 @@ class MyModel extends Model
         $answer = "ok";
         return $answer;     
     }
+
+    function forumMesSaved($sfid,$uid,$title,$content,$pic){
+        DB::insert("INSERT INTO forumMes_saved SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?",[$sfid, $uid, $title, $content, $pic]);
+        $answer = "ok";
+        return $answer;     
+    }
+    
 
 
     
