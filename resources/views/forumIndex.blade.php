@@ -68,6 +68,7 @@
                                             </div>
                                         </div>
                                 @endforeach
+                                {{ $questions->links() }} 
                             </div>
                         </div>
                         <div id="Paris" class="tabcontent">
@@ -90,6 +91,7 @@
                                             </div>
                                         </div>
                             @endforeach
+                            {{ $groups->links() }} 
                             </div>
                         </div>
                         <div id="Tokyo" class="tabcontent">
@@ -112,6 +114,7 @@
                                             </div>
                                         </div>
                                 @endforeach
+                                {{ $haters->links() }} 
                             </div>
                         </div>
                     </div>

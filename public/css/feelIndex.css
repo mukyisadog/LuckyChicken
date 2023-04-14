@@ -138,6 +138,21 @@ form.example::after {
     object-fit: cover; /* 图片缩放以填满容器 */
 }
 
+.pagination{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-left: 250px;
+    font-size: 19px;
+    border-bottom: #B1BBA0 1px solid;
+    cursor: pointer;
+}
+
+.page-item{
+    margin: 0 10px;
+}
 
 
 /* 發文按鈕 */

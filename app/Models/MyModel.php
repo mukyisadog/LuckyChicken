@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use SebastianBergmann\Environment\Console;    
+use SebastianBergmann\Environment\Console; 
+
 
 class MyModel extends Model
 {
@@ -13,10 +14,18 @@ class MyModel extends Model
 
 
     // 心得
+    // function feelIndex(){
+    //     $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime");
+    //     return $datas;
+    // }
     function feelIndex(){
-        $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime");
+        $datas = DB::table('Feel_list')
+                ->leftJoin('users', 'Feel_list.uid', '=', 'users.id')
+                ->orderBy('Feel_list.createtime')
+                ->paginate(10);
         return $datas;
     }
+    
     function feelNews(){
         $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime LIMIT 10");
         return $datas;
@@ -67,18 +76,46 @@ class MyModel extends Model
 
     // 論壇
 
+    // function question(){
+    //     $questions = DB::select("select fpicture,foid,title,name,Forum_list.createtime as createtime from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = 1 order by Forum_list.createtime");
+    //     return $questions;
+    // }
     function question(){
-        $questions = DB::select("select fpicture,foid,title,name,Forum_list.createtime as createtime from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = 1 order by Forum_list.createtime");
+        $questions = DB::table('Forum_list')
+                ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
+                ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
+                ->where('Forum_list.sfid', '=', 1)
+                ->orderBy('Forum_list.createtime')
+                ->paginate(10);
+
         return $questions;
     }
 
+    // function group(){
+    //     $groups = DB::select("select fpicture,foid,title,name,Forum_list.createtime as createtime from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = 2 order by Forum_list.createtime");
+    //     return $groups;
+    // }
     function group(){
-        $groups = DB::select("select fpicture,foid,title,name,Forum_list.createtime as createtime from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = 2 order by Forum_list.createtime");
+        $groups= DB::table('Forum_list')
+        ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
+        ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
+        ->where('Forum_list.sfid', '=', 2)
+        ->orderBy('Forum_list.createtime')
+        ->paginate(10);
         return $groups;
     }
 
+    // function hater(){
+    //     $haters = DB::select("select fpicture,foid,title,name,Forum_list.createtime as createtime from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = 3 order by Forum_list.createtime");
+    //     return $haters;
+    // }
     function hater(){
-        $haters = DB::select("select fpicture,foid,title,name,Forum_list.createtime as createtime from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = 3 order by Forum_list.createtime");
+        $haters= DB::table('Forum_list')
+        ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
+        ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
+        ->where('Forum_list.sfid', '=', 3)
+        ->orderBy('Forum_list.createtime')
+        ->paginate(10);
         return $haters;
     }
 
@@ -99,7 +136,7 @@ class MyModel extends Model
 
     function forumNew2(){
         // $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
-        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime LIMIT 10");
+        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime LIMIT 14");
         return $forumNew2s;
     }
     

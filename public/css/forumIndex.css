@@ -131,6 +131,7 @@ form.example::after {
   margin-top:50px;
   display: flex;
   flex-wrap: wrap;
+  /* height: 2247.5px; */
 }
 
 .article {
@@ -191,6 +192,22 @@ form.example::after {
   height: 500px; /* 容器高度 */
   position: relative; /* 设置相对定位，以便容器可以容纳图片 */
 
+}
+
+.pagination{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-left: 250px;
+    font-size: 19px;
+    border-bottom: #B1BBA0 1px solid;
+    cursor: pointer;
+}
+
+.page-item{
+    margin: 0 10px;
 }
 
 

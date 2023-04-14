@@ -67,6 +67,8 @@
                                 </div>
                             </div>
                         @endforeach
+
+                        {{ $datas->links() }} 
                         </div>                       
                     </div>
                     <script>
