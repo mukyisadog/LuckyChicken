@@ -58,17 +58,19 @@
                     <br><br>
                     <hr>
                     <div id="bt">
-                        <input type="submit" value="發布">
-                        <input type="submit" value="儲存" onclick="changeAction()">
+                        <button type="submit" value="1" name="btValue">發布</button>
+                        <button type="submit" value="0" name="btValue">儲存</button>
+                        <!-- <input type="submit" value="儲存"> -->
+                        <!-- <input type="submit" value="儲存" onclick="changeAction()"> -->
                     </div>
                 </form>
 
-                <script>
+                <!-- <script>
                     function changeAction(){
                             document.getElementById('myForm').action = "/BigProject/public/feelMesSaved/{{$uid}}";
                     }
                 
-                </script>
+                </script> -->
             </div>
             <br><br>
         </div>

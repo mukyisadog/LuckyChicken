@@ -21,6 +21,7 @@ class MyModel extends Model
     function feelIndex(){
         $datas = DB::table('Feel_list')
                 ->leftJoin('users', 'Feel_list.uid', '=', 'users.id')
+                ->where('state','=','1')
                 ->orderBy('Feel_list.createtime')
                 ->paginate(10);
         return $datas;
@@ -35,6 +36,7 @@ class MyModel extends Model
         $outputs = DB::table('Feel_list')
         ->leftJoin('users', 'Feel_list.uid', '=', 'users.id')
         ->where('title', 'REGEXP', $search)
+        ->where('state','=','1')
         ->paginate(10);
         // $outputs = DB::select("SELECT * FROM `Feel_list` left join users on Feel_list.uid = users.id WHERE title REGEXP ?",[$search]);
         return $outputs;
@@ -65,8 +67,8 @@ class MyModel extends Model
         return $answer;
     }
 
-    function feelMes($uid,$title,$content,$pic){
-        DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ",[$uid, $title, $content,$pic]);
+    function feelMes($uid,$title,$content,$pic,$state){
+        DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$pic,$state]);
         $answer = "ok";
         return $answer;
     }
@@ -83,11 +85,11 @@ class MyModel extends Model
         return $answer;
     }
 
-    function feelMesSaved($uid,$title,$content,$pic){
-        DB::insert("INSERT INTO FeelMes_saved SET uid = ?, title = ?, content = ?,fpicture = ? ",[$uid, $title, $content,$pic]);
-        $answer = "ok";
-        return $answer;
-    }
+    // function feelMesSaved($uid,$title,$content,$pic){
+    //     DB::insert("INSERT INTO FeelMes_saved SET uid = ?, title = ?, content = ?,fpicture = ? ",[$uid, $title, $content,$pic]);
+    //     $answer = "ok";
+    //     return $answer;
+    // }
 
     
     // 論壇
@@ -101,6 +103,7 @@ class MyModel extends Model
                 ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
                 ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
                 ->where('Forum_list.sfid', '=', 1)
+                ->where('state','=','1')
                 ->orderBy('Forum_list.createtime')
                 ->paginate(10);
 
@@ -112,6 +115,7 @@ class MyModel extends Model
         ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
         ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
         ->where('Forum_list.sfid', '=', 1)
+        ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
         ->paginate(10);
         return $Qoutputs;
@@ -126,6 +130,7 @@ class MyModel extends Model
         ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
         ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
         ->where('Forum_list.sfid', '=', 2)
+        ->where('state','=','1')
         ->orderBy('Forum_list.createtime')
         ->paginate(10);
         return $groups;
@@ -136,6 +141,7 @@ class MyModel extends Model
         ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
         ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
         ->where('Forum_list.sfid', '=', 2)
+        ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
         ->paginate(10);
         return $Goutputs;
@@ -150,6 +156,7 @@ class MyModel extends Model
         ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
         ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
         ->where('Forum_list.sfid', '=', 3)
+        ->where('state','=','1')
         ->orderBy('Forum_list.createtime')
         ->paginate(10);
         return $haters;
@@ -161,6 +168,7 @@ class MyModel extends Model
         ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
         ->where('Forum_list.sfid', '=', 3)
         ->where('title', 'REGEXP', $search)
+        ->where('state','=','1')
         ->paginate(10);
         return $Houtputs;
     }
@@ -176,13 +184,13 @@ class MyModel extends Model
     }
 
     function forumNew($sid){
-        $forumNews = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? order by Forum_list.createtime",[$sid]);
+        $forumNews = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and state = 1 order by Forum_list.createtime",[$sid]);
         return $forumNews;
     }
 
     function forumNew2(){
         // $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
-        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime LIMIT 14");
+        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where state = 1 order by Forum_list.createtime LIMIT 14");
         return $forumNew2s;
     }
     
@@ -206,17 +214,18 @@ class MyModel extends Model
     
 
 
-    function forumMes($sfid,$uid,$title,$content,$pic){
-        DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?",[$sfid, $uid, $title, $content, $pic]);
+    function forumMes($sfid,$uid,$title,$content,$pic,$state){
+        DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?, state = ?",[$sfid, $uid, $title, $content, $pic, $state]);
         $answer = "ok";
+
         return $answer;     
     }
 
-    function forumMesSaved($sfid,$uid,$title,$content,$pic){
-        DB::insert("INSERT INTO forumMes_saved SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?",[$sfid, $uid, $title, $content, $pic]);
-        $answer = "ok";
-        return $answer;     
-    }
+    // function forumMesSaved($sfid,$uid,$title,$content,$pic){
+    //     DB::insert("INSERT INTO forumMes_saved SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?",[$sfid, $uid, $title, $content, $pic]);
+    //     $answer = "ok";
+    //     return $answer;     
+    // }
     
 
 

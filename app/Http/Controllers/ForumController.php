@@ -83,14 +83,15 @@ class ForumController extends Controller
         $title = $request->title;
         $content = $request->content;
         $sfid = $request->sfid;
+        $state = $request->input('btValue');
 
         // 從請求中獲取文件實例
         $file = $request->file('pic');
         // 獲取文件的二進制內容
         $pic = $file->get();
-        $this->model->forumMes($sfid,$uid,$title,$content,$pic);
+        $this->model->forumMes($sfid,$uid,$title,$content,$pic,$state);
         return redirect("/forumIndex");
-        // return $pic;
+        // return $abc;
     }
 
     public function forumSaved(Request $request)

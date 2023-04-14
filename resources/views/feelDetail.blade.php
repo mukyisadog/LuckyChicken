@@ -18,7 +18,9 @@
                 <li><a href="#">拼車</a></li>
                 <li><a href="/BigProject/public/forumIndex">論壇</a></li>
                 <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                <li><a href="#"><img src="./pic/admin.png" alt=""></a></li>
+                @foreach($userPic as $Pic)
+                    <li><a href="#"><img src="data:image/jpeg;base64,{{base64_encode($Pic->upicture)}}" ></a></li>
+                @endforeach
             </ul>
         </nav>
 

@@ -54,8 +54,6 @@ Route::get('/feelMessage/{uid}', function ($uid) {
             ]);
 });
 
-// Route::get('/feelMessage/{uid}',[FeelController::class,'feelMessage']);
-
 Route::post('/feelCom/{ftid}/{uid}',[FeelController::class,'feelCom']);
 
 Route::post('feelMes/{uid}', [FeelController::class,'feelMes']);
@@ -64,7 +62,7 @@ Route::get('/feelSaved/{uid}/{ftid}',[FeelController::class,'feelSaved']);
 
 Route::get('/feelUnsaved/{uid}/{ftid}',[FeelController::class,'feelUnsaved']);
 
-Route::post('feelMesSaved/{uid}', [FeelController::class,'feelMesSaved']);
+// Route::post('feelMesSaved/{uid}', [FeelController::class,'feelMesSaved']);
 
 
 
@@ -90,7 +88,7 @@ Route::get('/forumSaved/{sfid}/{uid}/{ftid}', [ForumController::class,'forumSave
 
 Route::get('/forumUnsaved/{sfid}/{uid}/{ftid}',[ForumController::class,'forumUnsaved']);
 
-Route::post('/forumMesSaved/{uid}', [ForumController::class,'forumMesSaved']);
+// Route::post('/forumMesSaved/{uid}', [ForumController::class,'forumMesSaved']);
 
 
 require __DIR__.'/auth.php';

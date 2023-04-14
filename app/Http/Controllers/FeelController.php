@@ -39,13 +39,15 @@ class FeelController extends Controller
         $comments = $this->model->feelComment($ftid);
         $uid = Auth::id();
         $userDatas = $this->model->feelComPN($uid);
+        $userPic = $this->model->UserPic($uid);
         return view('feelDetail', [
             'article' => $article,
             'datas' => $datas,
             'comments' => $comments,
             'userDatas' => $userDatas,
             'uid' => $uid,
-            'ftid' => $ftid
+            'ftid' => $ftid,
+            'userPic' => $userPic
         ]);
     }
 
@@ -70,8 +72,12 @@ class FeelController extends Controller
         // 獲取文件的二進制內容
         $pic = $file->get();
 
-        $this->model->feelMes($uid, $title, $content, $pic);
+        $state = $request->input('btValue');
+
+        $this->model->feelMes($uid, $title, $content, $pic, $state);
         return redirect("/feelIndex");
+
+        // return $state;
     }
 
     public function feelSaved(Request $request)

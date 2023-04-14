@@ -115,7 +115,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($Goutput->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/1/{{$Goutput->foid}}">
+                                            <a href="/BigProject/public/forumDetail/2/{{$Goutput->foid}}">
                                                 <h4 class="searchtitle">{{$Goutput->title}}</h4>
                                             </a>
                                             <h5>作者：{{$Goutput->name}}</h5>
@@ -162,7 +162,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($Houtput->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/1/{{$Houtput->foid}}">
+                                            <a href="/BigProject/public/forumDetail/3/{{$Houtput->foid}}">
                                                 <h4 class="searchtitle">{{$Houtput->title}}</h4>
                                             </a>
                                             <h5>作者：{{$Houtput->name}}</h5>

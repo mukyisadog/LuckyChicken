@@ -44,17 +44,17 @@ textarea:focus {
   margin-left: 80%;
 }
 
-input[type="button"] {
+button {
   margin-top: 30px;
   border: transparent;
   font-size: 30px;
   background-color: #b1bba0;
   color: #664c43;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   cursor: pointer;
 }
 
-input[type="submit"]{
+/* input[type="submit"]{
   margin-top: 30px;
   border: transparent;
   font-size: 30px;
@@ -62,7 +62,7 @@ input[type="submit"]{
   color: #664c43;
   cursor: pointer;
 }
-
+ */
 
 
 label {

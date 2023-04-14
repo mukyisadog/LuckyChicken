@@ -18,7 +18,9 @@
                 <li><a href="#">拼車</a></li>
                 <li><a href="/BigProject/public/forumIndex">論壇</a></li>
                 <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                <li><a href="#"><img src="./pic/admin.png" alt=""></a></li>
+                @foreach($userPic as $Pic)
+                    <li><a href="#"><img src="data:image/jpeg;base64,{{base64_encode($Pic->upicture)}}" ></a></li>
+                @endforeach
             </ul>
         </nav>
 
@@ -42,6 +44,7 @@
                 <div class="column1">
                     <!-- 文章內容 -->
                     <div id="content">
+                    @if(isset($articles))
                         @foreach($articles as $article)
                         <div>
                         <img src="data:image/jpeg;base64,{{base64_encode( $article->upicture)}}" >
@@ -63,6 +66,9 @@
                             {{$article->content}}
                         </div>
                         @endforeach
+                    @else
+                        <div>nonono</div>
+                    @endif
                     </div>
                     <script>
                         // 获取图标元素和链接元素
