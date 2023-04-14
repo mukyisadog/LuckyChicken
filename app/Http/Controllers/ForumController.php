@@ -15,20 +15,33 @@ class ForumController extends Controller
     {
         $this->model = new MyModel;
     }
-    public function forumIndex()
+    public function forumIndex(Request $request)
     {
+        $search = $request->search;
         $forumNew2s = $this->model->forumNew2();
+
         $questions = $this->model->question();
+        $Qoutputs = $this->model->forumQSearch($search);
+
         $groups = $this->model->group();
+        $Goutputs = $this->model->forumGSearch($search);
+
         $haters = $this->model->hater();
+        $Houtputs = $this->model->forumHSearch($search);
+
         $uid = Auth::id();
+        $userPic = $this->model->UserPic($uid);
         
         return view('forumIndex',[
             'forumNew2s' => $forumNew2s,
             'questions' => $questions,
             'groups' => $groups,
             'haters' => $haters,
-            'uid' => $uid
+            'uid' => $uid,
+            'Qoutputs' => $Qoutputs,
+            'Goutputs' => $Goutputs,
+            'Houtputs' => $Houtputs,
+            'userPic' => $userPic
         ]);
     }
     public function forumDetail(Request $request)
@@ -39,6 +52,7 @@ class ForumController extends Controller
         $FCquestions = $this->model->FCquestion($foid);
         $forumNews = $this->model->forumNew($sfid);
         $uid = Auth::id();
+        $userPic = $this->model->UserPic($uid);
         $userDatas = $this->model->feelComPN($uid);
         return view('forumDetail',[
             'articles' => $articles,
@@ -47,7 +61,8 @@ class ForumController extends Controller
             'userDatas' => $userDatas,
             'sfid' => $sfid,
             'uid' => $uid,
-            'foid'=> $foid
+            'foid'=> $foid,
+            'userPic' => $userPic
         ]);
     }
 

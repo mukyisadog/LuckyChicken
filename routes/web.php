@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\MyModel;
 use App\Http\Controllers\FeelController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\IndexController;
@@ -45,8 +46,15 @@ Route::get('/feelDetail/{id}',[FeelController::class,'feelDetail']);
 Route::get('/feelIndex', [FeelController::class,'feelIndex']);
 
 Route::get('/feelMessage/{uid}', function ($uid) {
-    return view('feelMessage',['uid' => $uid]);
+    $myModel = new MyModel();
+    $userPic = $myModel->UserPic($uid);
+    return view('feelMessage',[
+                'uid' => $uid,
+                'userPic' => $userPic
+            ]);
 });
+
+// Route::get('/feelMessage/{uid}',[FeelController::class,'feelMessage']);
 
 Route::post('/feelCom/{ftid}/{uid}',[FeelController::class,'feelCom']);
 
@@ -58,13 +66,20 @@ Route::get('/feelUnsaved/{uid}/{ftid}',[FeelController::class,'feelUnsaved']);
 
 Route::post('feelMesSaved/{uid}', [FeelController::class,'feelMesSaved']);
 
+
+
 // 論壇
 Route::get('/forumIndex',[ForumController::class,'forumIndex']);
 
 Route::get('/forumDetail/{sfid}/{foid}', [ForumController::class,'forumDetail']);
 
 Route::get('/forumMessage/{uid}', function ($uid) {
-    return view('forumMessage',['uid' => $uid]);
+    $myModel = new MyModel();
+    $userPic = $myModel->UserPic($uid);
+    return view('forumMessage',[
+        'uid' => $uid,
+        'userPic' => $userPic
+    ]);
 });
 
 Route::post('/forumCom/{sfid}/{foid}/{uid}',[ForumController::class,'forumCom']);

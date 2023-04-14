@@ -16,13 +16,18 @@ class FeelController extends Controller
     {
         $this->model = new MyModel;
     }
-    public function feelIndex()
+    public function feelIndex(Request $request)
     {
         $datas = $this->model->feelIndex();
         $uid = Auth::id();
+        $search = $request->search;
+        $outputs = $this->model->feelSearch($search);
+        $userPic = $this->model->UserPic($uid);
         return view('feelIndex', [
             'datas' => $datas,
-            'uid' => $uid
+            'uid' => $uid,
+            'outputs' => $outputs,
+            'userPic' => $userPic
         ]);
     }
 
@@ -97,6 +102,15 @@ class FeelController extends Controller
         $this->model->feelMesSaved($uid,$title,$content,$pic);
         return redirect("/feelMessage/{$uid}");
         // return $uid ;
+    }
+
+    public function feelMessage(Request $request){
+        $uid = $request->uid;
+        $userPic = $this->model->UserPic($uid);
+        return redirect("/feelMessage/{$uid}")->with([
+            'userPic' => $userPic,
+            'uid' => $uid
+        ]);
     }
 
     

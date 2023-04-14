@@ -22,7 +22,9 @@
                 <li><a href="#">拼車</a></li>
                 <li><a href="/BigProject/public/forumIndex">論壇</a></li>
                 <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                <li><a href="#"><img src="./pic/admin.png" alt=""></a></li>
+                @foreach($userPic as $Pic)
+                    <li><a href="#"><img src="data:image/jpeg;base64,{{base64_encode($Pic->upicture)}}" ></a></li>
+                @endforeach
             </ul>
         </nav>
 
@@ -46,79 +48,52 @@
                     <div class="abcc"></div>
                     <h1>心得</h1>
                     <div>
-                        <form class="example">
+                        <form class="example" type="get" action="/BigProject/public/feelIndex">
                             <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
                             <button type="submit" id="searchbt">搜索</button>
                         </form>
-                        
                         <br>
                         <div id="articles">
-                        @foreach($datas as $data)
-                            <div class="article">
-                                <div class="articlePic">
-                                    <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}" >
+                        @if(isset($outputs))
+                            @foreach($outputs as $output)
+                                <div class="article">
+                                    <div class="articlePic">
+                                        <img src="data:image/jpeg;base64,{{base64_encode($output->fpicture)}}" >
+                                    </div>
+                                    <div class="articleCon">
+                                        <a href="/BigProject/public/feelDetail/{{$output->fid}}">
+                                            <h4 class="searchtitle">{{$output->title}}</h4>
+                                        </a>
+                                        <h5>作者：{{$output->name}}</h5>
+                                        <h5>發布日期：{{$output->createtime}}</h5>
+                                    </div>
                                 </div>
-                                <div class="articleCon">
-                                    <a href="/BigProject/public/feelDetail/{{$data->fid}}">
-                                        <h4 class="searchtitle">{{$data->title}}</h4>
-                                    </a>
-                                    <h5>作者：{{$data->name}}</h5>
-                                    <h5>發布日期：{{$data->createtime}}</h5>
+                            @endforeach
+                            {{ $outputs->links() }} 
+                            @if($outputs->isEmpty())
+                                <div class="article">
+                                    <p>查無相關資料</p>
                                 </div>
-                            </div>
-                        @endforeach
-
-                        {{ $datas->links() }} 
+                            @endif
+                        @else
+                            @foreach($datas as $data)
+                                <div class="article">
+                                    <div class="articlePic">
+                                        <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}" >
+                                    </div>
+                                    <div class="articleCon">
+                                        <a href="/BigProject/public/feelDetail/{{$data->fid}}">
+                                            <h4 class="searchtitle">{{$data->title}}</h4>
+                                        </a>
+                                        <h5>作者：{{$data->name}}</h5>
+                                        <h5>發布日期：{{$data->createtime}}</h5>
+                                    </div>
+                                </div>
+                            @endforeach
+                            {{ $datas->links() }} 
+                        @endif
                         </div>                       
                     </div>
-                    <script>
-                        bt = document.getElementById("searchbt")
-                        bt.onclick = function () {
-                            event.preventDefault();
-                            const titles = Array.from(document.querySelectorAll(".searchtitle")).map(title => title.textContent);
-                            // console.log(titles);
-                            const searchinput = document.getElementById("search-input");
-                            const articles = Array.from(document.querySelectorAll(".article"));
-                            // console.log(articles);
-
-                            let reg1 = /\w/g
-                            let reg2 = /[\u4E00-\u9FFF]/g
-                            if (reg1.test(searchinput.value.trim()) == true || reg2.test(searchinput.value.trim()) == true) {
-                                if (searchinput.value.trim() == "") {
-                                    alert("請輸入關鍵字");
-                                    articles.forEach(article => article.classList.remove("unmatched"));
-                                }
-                                else {
-                                    b = new RegExp(`${searchinput.value.trim()}`, 'gi')
-                                    // console.log(b)
-                                    let arr = [];
-                                    
-                                    for (let i = 0; i < titles.length; i++) {
-                                        result = titles[i].matchAll(b)
-                                        
-                                        if (Array.from(result).length > 0) {
-                                            arr.push(titles[i]);
-                                            articles[i].classList.remove("unmatched");
-                                        }else{
-                                            articles[i].classList.add("unmatched");    
-                                        }
-                                    }
-                                    if (arr == "") {
-                                        alert("找不到相關內容");
-                                        articles.forEach(article => article.classList.remove("unmatched"));
-                                        // console.log('123');
-                                    } 
-                                    else { 
-                                        
-                                    }
-                                }
-                            }else{
-                                alert("請輸入關鍵字");
-                                articles.forEach(article => article.classList.remove("unmatched"));
-                            }
-                            
-                        }
-                    </script>
 
                 </div>
                 <aside class="column2">
