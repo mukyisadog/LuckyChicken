@@ -23,7 +23,7 @@ class FeelController extends Controller
         $search = $request->search;
         $outputs = $this->model->feelSearch($search);
         $userPic = $this->model->UserPic($uid);
-        return view('feelIndex', [
+        return view('feel.feelIndex', [
             'datas' => $datas,
             'uid' => $uid,
             'outputs' => $outputs,
@@ -40,7 +40,7 @@ class FeelController extends Controller
         $uid = Auth::id();
         $userDatas = $this->model->feelComPN($uid);
         $userPic = $this->model->UserPic($uid);
-        return view('feelDetail', [
+        return view('feel.feelDetail', [
             'article' => $article,
             'datas' => $datas,
             'comments' => $comments,

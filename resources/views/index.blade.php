@@ -12,15 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/NavFooter.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/NavFooter.css') }}"> -->
     <title>首頁</title>
 
 </head>
-<style>
-    body {
-        background-color: #b1bba0;
-    }
-</style>
+
 
 <body>
     @if(Auth::check())
@@ -42,7 +38,7 @@
     <div id="logo">與山同行LOGO</div>
     <br><br><br><br>
     <div class="row">
-        <a href="/BigProject/public/feelIndex">
+        <a href="{{ route('feelIndex') }}">
             <div class="column">
                 <div>
                     <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
@@ -52,7 +48,7 @@
                 </div>
             </div>
         </a>
-        <a href="/BigProject/public/forumIndex">
+        <a href="{{ route('forumIndex') }}">
             <div class="column">
                 <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
                 <div style="margin: 24px 0;">
@@ -60,7 +56,7 @@
                 <a>論壇</a>
             </div>
         </a>
-        <a href="/BigProject/public/">
+        <a href="{{ route('cphome') }}">
             <div class="column">
                 <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
                 <div style="margin: 24px 0;">
@@ -75,27 +71,17 @@
         <div class="slider responsive">
         @foreach($feeldatas as $data)
             <div class="card">
-                <!-- <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%"> -->
                 <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
                 <h5>{{$data->title}}</h5>
                 <p>作者：{{$data->name}}</p>
                 <p>發表日期：{{$data->createtime}}</p>
                 <div style="margin: 24px 0;">
                 </div>
-                <a href="/BigProject/public/feelDetail/{{$data->fid}}">
+                <a href="{{ route('feelDetail', ['id' => $data->fid]) }}">
                     <button>閱讀</button>
                 </a>
             </div>
         @endforeach
-            <!-- <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div> -->
         </div>
     </div>
     <br><br><br><br>
@@ -104,43 +90,23 @@
         <div class="slider responsive">
         @foreach($forumdatas as $data)
             <div class="card">
-                <!-- <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%"> -->
                 <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
                 <h5>{{$data->title}}</h5>
                 <p>作者：{{$data->name}}</p>
                 <p>發表日期：{{$data->createtime}}</p>
                 <div style="margin: 24px 0;">
                 </div>
-                <a href="/BigProject/public/forumDetail/{{$data->sfid}}/{{$data->foid}}">
+                <a href="{{ route('forumDetail',['sfid'=>$data->sfid,'foid'=>$data->foid]) }}">
                     <button>閱讀</button>
                 </a>
             </div>
         @endforeach
-            <!-- <div class="card">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <h5>玉山一日遊（一人獨行）</h5>
-                <p>作者：Tata Cheng</p>
-                <p>發表日期：112/1/1</p>
-                <div style="margin: 24px 0;">
-                </div>
-                <p><button>閱讀</button></p>
-            </div> -->
         </div>
 
     </div>
     <!-- 輪播控制 -->
-    <!-- <script src="./javascript/index.js"></script> -->
     <script src="{{ asset('js/index.js') }}"></script>
 
-    <!-- 頁尾 -->
-    <footer id="footer1">
-        <div id="left1">Copyright © 2023 the-sponger.com Rights Reserved.</div>
-        <div id="links1">
-            <a href="https://the-sponger.com/"><i class="bi bi-house"></i></a>&nbsp;&nbsp;&nbsp;
-            <a href="https://www.instagram.com/the.sponger/"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp;&nbsp;
-            <a href="mailto:thesponger91@gmail.com"><i class="bi bi-envelope"></i></a>
-        </div>
-    </footer>
 </body>
 
 </html>

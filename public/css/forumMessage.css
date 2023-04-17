@@ -54,7 +54,7 @@ button {
   font-size: 30px;
   background-color: #b1bba0;
   color: #664c43;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 input[type="submit"]{

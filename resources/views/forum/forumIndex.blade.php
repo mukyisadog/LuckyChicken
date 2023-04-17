@@ -1,44 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/NavFooter.css">
-    <link rel="stylesheet" href="./css/forumIndex.css">
+@extends('main')
+@section('head')
+    <link rel="stylesheet" href="{{asset('css/forumIndex.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>論壇首頁</title>
-</head>
-
-<body>
-    <div id="container">
-        <nav id="navbar">
-            <div class="logo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
-            <ul class="menu">
-                <li><a href="#">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                @foreach($userPic as $Pic)
-                    <li><a href="#"><img src="data:image/jpeg;base64,{{base64_encode($Pic->upicture)}}" ></a></li>
-                @endforeach
-            </ul>
-        </nav>
-
-        <!-- navbar for mobile -->
-        <nav id="mobileNavbar">
-            <div class="mobileLogo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
-            <label id="hamburgerIcon" for="hamburgerInput">
-                <i class="bi bi-list"></i>
-            </label>
-            <input type="checkbox" id="hamburgerInput">
-            <ul class="menuForMobile">
-                <li><a href="#">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                <li><a href="#">個人頁面</a></li>
-            </ul>
-        </nav>
+@endsection    
+@section('content')
         <div id="content-container">
             <br>
             <div class="row">
@@ -51,7 +17,7 @@
                             <button class="tablinks" onclick="openCity(event, 'Tokyo')">黑特</button>
                         </div>
                         <div id="abc" class="tabcontent">
-                            <form class="example" type="get" action="/BigProject/public/forumIndex">
+                            <form class="example" type="get" action="{{route('forumIndex')}}">
                                 <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
                                 <button type="submit" id="searchbt">搜索</button>
                             </form>
@@ -68,7 +34,7 @@
                                         <img src="data:image/jpeg;base64,{{base64_encode($Qoutput->fpicture)}}" >
                                     </div>
                                     <div class="articleCon">
-                                        <a href="/BigProject/public/forumDetail/1/{{$Qoutput->foid}}">
+                                        <a href="{{route('forumDetail',['sfid'=>1,'foid'=>$Qoutput->foid])}}">
                                             <h4 class="searchtitle">{{$Qoutput->title}}</h4>
                                         </a>
                                         <h5>作者：{{$Qoutput->name}}</h5>
@@ -85,7 +51,7 @@
                                                 <img src="data:image/jpeg;base64,{{base64_encode($question->fpicture)}}" >
                                             </div>
                                             <div class="articleCon">
-                                                <a href="/BigProject/public/forumDetail/1/{{$question->foid}}">
+                                                <a href="{{route('forumDetail',['sfid'=>1,'foid'=>$Qoutput->foid])}}">
                                                     <h4 class="searchtitle">{{$question->title}}</h4>
                                                 </a>
                                                 <h5>作者：{{$question->name}}</h5>
@@ -115,7 +81,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($Goutput->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/2/{{$Goutput->foid}}">
+                                            <a href="{{route('forumDetail',['sfid'=>2,'foid'=>$Goutput->foid])}}">
                                                 <h4 class="searchtitle">{{$Goutput->title}}</h4>
                                             </a>
                                             <h5>作者：{{$Goutput->name}}</h5>
@@ -132,7 +98,7 @@
                                                     <img src="data:image/jpeg;base64,{{base64_encode($group->fpicture)}}" >
                                                 </div>
                                                 <div class="articleCon">
-                                                    <a href="/BigProject/public/forumDetail/2/{{$group->foid}}">
+                                                    <a href="{{route('forumDetail',['sfid'=>2,'foid'=>$group->foid])}}">
                                                         <h4 class="searchtitle">{{$group->title}}</h4>
                                                     </a>
                                                     <h5>作者：{{$group->name}}</h5>
@@ -162,7 +128,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($Houtput->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/3/{{$Houtput->foid}}">
+                                            <a href="{{route('forumDetail',['sfid'=>3,'foid'=>$Houtput->foid])}}">
                                                 <h4 class="searchtitle">{{$Houtput->title}}</h4>
                                             </a>
                                             <h5>作者：{{$Houtput->name}}</h5>
@@ -179,7 +145,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($hater->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="/BigProject/public/forumDetail/3/{{$hater->foid}}">
+                                            <a href="{{route('forumDetail',['sfid'=>3,'foid'=>$hater->foid])}}">
                                                 <h4 class="searchtitle">{{$hater->title}}</h4>
                                             </a>
                                             <h5>作者：{{$hater->name}}</h5>
@@ -192,12 +158,10 @@
                             </div>
                         </div>
                     </div>
-                    
-
                 </div>
-            <script src="{{ asset('js/forumIndex.js') }}"></script>
+                <script src="{{ asset('js/forumIndex.js') }}"></script>
             @auth
-                <button id="btPublish" onclick="window.location.href='/BigProject/public/forumMessage/{{$uid}}'">
+                <button id="btPublish" onclick="window.location.href='{{route('forumMessage',['uid'=>$uid])}}'">
                     發文
                 </button>
             @endauth
@@ -206,7 +170,7 @@
                         @foreach($forumNew2s as $forumNew2)
                             <div class="article2">
                                 <div class="article2Con">
-                                    <a href="/BigProject/public/feelDetail/{{$forumNew2->foid}}">
+                                    <a href="{{ route('forumDetail',['sfid'=>$forumNew2->sfid,'foid'=>$forumNew2->foid])}}">
                                         <h4>{{$forumNew2->title}}</h4>
                                     </a>
                                     <p>作者：{{$forumNew2->name}}</p>
@@ -219,18 +183,4 @@
 
             <div id="abcc"></div>
 
-            <footer id="footer">
-            <div id="left">Copyright © 2023 the-sponger.com Rights Reserved.</div>
-            <div id="links">
-                <a href="https://the-sponger.com/"><i class="bi bi-house"></i></a>&nbsp;&nbsp;&nbsp;
-                <a href="https://www.instagram.com/the.sponger/"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp;&nbsp;
-                <a href="mailto:thesponger91@gmail.com"><i class="bi bi-envelope"></i></a>
-            </div>
-            </footer>
-
-        </div>
-
-        
-</body>
-
-</html>
+@endsection

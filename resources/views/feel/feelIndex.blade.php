@@ -1,54 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('main')
+@section('head')
+ 
     <title>心得首頁</title>
-    <link rel="stylesheet" href="./css/NavFooter.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/ftest.css">
-    <link rel="stylesheet" href="./css/feelIndex.css">
-</head>
-<style>
-</style>
-<body>
+    <link rel="stylesheet" href="{{asset('css/ftest.css')}}">
+    <link rel="stylesheet" href="{{asset('css/feelIndex.css')}}">
+  
 
-    <div id="container">
-        <nav id="navbar">
-            <div class="logo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
-            <ul class="menu">
-                <li><a href="#">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                @foreach($userPic as $Pic)
-                    <li><a href="#"><img src="data:image/jpeg;base64,{{base64_encode($Pic->upicture)}}" ></a></li>
-                @endforeach
-            </ul>
-        </nav>
+@endsection    
 
-        <!-- navbar for mobile -->
-        <nav id="mobileNavbar">
-            <div class="mobileLogo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
-            <label id="hamburgerIcon" for="hamburgerInput">
-                <i class="bi bi-list"></i>
-            </label>
-            <input type="checkbox" id="hamburgerInput">
-            <ul class="menuForMobile">
-                <li><a href="#">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                <li><a href="#">個人頁面</a></li>
-            </ul>
-        </nav>
+@section('content')      
         <div id="content-container">
             <div class="row">
                 <div class="column1">
                     <div class="abcc"></div>
                     <h1>心得</h1>
                     <div>
-                        <form class="example" type="get" action="/BigProject/public/feelIndex">
+                        <form class="example" type="get" action="{{route('feelIndex')}}">
                             <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
                             <button type="submit" id="searchbt">搜索</button>
                         </form>
@@ -61,7 +28,7 @@
                                         <img src="data:image/jpeg;base64,{{base64_encode($output->fpicture)}}" >
                                     </div>
                                     <div class="articleCon">
-                                        <a href="/BigProject/public/feelDetail/{{$output->fid}}">
+                                        <a href="{{route('feelDetail',['id'=>$output->fid])}}">
                                             <h4 class="searchtitle">{{$output->title}}</h4>
                                         </a>
                                         <h5>作者：{{$output->name}}</h5>
@@ -82,7 +49,7 @@
                                         <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}" >
                                     </div>
                                     <div class="articleCon">
-                                        <a href="/BigProject/public/feelDetail/{{$data->fid}}">
+                                        <a href="{{route('feelDetail',['id'=>$data->fid])}}">
                                             <h4 class="searchtitle">{{$data->title}}</h4>
                                         </a>
                                         <h5>作者：{{$data->name}}</h5>
@@ -101,7 +68,7 @@
                     @foreach($datas as $data)
                         <div class="article2">
                             <div class="article2Con">
-                                <a href="/BigProject/public/feelDetail/{{$data->fid}}">
+                                <a href="{{ route('feelDetail',['id'=>$data->fid]) }}">
                                     <h4>{{$data->title}}</h4>
                                 </a>
                                 <p>作者：{{$data->name}}</p>
@@ -112,19 +79,9 @@
             </div>
         </div>
         <div class="abc"></div>
-        <footer id="footer">
-            <div id="left">Copyright © 2023 the-sponger.com Rights Reserved.</div>
-            <div id="links">
-                <a href="https://the-sponger.com/"><i class="bi bi-house"></i></a>&nbsp;&nbsp;&nbsp;
-                <a href="https://www.instagram.com/the.sponger/"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp;&nbsp;
-                <a href="mailto:thesponger91@gmail.com"><i class="bi bi-envelope"></i></a>
-            </div>
-        </footer>
         @auth
-        <button id="btPublish" onclick="window.location.href='/BigProject/public/feelMessage/{{$uid}}'">
-            發文
+        <button id="btPublish" onclick="window.location.href='{{ route('feelMessage',['uid'=>$uid])}}'">
+        發文
         </button>
         @endauth
-</body>
-
-</html>
+@endsection

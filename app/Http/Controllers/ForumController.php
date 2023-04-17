@@ -32,7 +32,7 @@ class ForumController extends Controller
         $uid = Auth::id();
         $userPic = $this->model->UserPic($uid);
         
-        return view('forumIndex',[
+        return view('forum.forumIndex',[
             'forumNew2s' => $forumNew2s,
             'questions' => $questions,
             'groups' => $groups,
@@ -54,7 +54,7 @@ class ForumController extends Controller
         $uid = Auth::id();
         $userPic = $this->model->UserPic($uid);
         $userDatas = $this->model->feelComPN($uid);
-        return view('forumDetail',[
+        return view('forum.forumDetail',[
             'articles' => $articles,
             'FCquestions' => $FCquestions,
             'forumNews' => $forumNews,

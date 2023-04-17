@@ -1,43 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('main')
+@section('head')
     <title>論壇文章內容</title>
     <link rel="stylesheet" href="{{ asset('css/forumDetail.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/NavFooter.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-</head>
-<body>
-<div id="container">
-        <nav id="navbar">
-            <div class="logo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
-            <ul class="menu">
-                <li><a href="#">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                @foreach($userPic as $Pic)
-                    <li><a href="#"><img src="data:image/jpeg;base64,{{base64_encode($Pic->upicture)}}" ></a></li>
-                @endforeach
-            </ul>
-        </nav>
-
-        <!-- navbar for mobile -->
-        <nav id="mobileNavbar">
-            <div class="mobileLogo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
-            <label id="hamburgerIcon" for="hamburgerInput">
-                <i class="bi bi-list"></i>
-            </label>
-            <input type="checkbox" id="hamburgerInput">
-            <ul class="menuForMobile">
-                <li><a href="#">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                <li><a href="#">個人頁面</a></li>
-            </ul>
-        </nav>
+@endsection    
+@section('content')
         <div id="content-container">
             <div class="abc"></div>
             <div class="row">
@@ -50,7 +17,7 @@
                         <img src="data:image/jpeg;base64,{{base64_encode( $article->upicture)}}" >
                             <div>{{$article->name}}</div>
                             @auth
-                                <a id="heartHref" href="/BigProject/public/forumSaved/{{ $sfid }}/{{ $uid }}/{{ $foid }}">
+                                <a id="heartHref" href="{{ route('forumSaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}">
                                     <i class="bi bi-suit-heart-fill" id="heart"></i>
                                 </a>
                             @endauth
@@ -82,7 +49,7 @@
                         let isRed = localStorage.getItem('isRed') === 'true';
                         if (isRed) {
                             heartIcon.classList.add('text-danger');
-                            heartHref.href = "/BigProject/public/forumSaved/{{$sfid}}/{{$uid}}/{{$foid}}";
+                            heartHref.href = "{{ route('forumSaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}";
                         }
                     
                         // 监听点击事件
@@ -92,14 +59,14 @@
                                 heartIcon.classList.remove('text-danger');
                                 isRed = false;
                                 localStorage.setItem('isRed', 'false');
-                                heartHref.href = "/BigProject/public/forumUnsaved/{{$sfid}}/{{$uid}}/{{$foid}}";
+                                heartHref.href = "{{ route('forumUnsaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}";
                                 alert("取消收藏");
                         
                             } else {
                                 heartIcon.classList.add('text-danger');
                                 isRed = true;
                                 localStorage.setItem('isRed', 'true');
-                                heartHref.href = "/BigProject/public/forumSaved/{{$sfid}}/{{$uid}}/{{$foid}}";
+                                heartHref.href = "{{ route('forumSaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}";
                                 alert("收藏成功");   
                             }
                         });
@@ -140,7 +107,7 @@
                     <!-- 留言 -->
                     <div id="mes">
                     @if (Auth::check())
-                        <form method="post" action="/BigProject/public/forumCom/{{ $sfid }}/{{ $foid }}/{{ $uid }}" id="myForm">
+                        <form method="post" action="{{ route('forumCom',['sfid'=>$sfid,'foid'=>$foid,'uid'=>$uid])}}" id="myForm">
                             @csrf
                             @foreach($userDatas as $userData)
                             <div class="formPic">
@@ -173,7 +140,7 @@
                         @foreach($forumNews as $forumNew)
                             <div class="article2">
                                 <div class="article2Con">
-                                    <a href="/BigProject/public/forumDetail/{{$forumNew->sfid}}/{{$forumNew->foid}}">
+                                    <a href="{{ route('forumDetail',['sfid'=>$forumNew->sfid,'foid'=>$forumNew->foid])}}">
                                         <h4>{{$forumNew->title}}</h4>
                                     </a>
                                     <p>作者：{{$forumNew->name}}</p>
@@ -187,19 +154,4 @@
  
         <div class="abcc"></div>
         
-        <footer id="footer">
-            <div id="left">Copyright © 2023 the-sponger.com Rights Reserved.</div>
-            <div id="links">
-                <a href="https://the-sponger.com/"><i class="bi bi-house"></i></a>&nbsp;&nbsp;&nbsp;
-                <a href="https://www.instagram.com/the.sponger/"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp;&nbsp;
-                <a href="mailto:thesponger91@gmail.com"><i class="bi bi-envelope"></i></a>
-            </div>
-        </footer>
-    </div>
-
-
-
-    
-</body>
-
-</html>
+@endsection

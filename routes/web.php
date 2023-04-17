@@ -10,6 +10,10 @@ use App\Models\MyModel;
 use App\Http\Controllers\FeelController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CarpoolController;
+use App\Http\Controllers\SendJoinNoticeMailController;
+
 
 
 /*
@@ -41,54 +45,70 @@ Route::middleware('auth')->group(function () {
 });
 
 // 心得
-Route::get('/feelDetail/{id}',[FeelController::class,'feelDetail']);
-
-Route::get('/feelIndex', [FeelController::class,'feelIndex']);
-
+Route::get('/feelDetail/{id}',[FeelController::class,'feelDetail'])->name('feelDetail');
+Route::get('/feelIndex', [FeelController::class,'feelIndex'])->name('feelIndex');
 Route::get('/feelMessage/{uid}', function ($uid) {
     $myModel = new MyModel();
     $userPic = $myModel->UserPic($uid);
-    return view('feelMessage',[
+    return view('feel.feelMessage',[
                 'uid' => $uid,
                 'userPic' => $userPic
             ]);
-});
+})->name('feelMessage');
 
-Route::post('/feelCom/{ftid}/{uid}',[FeelController::class,'feelCom']);
+Route::post('/feelCom/{ftid}/{uid}',[FeelController::class,'feelCom'])->name('feelCom');
 
-Route::post('feelMes/{uid}', [FeelController::class,'feelMes']);
+Route::post('feelMes/{uid}', [FeelController::class,'feelMes'])->name('feelMes');
 
-Route::get('/feelSaved/{uid}/{ftid}',[FeelController::class,'feelSaved']);
+Route::get('/feelSaved/{uid}/{ftid}',[FeelController::class,'feelSaved'])->name('feelSaved');
 
-Route::get('/feelUnsaved/{uid}/{ftid}',[FeelController::class,'feelUnsaved']);
+Route::get('/feelUnsaved/{uid}/{ftid}',[FeelController::class,'feelUnsaved'])->name('feelUnsaved');
 
-// Route::post('feelMesSaved/{uid}', [FeelController::class,'feelMesSaved']);
 
 
 
 // 論壇
-Route::get('/forumIndex',[ForumController::class,'forumIndex']);
+Route::get('/forumIndex',[ForumController::class,'forumIndex'])->name('forumIndex');
 
-Route::get('/forumDetail/{sfid}/{foid}', [ForumController::class,'forumDetail']);
+Route::get('/forumDetail/{sfid}/{foid}', [ForumController::class,'forumDetail'])->name('forumDetail');
 
 Route::get('/forumMessage/{uid}', function ($uid) {
     $myModel = new MyModel();
     $userPic = $myModel->UserPic($uid);
-    return view('forumMessage',[
+    return view('forum.forumMessage',[
         'uid' => $uid,
         'userPic' => $userPic
     ]);
-});
+})->name('forumMessage');
 
-Route::post('/forumCom/{sfid}/{foid}/{uid}',[ForumController::class,'forumCom']);
+Route::post('/forumCom/{sfid}/{foid}/{uid}',[ForumController::class,'forumCom'])->name('forumCom');
 
-Route::post('/forumMes/{uid}', [ForumController::class,'forumMes']);
+Route::post('/forumMes/{uid}', [ForumController::class,'forumMes'])->name('forumMes');
 
-Route::get('/forumSaved/{sfid}/{uid}/{ftid}', [ForumController::class,'forumSaved']);
+Route::get('/forumSaved/{sfid}/{uid}/{ftid}', [ForumController::class,'forumSaved'])->name('forumSaved');
 
-Route::get('/forumUnsaved/{sfid}/{uid}/{ftid}',[ForumController::class,'forumUnsaved']);
+Route::get('/forumUnsaved/{sfid}/{uid}/{ftid}',[ForumController::class,'forumUnsaved'])->name('forumUnsaved');
 
-// Route::post('/forumMesSaved/{uid}', [ForumController::class,'forumMesSaved']);
+
+
+
+
+// 品薇
+Route::get('/carpool',[CarpoolController::class, 'cplist'])->name('cphome');
+Route::view('/carpool/form','carpool.cpform')->name('cpform');
+Route::post('/carpool/form', [CarpoolController::class, 'create']);
+Route::get('/carpool/info/{cpid}',[CarpoolController::class, 'showinfo']);
+Route::post('/carpool/info/{cpid}', [CarpoolController::class, 'join']);
+
+
+// 雯娟
+
+
+Route::view('/member/info', 'member.member-info');
+Route::view('/member/carpool', 'member.carpool');
+Route::view('/member/forum', 'member.forum');
+Route::view('/member/feel', 'member.feel');
+Route::view('/member/save', 'member.save');
 
 
 require __DIR__.'/auth.php';
