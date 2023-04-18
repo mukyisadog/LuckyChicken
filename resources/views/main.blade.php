@@ -24,14 +24,19 @@
                 <li><a href="/forumIndex">論壇</a></li>
                 <li><a href="/feelIndex">心得</a></li>
                 @if (Auth::check())
-                <?php
-                    $user = Auth::user();
-                    $imgData = base64_encode($user->upicture);
-                ?>
-                <li><a href="{{ route('mbinfo') }}"><img src="data:image/jpeg;base64,{{ $imgData }}" ></a></li>
+                    <?php
+                        $user = Auth::user();
+                        $imgData = base64_encode($user->upicture);
+                    ?>
+                    @if(empty($imgData))
+                        <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}" alt=""></a></li>
+                    @else
+                        <li><a href="{{ route('mbinfo') }}"><img src="data:image/jpeg;base64,{{ $imgData }}" ></a></li>
+                    @endif
                 @else
-                <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}" alt=""></a></li>
+                    <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}" alt=""></a></li>
                 @endif
+                
 
             </ul>
         </nav>

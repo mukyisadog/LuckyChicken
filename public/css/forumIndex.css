@@ -210,6 +210,12 @@ form.example::after {
     margin: 0 10px;
 }
 
+.searchtitle {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
 
 
 

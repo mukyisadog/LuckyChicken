@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Environment\Console; 
+use Exception;
 
 
 class MyModel extends Model
@@ -77,9 +78,18 @@ class MyModel extends Model
         return $answer;
     }
 
-    function feelMes($uid,$title,$content,$pic,$state){
-        DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$pic,$state]);
-        $answer = "ok";
+    function feelMes($uid,$title,$content,$pic,$state){   
+        // DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$pic,$state]);
+        // $answer = "ok";
+        // return $answer;
+        try {
+            DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$pic,$state]);
+            $answer = 1;
+        } catch(Exception $e) {
+            $answer = 0;
+            $errorMessage = $e->getMessage();
+            // 在這裡可以透過 $errorMessage 變數取得錯誤訊息，進行相關的處理。
+        }
         return $answer;
     }
 
@@ -228,10 +238,20 @@ class MyModel extends Model
 
 
     function forumMes($sfid,$uid,$title,$content,$pic,$state){
-        DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?, state = ?",[$sfid, $uid, $title, $content, $pic, $state]);
-        $answer = "ok";
-
-        return $answer;     
+        // DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?, state = ?",[$sfid, $uid, $title, $content, $pic, $state]);
+        // $answer = "ok";
+        // return $answer;  
+        try {
+            DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?, state = ?",[$sfid, $uid, $title, $content, $pic, $state]);
+            $answer = 1;
+        } catch(Exception $e) {
+            $answer = 0;
+            $errorMessage = $e->getMessage();
+            // 在這裡可以透過 $errorMessage 變數取得錯誤訊息，進行相關的處理。
+        }
+        return $answer;
+        
+        
     }
 
     // function forumMesSaved($sfid,$uid,$title,$content,$pic){

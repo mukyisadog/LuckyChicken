@@ -51,15 +51,15 @@ Route::get('/feelDetail/{id}',[FeelController::class,'feelDetail'])->name('fedet
 
 Route::get('/feelIndex', [FeelController::class,'feelIndex'])->name('feindex');
 
-Route::get('/feelMessage/{uid}', [FeelController::class,'getuserpic'])->name('femes');
+Route::get('/feelMessage', [FeelController::class,'getuserpic'])->name('femes');
 
-Route::post('/feelCom/{ftid}/{uid}',[FeelController::class,'feelCom'])->name('feelcom');
+Route::post('/feelCom/{ftid}',[FeelController::class,'feelCom'])->name('feelcom');
 
-Route::post('feelMes/{uid}', [FeelController::class,'feelMes'])->name('feelmes');
+Route::post('feelMes', [FeelController::class,'feelMes'])->name('feelmes');
 
-Route::get('/feelSaved/{uid}/{ftid}',[FeelController::class,'feelSaved'])->name('fesave');
+Route::get('/feelSaved/{ftid}',[FeelController::class,'feelSaved'])->name('fesave');
 
-Route::get('/feelUnsaved/{uid}/{ftid}',[FeelController::class,'feelUnsaved'])->name('feunsave');
+Route::get('/feelUnsaved/{ftid}',[FeelController::class,'feelUnsaved'])->name('feunsave');
 
 // Route::post('feelMesSaved/{uid}', [FeelController::class,'feelMesSaved']);
 
@@ -70,15 +70,15 @@ Route::get('/forumIndex',[ForumController::class,'forumIndex'])->name('foindex')
 
 Route::get('/forumDetail/{sfid}/{foid}', [ForumController::class,'forumDetail'])->name('fodetail');
 
-Route::get('/forumMessage/{uid}', [ForumController::class,'getuserpic'])->name('fomes');
+Route::get('/forumMessage', [ForumController::class,'getuserpic'])->name('fomes');
 
-Route::post('/forumCom/{sfid}/{foid}/{uid}',[ForumController::class,'forumCom'])->name('forumcom');
+Route::post('/forumCom/{sfid}/{foid}',[ForumController::class,'forumCom'])->name('forumcom');
 
 Route::post('/forumMes/{uid}', [ForumController::class,'forumMes'])->name('forummes');
 
-Route::get('/forumSaved/{sfid}/{uid}/{ftid}', [ForumController::class,'forumSaved'])->name('fosave');
+Route::get('/forumSaved/{sfid}/{ftid}', [ForumController::class,'forumSaved'])->name('fosave');
 
-Route::get('/forumUnsaved/{sfid}/{uid}/{ftid}',[ForumController::class,'forumUnsaved'])->name('founsave');
+Route::get('/forumUnsaved/{sfid}/{ftid}',[ForumController::class,'forumUnsaved'])->name('founsave');
 
 // Route::post('/forumMesSaved/{uid}', [ForumController::class,'forumMesSaved']);
 

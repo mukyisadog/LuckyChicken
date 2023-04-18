@@ -67,7 +67,7 @@ class ForumController extends Controller
     }
 
     public function forumCom(Request $request){
-        $uid = $request->uid;
+        $uid = Auth::id();
         $foid = $request->foid;
         $sfid = $request->sfid;
         $forumcom = $request->forumcom;
@@ -79,7 +79,7 @@ class ForumController extends Controller
 
     public function forumMes(Request $request)
     {
-        $uid = $request->uid;
+        $uid = Auth::id();
         $title = $request->title;
         $content = $request->content;
         $sfid = $request->sfid;
@@ -89,14 +89,20 @@ class ForumController extends Controller
         $file = $request->file('pic');
         // 獲取文件的二進制內容
         $pic = $file->get();
-        $this->model->forumMes($sfid,$uid,$title,$content,$pic,$state);
-        return redirect("/forumIndex");
-        // return $abc;
+        $answer = $this->model->forumMes($sfid,$uid,$title,$content,$pic,$state);
+        if($answer === 0){
+            // return redirect()->back()->with(['answer' => $answer]);
+            $request->session()->flash('answer', $answer);
+            return redirect()->back()->with('answer', $answer);
+        }else{
+            return redirect("/forumIndex")->with(['answer' => $answer]);
+        }
+            
     }
 
     public function forumSaved(Request $request)
     {
-        $uid = $request->uid;
+        $uid = Auth::id();
         $ftid = $request->ftid;
         $sfid = $request->sfid;
         $this->model->forumSaved($uid,$ftid);
@@ -107,7 +113,7 @@ class ForumController extends Controller
     
     public function forumUnsaved(Request $request)
     {
-        $uid = $request->uid;
+        $uid = Auth::id();
         $ftid = $request->ftid;
         $sfid = $request->sfid;
         $this->model->forumUnsaved($uid,$ftid);
@@ -117,23 +123,9 @@ class ForumController extends Controller
     }
 
 
-    public function forumMesSaved(Request $request)
-    {
-        $uid = $request->uid;
-        $title = $request->title;
-        $content = $request->content;
-        $sfid = $request->sfid;
 
-        // 從請求中獲取文件實例
-        $file = $request->file('pic');
-        // 獲取文件的二進制內容
-        $pic = $file->get();
-        $this->model->forumMesSaved($sfid,$uid,$title,$content,$pic);
-        return redirect("/forumMes/{uid}");
-        // return ;
-    }
-
-    public function getuserpic($uid){
+    public function getuserpic(){
+        $uid = Auth::id();
         $myModel = new MyModel();
         $userPic = $myModel->UserPic($uid);
         return view('forum.forumMessage',[

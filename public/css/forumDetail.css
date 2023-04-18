@@ -42,6 +42,10 @@ margin-top: 1.8%;
   width: 85%;
   padding: 40px;
   font-size: 20px;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 #content > div:nth-child(1) > img:nth-child(1) {
   height: 70px;
@@ -75,9 +79,9 @@ margin-top: 1.8%;
 
 #content > div:nth-child(1) > a {
   display: inline-block;
-  position: relative;
-  top: -40px;
-  left: 70%;
+  position: absolute;
+  top: 2.5%;
+  left: 85%;
   color: rgb(72, 71, 71);
   font-size: 40px;
   cursor: pointer;
@@ -95,7 +99,7 @@ font-size: 45px;
 }
 
 .text-danger {
-  color: rgb(217, 3, 3) !important;
+  color: rgb(231, 30, 70) !important;
 }
 
 /* 留言歷史 */
@@ -122,10 +126,13 @@ font-size: 45px;
   font-size: 20px;
 }
 
-.headDivChi2 > p {
+.headDivChi2 {
   width: 90%;
   font-size: 18px;
   margin-top: 1%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .headDivChi2 > button {

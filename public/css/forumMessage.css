@@ -24,6 +24,7 @@ input[type="text"] {
   background-color: #d8ddcf;
   border: transparent;
   font-size: 25px;
+  width: 100%;
 }
 
 
@@ -54,6 +55,7 @@ button {
   font-size: 30px;
   background-color: #b1bba0;
   color: #664c43;
+  cursor: pointer;
   /* margin-left: 20px; */
 }
 

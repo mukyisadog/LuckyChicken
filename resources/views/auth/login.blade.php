@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
     <title>登入</title>
 </head>
 <body>
         <!-- Session Status -->
-
+        <x-auth-session-status class="mb-4" :status="session('status')" />
     <div>
         <a href="/BigProject/public"><div id="logo">與山同行LOGO</div></a>
     </div>
@@ -24,16 +24,14 @@
                 <div id="inputcontianer">
                     <x-input-label for="email" :value="__('信箱：')" />
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                    
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     <br>
                     <x-input-label for="password" :value="__('密碼：')" />
                     <x-text-input id="password" class="block mt-1 w-full"
                         type="password"
                         name="password"
                         required autocomplete="current-password" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    <x-auth-session-status class="mb-4" :status="session('status')" />
                     <br><br>
                     <div class="block mt-4">
                         <label for="remember_me" class="inline-flex items-center">
@@ -49,7 +47,7 @@
 
                     <br>
                     <button type="submit" class="loginbtn">登入</button>
-                    <a href="/BigProject/public/register"><button type="button" class="registerbtn">註冊</button></a>  
+                    <a href="{{ route('register') }}"><button type="button" class="registerbtn">註冊</button></a>  
                     <br>             
                 </div>
             </div>
@@ -59,3 +57,10 @@
     </body>
 
 </html>
+
+
+
+
+
+
+

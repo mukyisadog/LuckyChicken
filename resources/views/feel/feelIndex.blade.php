@@ -67,10 +67,7 @@
         </div>
 
         @auth
-        <?php
-        $url = route('femes', ['uid' => $uid])
-        ?>
-        <button id="btPublish" onclick="window.location.href = '{{$url}}'">
+        <button id="btPublish" onclick="window.location.href = '{{ route('femes')}}'">
             發文
         </button>
         @endauth

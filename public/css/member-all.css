@@ -6,22 +6,6 @@ body {
     font-family: "Lato", sans-serif;
 }
 
-.tablink {
-    background-color: #D8DDCF;
-    color: #4B3730;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 20%;
-}
-
-.tablink:hover {
-    background-color: #B1BBA0;
-}
-
 h1 {
     font-size: 48px;
 }
@@ -33,6 +17,7 @@ h1 {
     justify-content: space-around;
     padding-top: 50px;
     margin: auto;
+    font-size: 24px;
 }
 
 #leftBar {
@@ -50,7 +35,7 @@ h1 {
 #leftBar li {
     list-style-type: none;
     line-height: 50px;
-    padding-left: 40px;
+    padding-left: 20px;
 }
 
 #leftBar li:hover {
@@ -106,6 +91,22 @@ h1 {
     padding: 30px 0;
 }
 
+.buttons {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.operate {
+    width: 80px;
+    margin: 0 10px;
+    border: 1px solid #664c43;
+    color: #664c43;
+    background-color: #ECEEE7;
+    font-size: 20px;
+}
+
 @media screen and (max-width: 1199px) {}
 
 @media screen and (max-width: 800px) {
@@ -113,8 +114,14 @@ h1 {
         display: none;
     }
 
+    .leftBarSection {
+        /* margin: 0 auto; */
+        width: 100%;
+    }
+
     #mobileLeftBar {
         display: block;
+        margin: 0 auto 30px auto;
     }
 
     .mainContent {

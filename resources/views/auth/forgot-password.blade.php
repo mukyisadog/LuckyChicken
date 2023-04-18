@@ -28,6 +28,7 @@
                 <div>
                     <x-input-label for="email" :value="__('信箱：')" />
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
                 <div class="mb-4 text-sm text-gray-600">
                     {{ __('告訴我們您的電子郵件地址') }}
@@ -36,7 +37,6 @@
                 </div>
                 <br>
                 <x-auth-session-status class="mb-4" :status="session('status')" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 <br>
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button class="registerbtn">
@@ -50,6 +50,9 @@
 </body>
 
 </html>
-    
+
+
+
+
 
 

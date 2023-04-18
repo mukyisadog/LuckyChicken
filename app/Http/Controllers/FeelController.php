@@ -53,7 +53,7 @@ class FeelController extends Controller
 
     public function feelCom(Request $request)
     {
-        $uid = $request->uid;
+        $uid = Auth::id();
         $ftid = $request->ftid;
         $feelcom = $request->feelcom;
         $this->model->feelCom($ftid, $uid, $feelcom);
@@ -63,7 +63,7 @@ class FeelController extends Controller
 
     public function feelMes(Request $request)
     {
-        $uid = $request->uid;
+        $uid = Auth::id();
         $title = $request->title;
         $content = $request->content;
 
@@ -74,15 +74,21 @@ class FeelController extends Controller
 
         $state = $request->input('btValue');
 
-        $this->model->feelMes($uid, $title, $content, $pic, $state);
-        return redirect("/feelIndex");
+        $answer = $this->model->feelMes($uid, $title, $content, $pic, $state);
+        // return redirect("/feelIndex");
 
-        // return $state;
+        if($answer === 0){
+            // return redirect()->back()->with(['answer' => $answer]);
+            $request->session()->flash('answer', $answer);
+            return redirect()->back()->with('answer', $answer);
+        }else{
+            return redirect("/feelIndex")->with(['answer' => $answer]);
+        }
     }
 
     public function feelSaved(Request $request)
     {
-        $uid = $request->uid;
+        $uid = Auth::id();
         $ftid = $request->ftid;
         $this->model->feelSaved($uid,$ftid);
         return redirect("/feelDetail/{$ftid}");
@@ -122,7 +128,8 @@ class FeelController extends Controller
     
     }
 
-    public function getuserpic($uid){
+    public function getuserpic(){
+        $uid = Auth::id();
         $myModel = new MyModel();
         $userPic = $myModel->UserPic($uid);
         return view('feel.feelMessage',[

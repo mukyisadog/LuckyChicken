@@ -19,10 +19,14 @@
                     @if(isset($articles))
                         @foreach($articles as $article)
                         <div>
-                        <img src="data:image/jpeg;base64,{{base64_encode( $article->upicture)}}" >
+                            @if(empty($article1->upicture))
+                                <img src="{{ asset('pic/admin.png') }}" alt="">
+                            @else
+                                <img src="data:image/jpeg;base64,{{base64_encode( $article->upicture)}}">
+                            @endif
                             <div>{{$article->name}}</div>
                             @auth
-                                <a id="heartHref" href="{{route('fosave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}">
+                                <a id="heartHref" href="{{route('fosave',[ 'sfid'=>$sfid, 'ftid'=>$foid ] )}}">
                                     <i class="bi bi-suit-heart-fill" id="heart"></i>
                                 </a>
                             @endauth
@@ -55,7 +59,7 @@
                         let isRed = localStorage.getItem('isRed') === 'true';
                         if (isRed) {
                             heartIcon.classList.add('text-danger');
-                            heartHref.href = "{{route('fosave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}";
+                            heartHref.href = "{{route('fosave',[ 'sfid'=>$sfid, 'ftid'=>$foid ] )}}";
                         }
                     
                         // 监听点击事件
@@ -65,14 +69,14 @@
                                 heartIcon.classList.remove('text-danger');
                                 isRed = false;
                                 localStorage.setItem('isRed', 'false');
-                                heartHref.href = "{{route('founsave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}";
+                                heartHref.href = "{{route('founsave',[ 'sfid'=>$sfid, 'ftid'=>$foid ] )}}";
                                 alert("取消收藏");
                         
                             } else {
                                 heartIcon.classList.add('text-danger');
                                 isRed = true;
                                 localStorage.setItem('isRed', 'true');
-                                heartHref.href = "{{route('fosave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}";
+                                heartHref.href = "{{route('fosave',[ 'sfid'=>$sfid, 'ftid'=>$foid ] )}}";
                                 alert("收藏成功");   
                             }
                         });
@@ -96,12 +100,14 @@
                         @foreach($FCquestions as $FCquestion)
                             <div class="headDiv">
                                 <div class="headDivChi">
-                                    <img src="data:image/jpeg;base64,{{base64_encode($FCquestion->upicture)}}" >
+                                @if(empty($FCquestion->upicture))
+                                    <img src="{{ asset('pic/admin.png') }}" alt="">
+                                @else
+                                    <img src="data:image/jpeg;base64,{{base64_encode($FCquestion->upicture)}}">
+                                @endif
                                     <p>{{$FCquestion->name}}</p>
                                 </div>
-                                <div class="headDivChi2">
-                                    <p>{{$FCquestion->content}}</p>
-                                </div>
+                                <div class="headDivChi2">{{$FCquestion->content}}</div>
                             </div>
                             <hr>
                         @endforeach
@@ -114,11 +120,15 @@
                     <!-- 留言 -->
                     <div id="mes">
                     @if (Auth::check())
-                        <form method="post" action="{{ route('forumcom',['sfid'=>$sfid,'foid'=>$foid,'uid'=>$uid])}}" id="myForm">
+                        <form method="post" action="{{ route('forumcom',['sfid'=>$sfid,'foid'=>$foid])}}" id="myForm">
                             @csrf
                             @foreach($userDatas as $userData)
                             <div class="formPic">
-                                <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}" >
+                                @if(empty($userData->upicture))
+                                    <img class="headDivPic" src="{{ asset('pic/admin.png') }}" alt="">
+                                @else
+                                    <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}" >
+                                @endif                               
                                 <p>{{$userData->name}} ></p>
                             </div>
                             @endforeach

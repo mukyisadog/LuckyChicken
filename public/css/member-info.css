@@ -12,6 +12,10 @@
     background-position-y: 48%;
 }
 
+h2 {
+    text-align: center;
+}
+
 hr {
     width: 80%;
     margin: 30px auto;
@@ -19,7 +23,7 @@ hr {
 
 #info, #changePwd {
     line-height: 50px;
-    margin-left: 70px;
+    margin: 0 70px;
 }
 
 #icon {

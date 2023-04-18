@@ -168,10 +168,7 @@
                 </div>
             <script src="{{ asset('js/forumIndex.js') }}"></script>
             @auth
-                <?php
-                    $url = route('fomes',[ 'uid'=> $uid ] )
-                ?>
-                <button id="btPublish" onclick="window.location.href ='{{ $url}}'">
+                <button id="btPublish" onclick="window.location.href ='{{ route('fomes')}}'">
                     發文
                 </button>
             @endauth

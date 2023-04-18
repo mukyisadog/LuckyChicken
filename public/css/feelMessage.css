@@ -20,6 +20,7 @@ input[type="text"] {
   background-color: #d8ddcf;
   border: transparent;
   font-size: 25px;
+  width: 100%;
 }
 
 

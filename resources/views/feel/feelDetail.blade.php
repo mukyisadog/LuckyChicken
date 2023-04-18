@@ -18,13 +18,17 @@
             <div id="content">
                 @foreach($article as $article1)
                 <div>
+                @if(empty($article1->upicture))
+                    <img src="{{ asset('pic/admin.png') }}" alt="">
+                @else
                     <img src="data:image/jpeg;base64,{{base64_encode( $article1->upicture)}}">
+                @endif
                     <div>{{$article1->name}}</div>
                     @auth
-                        <a id="heartHref" href="{{route('fesave',[ 'uid'=>$uid, 'ftid'=>$ftid ] )}}">
+                        <a id="heartHref" href="{{route('fesave',[ 'ftid'=>$ftid ] )}}">
                             <i class="bi bi-suit-heart-fill" id="heart"></i>
                         </a>
-                        @endauth
+                    @endauth
                 </div>
                 <div>
                     <h1>{{ $article1->title}}</h1>
@@ -39,35 +43,39 @@
                 @endforeach
             </div>
         @auth
-            <script>
-                // 获取图标元素和链接元素
-                const heartIcon = document.getElementById('heart');
-                const heartHref = document.getElementById('heartHref');
-                const uid = heartHref.dataset.uid;
-                const ftid = heartHref.dataset.ftid;
-                // 初始化图标状态
-                let isRed = localStorage.getItem('isRed') === 'true';
-                if (isRed) {
-                    heartIcon.classList.add('text-danger');
-                    heartHref.href = "{{route('fesave',[ 'uid'=>$uid, 'ftid'=>$ftid ] )}}";
-                }
-                // 监听点击事件
-                heartIcon.addEventListener('click', () => {
-                    // 切换图标颜色
-                    if (isRed) {
-                        heartIcon.classList.remove('text-danger');
-                        isRed = false;
-                        localStorage.setItem('isRed', 'false');
-                        heartHref.href = "{{route('feunsave',[ 'uid'=>$uid, 'ftid'=>$ftid ] )}}";
-                        alert("取消收藏");
-                    } else {
-                        heartIcon.classList.add('text-danger');
-                        isRed = true;
-                        localStorage.setItem('isRed', 'true');
-                        heartHref.href = "{{route('fesave',[ 'uid'=>$uid, 'ftid'=>$ftid ] )}}";
-                        alert("收藏成功");
-                    }
-                });
+        <script>
+            // 获取图标元素和链接元素
+            const heartHref = document.getElementById('heartHref');
+            const heartIcon = heartHref.querySelector('i');
+            
+            // 检查用户是否已经收藏该文章
+            const isSaved = localStorage.getItem('isSaved') === 'true';
+            
+            // 初始化图标状态
+            if (isSaved) {
+              heartIcon.classList.add('text-danger');
+              heartHref.href = "{{route('feunsave',[ 'ftid'=>$ftid ] )}}";
+            } else {
+              heartIcon.classList.remove('text-danger');
+              heartHref.href = "{{route('fesave',[ 'ftid'=>$ftid ] )}}";
+            }
+            
+            // 监听点击事件
+            heartHref.addEventListener('click', () => {
+              // 切换图标颜色
+              if (heartIcon.classList.contains('text-danger')) {
+                heartIcon.classList.remove('text-danger');
+                localStorage.setItem('isSaved', 'false');
+                heartHref.href = "{{route('fesave',[ 'ftid'=>$ftid ] )}}";
+                alert("取消收藏");
+              } else {
+                heartIcon.classList.add('text-danger');
+                localStorage.setItem('isSaved', 'true');
+                heartHref.href = "{{route('feunsave',[ 'ftid'=>$ftid ] )}}";
+                alert("收藏成功");
+              }
+            });
+
             </script>
         @endauth
             @if($comments == null)
@@ -87,12 +95,15 @@
                 @foreach($comments as $comment)
                 <div class="headDiv">
                     <div class="headDivChi">
-                        <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $comment->upicture)}}">
+                        @if(empty($comment->upicture))
+                            <img src="{{ asset('pic/admin.png') }}" alt="">
+                        @else
+                            <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $comment->upicture)}}">
+                        @endif
+                        
                         <p>{{$comment->name}}</p>
                     </div>
-                    <div class="headDivChi2">
-                        <div>{{$comment->content}}</div>
-                    </div>
+                    <div class="headDivChi2">{{$comment->content}}</div>
                 </div>
                 <hr>
                 @endforeach
@@ -102,11 +113,15 @@
             <!-- 留言 -->
             <div id="mes">
                 @if (Auth::check())
-                <form method="post" action="{{route('feelcom',['ftid'=>$ftid,'uid'=>$uid])}}" id="myForm">
+                <form method="post" action="{{route('feelcom',['ftid'=>$ftid])}}" id="myForm">
                     @csrf
                     @foreach($userDatas as $userData)
                     <div class="formPic">
-                        <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}">
+                        @if(empty($userData->upicture))
+                            <img src="{{ asset('pic/admin.png') }}" alt="">
+                        @else
+                            <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}">
+                        @endif
                         <p>{{$userData->name}} ></p>
                     </div>
                     @endforeach
@@ -119,7 +134,11 @@
                     @csrf
                     @foreach($userDatas as $userData)
                     <div class="formPic">
-                        <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}">
+                        @if(empty($userData->upicture))
+                            <img src="{{ asset('pic/admin.png') }}" alt="">
+                        @else
+                            <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}">
+                        @endif
                         <p>{{$userData->name}} ></p>
                     </div>
                     @endforeach
