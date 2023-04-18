@@ -101,7 +101,7 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px;
+  padding:0 100px;
 }
 .slider {
   width: 100%;

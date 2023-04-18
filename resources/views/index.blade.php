@@ -34,8 +34,7 @@
     @endif
 
 
-
-    <div id="logo">與山同行LOGO</div>
+    <div id="logo"><img src="{{ asset('img/logo-2.jpg') }}" alt="Logo Image"></div>
     <br><br><br><br>
     <div class="row">
         <a href="{{ route('feindex') }}">
@@ -65,7 +64,7 @@
             </div>
         </a>
     </div>
-    <br><br><br><br>
+    <br><br>
     <h1>最新心得</h1>
     <div class="sliderContainer">
         <div class="slider responsive">
@@ -84,7 +83,7 @@
         @endforeach
         </div>
     </div>
-    <br><br><br><br>
+    <br><br>
     <h1>最新討論</h1>
     <div class="sliderContainer">
         <div class="slider responsive">
@@ -102,8 +101,8 @@
             </div>
         @endforeach
         </div>
-
     </div>
+    <br><br>
     <!-- 輪播控制 -->
     <script src="{{ asset('js/index.js') }}"></script>
 

@@ -6,9 +6,9 @@ body {
 /* 導覽列 */
 .menu img{
     border-radius: 60px;
-    height: 60px;
-    width: 60px;
-    margin-top: 10px;
+    height: 50px;
+    width: 50px;
+    margin-top: 5px;
 }
 
 
@@ -24,12 +24,13 @@ body {
 #navbar {
     z-index: 1;
     background-color:#B1BBA0;
-    height: 75px;
+    height: 60px;
     position: sticky;
     top: 0;
     box-sizing: border-box;
     width: 100%;
     margin-top: -10px;
+    overflow: hidden;
 }
 
 .logo {
@@ -38,7 +39,8 @@ body {
 }
 
 .logo img {
-    height: 50px;
+    /* margin-top: 20px; */
+    height: 75px;
     vertical-align: text-top;
 }
 
@@ -59,7 +61,7 @@ body {
     display: flex;
     color: #664c43;
     text-decoration: none;
-    line-height: 75px;
+    line-height: 60px;
     margin-top: -1px;
     margin-bottom: -1px;
     padding: 0 1em;

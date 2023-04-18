@@ -774,7 +774,7 @@
                     var prevButton;
                     $.each(this.split(','), function(j, buttonName) {
                         if (buttonName == 'title') {
-                            e.append("<span class='fc-header-title'><h2> </h2></span>");
+                            e.append("<span class='fc-header-title'><h2> </h2></span>");
                             if (prevButton) {
                                 prevButton.addClass(tm + '-corner-right');
                             }
@@ -2388,7 +2388,7 @@
     
             html +=
                 "<div class='fc-day-content'>" +
-                "<div style='position:relative'> </div>" +
+                "<div style='position:relative'> </div>" +
                 "</div>" +
                 "</div>" +
                 "</td>";
@@ -2957,7 +2957,7 @@
                     "<td>" +
                     "<div class='fc-day-content'><div style='position:relative'/></div>" +
                     "</td>" +
-                    "<th class='" + headerClass + " fc-agenda-gutter'> </th>" +
+                    "<th class='" + headerClass + " fc-agenda-gutter'> </th>" +
                     "</tr>" +
                     "</table>";
                 allDayTable = $(s).appendTo(slotLayer);
@@ -3001,10 +3001,10 @@
                 s +=
                     "<tr class='fc-slot" + i + ' ' + (!minutes ? '' : 'fc-minor') + "'>" +
                     "<th class='fc-agenda-axis " + headerClass + "'>" +
-                    ((!slotNormal || !minutes) ? formatDate(d, opt('axisFormat')) : ' ') +
+                    ((!slotNormal || !minutes) ? formatDate(d, opt('axisFormat')) : ' ') +
                     "</th>" +
                     "<td class='" + contentClass + "'>" +
-                    "<div style='position:relative'> </div>" +
+                    "<div style='position:relative'> </div>" +
                     "</td>" +
                     "</tr>";
                 addMinutes(d, opt('slotMinutes'));
@@ -3086,7 +3086,7 @@
                     "</th>";
             }
             else {
-                html += "<th class='fc-agenda-axis " + headerClass + "'> </th>";
+                html += "<th class='fc-agenda-axis " + headerClass + "'> </th>";
             }
     
             for (col=0; col<colCnt; col++) {
@@ -3098,7 +3098,7 @@
             }
     
             html +=
-                "<th class='fc-agenda-gutter " + headerClass + "'> </th>" +
+                "<th class='fc-agenda-gutter " + headerClass + "'> </th>" +
                 "</tr>" +
                 "</thead>";
     
@@ -3120,7 +3120,7 @@
             html +=
                 "<tbody>" +
                 "<tr>" +
-                "<th class='fc-agenda-axis " + headerClass + "'> </th>";
+                "<th class='fc-agenda-axis " + headerClass + "'> </th>";
     
             cellsHTML = '';
     
@@ -3150,7 +3150,7 @@
                     "<td class='" + classNames.join(' ') + "'>" +
                     "<div>" +
                     "<div class='fc-day-content'>" +
-                    "<div style='position:relative'> </div>" +
+                    "<div style='position:relative'> </div>" +
                     "</div>" +
                     "</div>" +
                     "</td>";
@@ -3160,7 +3160,7 @@
     
             html += cellsHTML;
             html +=
-                "<td class='fc-agenda-gutter " + contentClass + "'> </td>" +
+                "<td class='fc-agenda-gutter " + contentClass + "'> </td>" +
                 "</tr>" +
                 "</tbody>";
     
@@ -5367,7 +5367,7 @@
             if (segment.isEnd && isEventResizable(event)) {
                 html +=
                     "<div class='ui-resizable-handle ui-resizable-" + (isRTL ? 'w' : 'e') + "'>" +
-                    "   " + // makes hit area a lot better for IE6/7
+                    "   " + // makes hit area a lot better for IE6/7
                     "</div>";
             }
             html += "</" + (url ? "a" : "div") + ">";

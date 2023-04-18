@@ -50,7 +50,7 @@ class ForumController extends Controller
         $foid = $request->foid;
         $articles = $this->model->forumDetail($sfid,$foid);
         $FCquestions = $this->model->FCquestion($foid);
-        $forumNews = $this->model->forumNew($sfid);
+        $forumNews = $this->model->forumNew($sfid,$foid);
         $uid = Auth::id();
         $userPic = $this->model->UserPic($uid);
         $userDatas = $this->model->feelComPN($uid);

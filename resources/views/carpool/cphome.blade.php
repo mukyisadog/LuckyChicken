@@ -2,6 +2,12 @@
 
 @section('head')
 
+<title>共乘首頁</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{asset('css/carpoolcp.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    
+
     <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -11,35 +17,47 @@
     <script src="{{asset('js/calendar.js')}}"></script>
 
     <script>
+
         $(document).ready(function () {
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
+
             /*  className colors
             
             className: default(transparent), important(red), chill(pink), success(green), info(blue)
             
             */
+
+
             /* initialize the external events
             -----------------------------------------------------------------*/
+
             $('#external-events div.external-event').each(function () {
+
                 // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
                 // it doesn't need to have a start or end
                 var eventObject = {
                     title: $.trim($(this).text()) // use the element's text as the event title
                 };
+
                 // store the Event Object in the DOM element so we can get to it later
                 $(this).data('eventObject', eventObject);
+
                 // make the event draggable using jQuery UI
                 $(this).draggable({
                     zIndex: 999,
                     revert: true,      // will cause the event to go back to its
                     revertDuration: 0  //  original position after the drag
                 });
+
             });
+
+
             /* initialize the calendar
             -----------------------------------------------------------------*/
+
             var calendar = $('#calendar').fullCalendar({
                 header: {
                     left: 'title',
@@ -50,6 +68,7 @@
                 firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
                 selectable: true,
                 defaultView: 'month',
+
                 axisFormat: 'h:mm',
                 columnFormat: {
                     month: 'ddd',    // Mon
@@ -81,22 +100,29 @@
                 // },
                 // droppable: true, // this allows things to be dropped onto the calendar !!!
                 // drop: function(date, allDay) { // this function is called when something is dropped
+
                 // 	// retrieve the dropped element's stored Event Object
                 // 	var originalEventObject = $(this).data('eventObject');
+
                 // 	// we need to copy it, so that multiple events don't have a reference to the same object
                 // 	var copiedEventObject = $.extend({}, originalEventObject);
+
                 // 	// assign it the date that was reported
                 // 	copiedEventObject.start = date;
                 // 	copiedEventObject.allDay = allDay;
+
                 // 	// render the event on the calendar
                 // 	// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
                 // 	$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
                 // 	// is the "remove after drop" checkbox checked?
                 // 	if ($('#drop-remove').is(':checked')) {
                 // 		// if so, remove the element from the "Draggable Events" list
                 // 		$(this).remove();
                 // 	}
+
                 // },
+
                 events: [
                     {
                         title: 'All Day Event',
@@ -144,7 +170,10 @@
                     }
                 ],
             });
+
+
         });
+
     </script>
 
 @endsection
@@ -182,7 +211,7 @@
 
                     <div id="carpool-list" class="tabcontent" style="text-align: center;">
                     @foreach($cplist as $cp)
-                        <a href="/BigProject/public/carpool/info/{{$cp->cpid}}">
+                        <a href="{{route('cpinfo',[ 'cpid'=>$cp->cpid ] )}}">
                             <div class="carpool-list2">
                                 <span>{{$cp->departdate}}</span>
                                 <span>{{$cp->cptitle}}</span>
@@ -221,8 +250,10 @@
                 document.getElementById(pageName).style.display = "block";
                 elmnt.style.backgroundColor = "#D8DDCF";
             }
+
             // Get the element with id="defaultOpen" and click on it
             document.getElementById("defaultOpen").click();
+
         </script>
 
 

@@ -22,7 +22,16 @@ class MyModel extends Model
         $datas = DB::table('Feel_list')
                 ->leftJoin('users', 'Feel_list.uid', '=', 'users.id')
                 ->where('state','=','1')
-                ->orderBy('Feel_list.createtime')
+                ->orderByDesc('Feel_list.createtime')
+                ->paginate(10);
+        return $datas;
+    }
+    function feelnew($ftid){
+        $datas = DB::table('Feel_list')
+                ->leftJoin('users', 'Feel_list.uid', '=', 'users.id')
+                ->where('state','=','1')
+                ->where('fid','<>',$ftid)
+                ->orderByDesc('Feel_list.createtime')
                 ->paginate(10);
         return $datas;
     }
@@ -37,6 +46,7 @@ class MyModel extends Model
         ->leftJoin('users', 'Feel_list.uid', '=', 'users.id')
         ->where('title', 'REGEXP', $search)
         ->where('state','=','1')
+        ->orderByDesc('Feel_list.createtime')
         ->paginate(10);
         // $outputs = DB::select("SELECT * FROM `Feel_list` left join users on Feel_list.uid = users.id WHERE title REGEXP ?",[$search]);
         return $outputs;
@@ -104,7 +114,7 @@ class MyModel extends Model
                 ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
                 ->where('Forum_list.sfid', '=', 1)
                 ->where('state','=','1')
-                ->orderBy('Forum_list.createtime')
+                ->orderByDesc('Forum_list.createtime')
                 ->paginate(10);
 
         return $questions;
@@ -117,6 +127,7 @@ class MyModel extends Model
         ->where('Forum_list.sfid', '=', 1)
         ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
+        ->orderByDesc('Forum_list.createtime')
         ->paginate(10);
         return $Qoutputs;
     }
@@ -131,7 +142,7 @@ class MyModel extends Model
         ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
         ->where('Forum_list.sfid', '=', 2)
         ->where('state','=','1')
-        ->orderBy('Forum_list.createtime')
+        ->orderByDesc('Forum_list.createtime')
         ->paginate(10);
         return $groups;
     }
@@ -143,6 +154,7 @@ class MyModel extends Model
         ->where('Forum_list.sfid', '=', 2)
         ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
+        ->orderByDesc('Forum_list.createtime')
         ->paginate(10);
         return $Goutputs;
     }
@@ -157,7 +169,7 @@ class MyModel extends Model
         ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
         ->where('Forum_list.sfid', '=', 3)
         ->where('state','=','1')
-        ->orderBy('Forum_list.createtime')
+        ->orderByDesc('Forum_list.createtime')
         ->paginate(10);
         return $haters;
     }
@@ -169,6 +181,7 @@ class MyModel extends Model
         ->where('Forum_list.sfid', '=', 3)
         ->where('title', 'REGEXP', $search)
         ->where('state','=','1')
+        ->orderByDesc('Forum_list.createtime')
         ->paginate(10);
         return $Houtputs;
     }
@@ -183,14 +196,14 @@ class MyModel extends Model
         return $FCquestions;
     }
 
-    function forumNew($sid){
-        $forumNews = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and state = 1 order by Forum_list.createtime",[$sid]);
+    function forumNew($sid,$foid){
+        $forumNews = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and state = 1 and Forum_list.foid <> ? order by Forum_list.createtime DESC",[$sid,$foid]);
         return $forumNews;
     }
 
     function forumNew2(){
         // $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
-        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where state = 1 order by Forum_list.createtime LIMIT 14");
+        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where state = 1 order by Forum_list.createtime DESC LIMIT 14");
         return $forumNew2s;
     }
     

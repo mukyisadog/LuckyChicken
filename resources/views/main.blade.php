@@ -14,7 +14,11 @@
 <body>
     <div id="container">
         <nav id="navbar">
-            <div class="logo"><a href="/"><img src="{{asset('')}}">LOGO</a></div>
+            <div class="logo">
+                <a href="/">
+                    <img src="{{ asset('img/logo-2.jpg') }}">
+                </a>
+            </div>
             <ul class="menu">
                 <li><a href="{{route('cphome')}}">拼車</a></li>
                 <li><a href="/forumIndex">論壇</a></li>

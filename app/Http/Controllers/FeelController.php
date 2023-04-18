@@ -35,7 +35,7 @@ class FeelController extends Controller
     {
         $ftid = $request->id;
         $article = $this->model->feelDetail($ftid);
-        $datas = $this->model->feelIndex();
+        $datas = $this->model->feelnew($ftid);
         $comments = $this->model->feelComment($ftid);
         $uid = Auth::id();
         $userDatas = $this->model->feelComPN($uid);
