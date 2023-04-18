@@ -132,6 +132,15 @@ class ForumController extends Controller
         return redirect("/forumMes/{uid}");
         // return ;
     }
+
+    public function getuserpic($uid){
+        $myModel = new MyModel();
+        $userPic = $myModel->UserPic($uid);
+        return view('forum.forumMessage',[
+            'uid' => $uid,
+            'userPic' => $userPic
+        ]);
+    }
     
     
 

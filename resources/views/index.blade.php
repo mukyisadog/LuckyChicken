@@ -38,7 +38,7 @@
     <div id="logo">與山同行LOGO</div>
     <br><br><br><br>
     <div class="row">
-        <a href="{{ route('feelIndex') }}">
+        <a href="{{ route('feindex') }}">
             <div class="column">
                 <div>
                     <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </a>
-        <a href="{{ route('forumIndex') }}">
+        <a href="{{ route('foindex') }}">
             <div class="column">
                 <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
                 <div style="margin: 24px 0;">
@@ -77,7 +77,7 @@
                 <p>發表日期：{{$data->createtime}}</p>
                 <div style="margin: 24px 0;">
                 </div>
-                <a href="{{ route('feelDetail', ['id' => $data->fid]) }}">
+                <a href="{{ route('fedetail', ['id' => $data->fid]) }}">
                     <button>閱讀</button>
                 </a>
             </div>
@@ -96,7 +96,7 @@
                 <p>發表日期：{{$data->createtime}}</p>
                 <div style="margin: 24px 0;">
                 </div>
-                <a href="{{ route('forumDetail',['sfid'=>$data->sfid,'foid'=>$data->foid]) }}">
+                <a href="{{ route('fodetail',['sfid'=>$data->sfid,'foid'=>$data->foid]) }}">
                     <button>閱讀</button>
                 </a>
             </div>

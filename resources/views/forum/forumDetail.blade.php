@@ -1,11 +1,16 @@
 @extends('main')
+
+
 @section('head')
-    <title>論壇文章內容</title>
+<title>論壇文章內容</title>
     <link rel="stylesheet" href="{{ asset('css/forumDetail.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-@endsection    
+
+@endsection
+
+
 @section('content')
-        <div id="content-container">
+<div id="content-container">
             <div class="abc"></div>
             <div class="row">
                 <div class="column1">
@@ -17,7 +22,7 @@
                         <img src="data:image/jpeg;base64,{{base64_encode( $article->upicture)}}" >
                             <div>{{$article->name}}</div>
                             @auth
-                                <a id="heartHref" href="{{ route('forumSaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}">
+                                <a id="heartHref" href="{{route('fosave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}">
                                     <i class="bi bi-suit-heart-fill" id="heart"></i>
                                 </a>
                             @endauth
@@ -37,6 +42,7 @@
                         <div>nonono</div>
                     @endif
                     </div>
+                    @auth
                     <script>
                         // 获取图标元素和链接元素
                         const heartIcon = document.getElementById('heart');
@@ -49,7 +55,7 @@
                         let isRed = localStorage.getItem('isRed') === 'true';
                         if (isRed) {
                             heartIcon.classList.add('text-danger');
-                            heartHref.href = "{{ route('forumSaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}";
+                            heartHref.href = "{{route('fosave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}";
                         }
                     
                         // 监听点击事件
@@ -59,18 +65,19 @@
                                 heartIcon.classList.remove('text-danger');
                                 isRed = false;
                                 localStorage.setItem('isRed', 'false');
-                                heartHref.href = "{{ route('forumUnsaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}";
+                                heartHref.href = "{{route('founsave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}";
                                 alert("取消收藏");
                         
                             } else {
                                 heartIcon.classList.add('text-danger');
                                 isRed = true;
                                 localStorage.setItem('isRed', 'true');
-                                heartHref.href = "{{ route('forumSaved',['sfid'=>$sfid,'uid'=>$uid,'ftid'=>$foid])}}";
+                                heartHref.href = "{{route('fosave',[ 'sfid'=>$sfid, 'uid'=>$uid, 'ftid'=>$foid ] )}}";
                                 alert("收藏成功");   
                             }
                         });
                     </script>
+                    @endauth
                     <!-- 留言紀錄 -->
                     @if($FCquestions == null)
                         <div id="mesHis">
@@ -107,7 +114,7 @@
                     <!-- 留言 -->
                     <div id="mes">
                     @if (Auth::check())
-                        <form method="post" action="{{ route('forumCom',['sfid'=>$sfid,'foid'=>$foid,'uid'=>$uid])}}" id="myForm">
+                        <form method="post" action="{{ route('forumcom',['sfid'=>$sfid,'foid'=>$foid,'uid'=>$uid])}}" id="myForm">
                             @csrf
                             @foreach($userDatas as $userData)
                             <div class="formPic">
@@ -140,7 +147,7 @@
                         @foreach($forumNews as $forumNew)
                             <div class="article2">
                                 <div class="article2Con">
-                                    <a href="{{ route('forumDetail',['sfid'=>$forumNew->sfid,'foid'=>$forumNew->foid])}}">
+                                    <a href="{{route('fodetail',[ 'sfid'=> $forumNew->sfid, 'foid'=>$forumNew->foid ] )}}">
                                         <h4>{{$forumNew->title}}</h4>
                                     </a>
                                     <p>作者：{{$forumNew->name}}</p>
@@ -153,5 +160,5 @@
         </div>
  
         <div class="abcc"></div>
-        
+
 @endsection

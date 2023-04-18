@@ -5,11 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>與山同行</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{asset('css/NavFooter.css')}}">
-    <link rel="stylesheet" href="{{asset('css/carpool.css')}}">
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
    
     @yield('head')
 
@@ -18,14 +14,21 @@
 <body>
     <div id="container">
         <nav id="navbar">
-        <div class="logo"><a href="/BigProject/public/"><img src="./img/logo.jpg"></a></div>
+            <div class="logo"><a href="/"><img src="{{asset('')}}">LOGO</a></div>
             <ul class="menu">
-                <li><a href="/BigProject/public/carpool">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                @foreach($userPic as $Pic)
-                    <li><a href="/BigProject/public/member/info"><img src="data:image/jpeg;base64,{{base64_encode($Pic->upicture)}}" ></a></li>
-                @endforeach
+                <li><a href="{{route('cphome')}}">拼車</a></li>
+                <li><a href="/forumIndex">論壇</a></li>
+                <li><a href="/feelIndex">心得</a></li>
+                @if (Auth::check())
+                <?php
+                    $user = Auth::user();
+                    $imgData = base64_encode($user->upicture);
+                ?>
+                <li><a href="{{ route('mbinfo') }}"><img src="data:image/jpeg;base64,{{ $imgData }}" ></a></li>
+                @else
+                <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}" alt=""></a></li>
+                @endif
+
             </ul>
         </nav>
 
@@ -37,10 +40,10 @@
             </label>
             <input type="checkbox" id="hamburgerInput">
             <ul class="menuForMobile">
-                <li><a href="/BigProject/public/carpool">拼車</a></li>
-                <li><a href="/BigProject/public/forumIndex">論壇</a></li>
-                <li><a href="/BigProject/public/feelIndex">心得</a></li>
-                <li><a href="/BigProject/public/member/info">個人頁面</a></li>
+                <li><a href="index.html">拼車</a></li>
+                <li><a href="all-memo.html">論壇</a></li>
+                <li><a href="map.html">心得</a></li>
+                <li><a href="what-to-eat.html">個人頁面</a></li>
             </ul>
         </nav>
 

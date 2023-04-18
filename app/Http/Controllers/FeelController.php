@@ -117,8 +117,18 @@ class FeelController extends Controller
             'userPic' => $userPic,
             'uid' => $uid
         ]);
-    }
+
 
     
+    }
+
+    public function getuserpic($uid){
+        $myModel = new MyModel();
+        $userPic = $myModel->UserPic($uid);
+        return view('feel.feelMessage',[
+            'uid' => $uid,
+            'userPic' => $userPic
+        ]);
+    }
 
 }

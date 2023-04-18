@@ -12,8 +12,19 @@ use Illuminate\Http\RedirectResponse;
 use App\Mail\JoinNotice;
 use Illuminate\Support\Facades\Mail;
 
+use App\Models\MyModel;
+
 class CarpoolController extends Controller
 {
+
+
+    private $model;
+    public function __construct()
+    {
+        $this->model = new MyModel;
+    }
+
+
     //發起共乘 cpform
     public function create(Request $req){
         $id = Auth::id();
@@ -49,6 +60,8 @@ class CarpoolController extends Controller
                                            ->where('uid',$id)
                                            ->value('status'); 
 
+        $userPic = $this->model->UserPic($uid);
+
         return view('carpool.cpinfo',[
             'title'=> $cp->cptitle,
             'value'=> $cp->value,
@@ -64,7 +77,7 @@ class CarpoolController extends Controller
             'status'=>$status,
             'uid'=>$uid,
             'id'=>$id,
-
+            'userPic'=>$userPic
         ]);
     }
     // $status = DB::select('select status from carpool_join where cpid = ? and uid = ?',[$cpid,$id]);
@@ -76,7 +89,10 @@ class CarpoolController extends Controller
     public function cplist(){
         $cplist = CpList::get();
         // dd($cplist);
-        return view('carpool.cphome', ['cplist'=>$cplist]);
+        $uid = Auth::id();
+        $userPic = $this->model->UserPic($uid);
+        return view('carpool.cphome', ['cplist'=>$cplist,
+                                        'userPic'=>$userPic]);
     }
 
     //按下參加，發送email

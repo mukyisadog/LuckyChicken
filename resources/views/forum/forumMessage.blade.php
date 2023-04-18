@@ -1,17 +1,21 @@
 @extends('main')
+
+
 @section('head')
-    <title>論壇發表</title>
+<title>論壇發表</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/forumMessage.css') }}">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
-@endsection    
+
+@endsection
+
+
 @section('content')
-        <div id="content-container">
-            <br>
+<div id="content-container">
             <br>
             <h1>論壇發表</h1>
             <div id="FormContainer">
-                <form method="post" action="{{route('forumMes',['uid'=>$uid])}}" enctype="multipart/form-data" id="myForm">
+                <form method="post" action="{{route('forummes',['uid'=>$uid])}}" enctype="multipart/form-data" id="myForm">
                     @csrf
                     選擇封面：<br>
                     <p></p>
@@ -34,7 +38,13 @@
                         <button type="submit" value="0" name="btValue">儲存</button>
                     </div>
                 </form>
+                <!-- <script>
+                    function changeAction(){
+                        document.getElementById('myForm').action = "/BigProject/public/forumMesSaved/{{$uid}}";
+                    }                
+                </script> -->
             </div>
             <br><br>
         </div>
+
 @endsection

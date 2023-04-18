@@ -1,11 +1,16 @@
 @extends('main')
+
+
 @section('head')
-    <link rel="stylesheet" href="{{asset('css/forumIndex.css')}}">
+<title>論壇首頁</title>
+    <link rel="stylesheet" href="{{ asset('css/forumIndex.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>論壇首頁</title>
-@endsection    
+
+@endsection
+
+
 @section('content')
-        <div id="content-container">
+<div id="content-container">
             <br>
             <div class="row">
                 <div class="column1">
@@ -17,7 +22,7 @@
                             <button class="tablinks" onclick="openCity(event, 'Tokyo')">黑特</button>
                         </div>
                         <div id="abc" class="tabcontent">
-                            <form class="example" type="get" action="{{route('forumIndex')}}">
+                            <form class="example" type="get" action="{{ route('foindex') }}">
                                 <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
                                 <button type="submit" id="searchbt">搜索</button>
                             </form>
@@ -34,7 +39,7 @@
                                         <img src="data:image/jpeg;base64,{{base64_encode($Qoutput->fpicture)}}" >
                                     </div>
                                     <div class="articleCon">
-                                        <a href="{{route('forumDetail',['sfid'=>1,'foid'=>$Qoutput->foid])}}">
+                                        <a href="{{route('fodetail',[ 'sfid'=> 1, 'foid'=>$Qoutput->foid ] )}}">
                                             <h4 class="searchtitle">{{$Qoutput->title}}</h4>
                                         </a>
                                         <h5>作者：{{$Qoutput->name}}</h5>
@@ -51,7 +56,7 @@
                                                 <img src="data:image/jpeg;base64,{{base64_encode($question->fpicture)}}" >
                                             </div>
                                             <div class="articleCon">
-                                                <a href="{{route('forumDetail',['sfid'=>1,'foid'=>$Qoutput->foid])}}">
+                                                <a href="{{route('fodetail',[ 'sfid'=> 1, 'foid'=>$Qoutput->foid ] )}}">
                                                     <h4 class="searchtitle">{{$question->title}}</h4>
                                                 </a>
                                                 <h5>作者：{{$question->name}}</h5>
@@ -64,7 +69,7 @@
                             </div>
                         </div>
                         <div id="Paris" class="tabcontent">
-                            <form class="example" type="get" action="/BigProject/public/forumIndex">
+                            <form class="example" type="get" action="{{ route('foindex') }}">
                                 <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
                                 <button type="submit" id="searchbt">搜索</button>
                             </form>
@@ -81,7 +86,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($Goutput->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="{{route('forumDetail',['sfid'=>2,'foid'=>$Goutput->foid])}}">
+                                            <a href="{{route('fodetail',[ 'sfid'=> 2, 'foid'=>$Goutput->foid ] )}}">
                                                 <h4 class="searchtitle">{{$Goutput->title}}</h4>
                                             </a>
                                             <h5>作者：{{$Goutput->name}}</h5>
@@ -98,7 +103,7 @@
                                                     <img src="data:image/jpeg;base64,{{base64_encode($group->fpicture)}}" >
                                                 </div>
                                                 <div class="articleCon">
-                                                    <a href="{{route('forumDetail',['sfid'=>2,'foid'=>$group->foid])}}">
+                                                    <a href="{{route('fodetail',[ 'sfid'=> 2, 'foid'=>$group->foid ] )}}">
                                                         <h4 class="searchtitle">{{$group->title}}</h4>
                                                     </a>
                                                     <h5>作者：{{$group->name}}</h5>
@@ -113,7 +118,7 @@
                         <div id="Tokyo" class="tabcontent">
                             <form class="example">
                                 <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
-                                <button type="submit" id="searchbt" type="get" action="/BigProject/public/forumIndex">搜索</button>
+                                <button type="submit" id="searchbt" type="get" action="{{ route('foindex') }}">搜索</button>
                             </form>
                             <div id="articles">
                             @if(isset($Houtputs))
@@ -128,7 +133,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($Houtput->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="{{route('forumDetail',['sfid'=>3,'foid'=>$Houtput->foid])}}">
+                                            <a href="{{route('fodetail',[ 'sfid'=> 3, 'foid'=>$Houtput->foid ] )}}">
                                                 <h4 class="searchtitle">{{$Houtput->title}}</h4>
                                             </a>
                                             <h5>作者：{{$Houtput->name}}</h5>
@@ -145,7 +150,7 @@
                                             <img src="data:image/jpeg;base64,{{base64_encode($hater->fpicture)}}" >
                                         </div>
                                         <div class="articleCon">
-                                            <a href="{{route('forumDetail',['sfid'=>3,'foid'=>$hater->foid])}}">
+                                            <a href="{{route('fodetail',[ 'sfid'=> 3, 'foid'=>$hater->foid ] )}}">
                                                 <h4 class="searchtitle">{{$hater->title}}</h4>
                                             </a>
                                             <h5>作者：{{$hater->name}}</h5>
@@ -158,10 +163,15 @@
                             </div>
                         </div>
                     </div>
+                    
+
                 </div>
-                <script src="{{ asset('js/forumIndex.js') }}"></script>
+            <script src="{{ asset('js/forumIndex.js') }}"></script>
             @auth
-                <button id="btPublish" onclick="window.location.href='{{route('forumMessage',['uid'=>$uid])}}'">
+                <?php
+                    $url = route('fomes',[ 'uid'=> $uid ] )
+                ?>
+                <button id="btPublish" onclick="window.location.href ='{{ $url}}'">
                     發文
                 </button>
             @endauth
@@ -170,7 +180,7 @@
                         @foreach($forumNew2s as $forumNew2)
                             <div class="article2">
                                 <div class="article2Con">
-                                    <a href="{{ route('forumDetail',['sfid'=>$forumNew2->sfid,'foid'=>$forumNew2->foid])}}">
+                                    <a href="{{ route('fodetail',['sfid'=>$forumNew2->sfid,'foid'=>$forumNew2->foid])}}">
                                         <h4>{{$forumNew2->title}}</h4>
                                     </a>
                                     <p>作者：{{$forumNew2->name}}</p>
@@ -182,5 +192,6 @@
             </div>
 
             <div id="abcc"></div>
+ </div>
 
 @endsection
