@@ -38,12 +38,15 @@
                         <button type="submit" value="1" name="btValue">發布</button>
                     </div>
                 </form>
-                <!-- @if (session('answer'))
-                    <script>
-                        alert("图片上传失败，请再次上传。");
-                    </script>
-                    <div>{{ session('answer') }}</div>
-                @endif -->
+                @if(session()->has('answer'))
+                    @if(session('answer') === 1)
+                        <script>alert("發佈成功！")</script>
+                    @else
+                        <script>alert("發佈失敗！請重新選擇片")</script>
+                    @endif
+                @endif
+
+
 
 
                 

@@ -37,5 +37,12 @@
             </div>
             <br><br>
         </div>
+        @if(session()->has('answer'))
+            @if(session('answer') === 1)
+                <script>alert("發佈成功！")</script>
+            @else
+                <script>alert("發佈失敗！請重新選擇片")</script>
+            @endif
+        @endif
 
 @endsection

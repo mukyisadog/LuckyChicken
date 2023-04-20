@@ -166,7 +166,15 @@ form.example::after {
   box-orient: vertical; /* W3C 标准语法 */
   overflow: hidden; /* 超出部分隐藏 */
   text-overflow: ellipsis; /* 超出部分显示省略号 */
+  
 }
+.article:hover{
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
 
 .articleCon > h5 {
   margin: 0;
@@ -200,7 +208,7 @@ form.example::after {
     padding: 0;
     display: flex;
     justify-content: center;
-    margin-left: 250px;
+    margin-left: 230px;
     font-size: 19px;
     border-bottom: #B1BBA0 1px solid;
     cursor: pointer;
@@ -216,6 +224,24 @@ form.example::after {
     white-space: normal;
 }
 
+.newpic{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.newname{
+    position: relative;
+    bottom:15px;
+    left: 5px;
+}
+
+.newtime{
+    /* text-align: right;  */
+    position: relative;
+    bottom:15px;
+    left: 5px;
+}
 
 
 
@@ -255,7 +281,17 @@ aside {
     box-orient: vertical; /* W3C 标准语法 */
     overflow: hidden; /* 超出部分隐藏 */
     text-overflow: ellipsis; /* 超出部分显示省略号 */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
 }
+
+.article2:hover {
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 
 .article2Con > p:nth-child(1) {
     font-size: 18px;

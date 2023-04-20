@@ -1,14 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CarpoolController;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\SendJoinNoticeMailController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\FeelController;
-use App\Http\Controllers\ForumController;
-use App\Http\Controllers\IndexController;
 
 
 // 心得

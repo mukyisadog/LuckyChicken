@@ -70,7 +70,7 @@
         <div class="slider responsive">
         @foreach($feeldatas as $data)
             <div class="card">
-                <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
+                <img src="{{$data->fpicture}}">
                 <h5>{{$data->title}}</h5>
                 <p>作者：{{$data->name}}</p>
                 <p>發表日期：{{$data->createtime}}</p>
@@ -89,7 +89,7 @@
         <div class="slider responsive">
         @foreach($forumdatas as $data)
             <div class="card">
-                <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
+                <img src="{{$data->fpicture}}">
                 <h5>{{$data->title}}</h5>
                 <p>作者：{{$data->name}}</p>
                 <p>發表日期：{{$data->createtime}}</p>

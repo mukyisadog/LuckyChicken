@@ -215,7 +215,7 @@
                             <div class="carpool-list2">
                                 <span>{{$cp->departdate}}</span>
                                 <span>{{$cp->cptitle}}</span>
-                                <img src="{{asset('img/dog1.jpg')}}" alt="">
+                                <img src="{{$cp->upicture}}" alt="">
                                 <span>2/4</span>
                             </div>
                         </a>
@@ -258,3 +258,4 @@
 
 
 @endsection
+

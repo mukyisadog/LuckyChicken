@@ -78,12 +78,12 @@ class MyModel extends Model
         return $answer;
     }
 
-    function feelMes($uid,$title,$content,$pic,$state){   
+    function feelMes($uid,$title,$content,$src,$state){   
         // DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$pic,$state]);
         // $answer = "ok";
         // return $answer;
         try {
-            DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$pic,$state]);
+            DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$src,$state]);
             $answer = 1;
         } catch(Exception $e) {
             $answer = 0;
@@ -237,12 +237,12 @@ class MyModel extends Model
     
 
 
-    function forumMes($sfid,$uid,$title,$content,$pic,$state){
+    function forumMes($sfid,$uid,$title,$content,$src,$state){
         // DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?, state = ?",[$sfid, $uid, $title, $content, $pic, $state]);
         // $answer = "ok";
         // return $answer;  
         try {
-            DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?, state = ?",[$sfid, $uid, $title, $content, $pic, $state]);
+            DB::insert("INSERT INTO Forum_list SET sfid = ?, uid = ?, title = ?, content = ?, fpicture = ?, state = ?",[$sfid, $uid, $title, $content, $src, $state]);
             $answer = 1;
         } catch(Exception $e) {
             $answer = 0;

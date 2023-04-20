@@ -41,6 +41,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/carpool.php'));
 
             Route::middleware('web')
+                ->group(base_path('routes/member.php'));
+
+            Route::middleware('web')
                 ->group(base_path('routes/feel.php'));
 
             Route::middleware('web')

@@ -71,10 +71,17 @@ class FeelController extends Controller
         $file = $request->file('pic');
         // 獲取文件的二進制內容
         $pic = $file->get();
-
+        if ($request->hasFile('pic')) {
+            $file = $request->file('pic');
+            $pic = $file->get();
+            $mime_type = $file->getMimeType();
+            $src = 'data:' . $mime_type . ';base64,' . base64_encode($pic);
+        } else {
+            $src = null;
+        }
         $state = $request->input('btValue');
 
-        $answer = $this->model->feelMes($uid, $title, $content, $pic, $state);
+        $answer = $this->model->feelMes($uid, $title, $content, $src, $state);
         // return redirect("/feelIndex");
 
         if($answer === 0){

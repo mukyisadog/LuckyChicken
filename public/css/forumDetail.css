@@ -256,7 +256,15 @@ display: box; /* W3C 标准语法 */
 box-orient: vertical; /* W3C 标准语法 */
 overflow: hidden; /* 超出部分隐藏 */
 text-overflow: ellipsis; /* 超出部分显示省略号 */
-padding: 5px;
+padding-left: 20px;
+padding-right: 20px;
+padding-bottom: 10px;
+}
+
+.article2:hover {
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -266,6 +274,26 @@ font-size: 18px;
 margin: 0;
 font-weight: bold;
 }
+
+.newpic{
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}
+
+.newname{
+  position: relative;
+  bottom:15px;
+  left: 5px;
+}
+
+.newtime{
+  /* text-align: right;  */
+  position: relative;
+  bottom:15px;
+  left: 5px;
+}
+
 
 @media screen and (max-width: 1200px) {
   #content > div:nth-child(1) > img:last-child {

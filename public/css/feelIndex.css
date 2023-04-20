@@ -28,7 +28,7 @@
 
 .column2 {
     width: 30%;
-    margin-top: 18%;
+    margin-top: 19.6%;
     height: 100%;
 }
 
@@ -93,7 +93,8 @@ form.example::after {
     justify-content: center;
     align-items: center;
     border: #ccc 1px solid;
-    /* margin-left: 5%; */
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 #articles {
@@ -101,9 +102,12 @@ form.example::after {
     flex-wrap: wrap;
 }
 
-.article {
-    width: 100%;
-    margin-bottom: 20px;
+
+
+.article:hover{
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .articlePic {
@@ -144,7 +148,7 @@ form.example::after {
     padding: 0;
     display: flex;
     justify-content: center;
-    margin-left: 250px;
+    margin-left: 190px;
     font-size: 19px;
     border-bottom: #B1BBA0 1px solid;
     cursor: pointer;
@@ -154,7 +158,9 @@ form.example::after {
     margin: 0 10px;
 }
 
-
+.searchtitle{
+    padding-right: 20px;
+}
 /* 發文按鈕 */
 #btPublish {
     font-size: 40px;
@@ -188,7 +194,15 @@ aside {
     box-orient: vertical; /* W3C 标准语法 */
     overflow: hidden; /* 超出部分隐藏 */
     text-overflow: ellipsis; /* 超出部分显示省略号 */
-    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.article2:hover {
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .article2Con > p:nth-child(1) {
@@ -200,6 +214,27 @@ aside {
 .unmatched{
     visibility: hidden;
     }
+
+    
+
+.newpic{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.newname{
+    position: relative;
+    bottom:15px;
+    left: 5px;
+}
+
+.newtime{
+    /* text-align: right;  */
+    position: relative;
+    bottom:15px;
+    left: 5px;
+}
 
 
 /* 響應式 */

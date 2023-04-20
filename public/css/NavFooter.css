@@ -73,7 +73,11 @@ body {
     color: #ffffff;
 }
 
-
+.menu li:nth-child(4) a:hover {
+    background-color: #a1ac8e;
+    color: #ffffff;
+    height: 70px;
+    }
 
 /*  */
 
@@ -228,7 +232,7 @@ body {
     #hamburgerIcon > i {
         position: relative;
         top: -4px;
-        left: 400px;
+        left: 60%;
         color: #795548;
         font-size: 40px;
     }

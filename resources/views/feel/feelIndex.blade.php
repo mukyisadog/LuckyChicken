@@ -27,7 +27,7 @@
                     @foreach($outputs as $output)
                     <div class="article">
                         <div class="articlePic">
-                            <img src="data:image/jpeg;base64,{{base64_encode($output->fpicture)}}">
+                            <img src="{{$output->fpicture}}">
                         </div>
                         <div class="articleCon">
                             <a href="{{route('fedetail',[ 'id'=> $output->fid ] )}}">
@@ -48,7 +48,7 @@
                     @foreach($datas as $data)
                     <div class="article">
                         <div class="articlePic">
-                            <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
+                            <img src="{{$data->fpicture}}">
                         </div>
                         <div class="articleCon">
                             <a href="{{route('fedetail',[ 'id'=> $data->fid ] )}}">
@@ -78,9 +78,13 @@
             <div class="article2">
                 <div class="article2Con">
                     <a href="{{route('fedetail',[ 'id'=> $data->fid ] )}}">
-                        <h4>{{$data->title}}</h4>
+                        <h3>{{$data->title}}</h3>
                     </a>
-                    <p>作者：{{$data->name}}</p>
+                    <div class="new">
+                        <img class="newpic" src="{{$data->upicture}}">
+                        <span class="newname">{{$data->name}}</span>
+                        <span class="newtime">{{$data->createtime}}</span>
+                    </div>
                 </div>
             </div>
             @endforeach

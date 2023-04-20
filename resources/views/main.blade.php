@@ -26,12 +26,13 @@
                 @if (Auth::check())
                     <?php
                         $user = Auth::user();
-                        $imgData = base64_encode($user->upicture);
+                        // $imgData = base64_encode($user->upicture);
                     ?>
-                    @if(empty($imgData))
+                    @if(empty($user->upicture))
                         <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}" alt=""></a></li>
                     @else
-                        <li><a href="{{ route('mbinfo') }}"><img src="data:image/jpeg;base64,{{ $imgData }}" ></a></li>
+                        {{-- <li><a href="{{ route('mbinfo') }}"><img src="data:image/jpeg;base64,{{ $imgData }}" ></a></li> --}}
+                        <li><a href="{{ route('mbinfo') }}"><img src="{{ $user->upicture }}" ></a></li>
                     @endif
                 @else
                     <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}" alt=""></a></li>
@@ -43,7 +44,7 @@
 
         <!-- navbar for mobile -->
         <nav id="mobileNavbar">
-            <div class="mobileLogo"><a href="index.html"><img src="./img/logo.jpg"></a></div>
+            <div class="mobileLogo"><a href="index.html"><img src="{{ asset('img/logo-2.jpg') }}"></a></div>
             <label id="hamburgerIcon" for="hamburgerInput">
                 <i class="bi bi-list"></i>
             </label>

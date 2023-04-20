@@ -86,18 +86,26 @@ class ForumController extends Controller
         $state = $request->input('btValue');
 
         // 從請求中獲取文件實例
-        $file = $request->file('pic');
+        // $file = $request->file('pic');
         // 獲取文件的二進制內容
-        $pic = $file->get();
-        $answer = $this->model->forumMes($sfid,$uid,$title,$content,$pic,$state);
+        // $pic = $file->get();
+        // $answer = $this->model->forumMes($sfid,$uid,$title,$content,$pic,$state);
+
+        if ($request->hasFile('pic')) {
+            $file = $request->file('pic');
+            $pic = $file->get();
+            $mime_type = $file->getMimeType();
+            $src = 'data:' . $mime_type . ';base64,' . base64_encode($pic);
+        } else {
+            $src = null;
+        }
+        $answer = $this->model->forumMes($sfid, $uid, $title, $content, $src, $state);
         if($answer === 0){
-            // return redirect()->back()->with(['answer' => $answer]);
-            $request->session()->flash('answer', $answer);
+            // $request->session()->flash('answer', $answer);
             return redirect()->back()->with('answer', $answer);
         }else{
             return redirect("/forumIndex")->with(['answer' => $answer]);
         }
-            
     }
 
     public function forumSaved(Request $request)

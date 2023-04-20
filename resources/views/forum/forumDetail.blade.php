@@ -22,7 +22,7 @@
                             @if(empty($article1->upicture))
                                 <img src="{{ asset('pic/admin.png') }}" alt="">
                             @else
-                                <img src="data:image/jpeg;base64,{{base64_encode( $article->upicture)}}">
+                                <img src="{{$article->upicture}}">
                             @endif
                             <div>{{$article->name}}</div>
                             @auth
@@ -36,7 +36,7 @@
                             <p>{{$article->createtime}}</p>
                         </div>
                         <div id="imgDiv">
-                            <img src="data:image/jpeg;base64,{{base64_encode( $article->fpicture)}}" >
+                            <img src="{{$article->fpicture}}" >
                         </div>
                         <div>
                             {{$article->content}}
@@ -103,7 +103,7 @@
                                 @if(empty($FCquestion->upicture))
                                     <img src="{{ asset('pic/admin.png') }}" alt="">
                                 @else
-                                    <img src="data:image/jpeg;base64,{{base64_encode($FCquestion->upicture)}}">
+                                    <img src="{{$FCquestion->upicture}}">
                                 @endif
                                     <p>{{$FCquestion->name}}</p>
                                 </div>
@@ -127,7 +127,7 @@
                                 @if(empty($userData->upicture))
                                     <img class="headDivPic" src="{{ asset('pic/admin.png') }}" alt="">
                                 @else
-                                    <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}" >
+                                    <img class="headDivPic" src="{{ $userData->upicture}}" >
                                 @endif                               
                                 <p>{{$userData->name}} ></p>
                             </div>
@@ -141,7 +141,7 @@
                             @csrf
                             @foreach($userDatas as $userData)
                             <div class="formPic">
-                                <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}" >
+                                <img class="headDivPic" src="{{$userData->upicture}}" >
                                 <p>{{$userData->name}} ></p>
                             </div>
                             @endforeach
@@ -160,7 +160,11 @@
                                     <a href="{{route('fodetail',[ 'sfid'=> $forumNew->sfid, 'foid'=>$forumNew->foid ] )}}">
                                         <h4>{{$forumNew->title}}</h4>
                                     </a>
-                                    <p>作者：{{$forumNew->name}}</p>
+                                    <div class="new">
+                                        <img class="newpic" src="{{$forumNew->upicture}}">
+                                        <span class="newname">{{$forumNew->name}}</span>
+                                        <span class="newtime">{{$forumNew->createtime}}</span>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

@@ -21,7 +21,7 @@
                 @if(empty($article1->upicture))
                     <img src="{{ asset('pic/admin.png') }}" alt="">
                 @else
-                    <img src="data:image/jpeg;base64,{{base64_encode( $article1->upicture)}}">
+                    <img src="{{$article1->upicture}}">
                 @endif
                     <div>{{$article1->name}}</div>
                     @auth
@@ -35,7 +35,7 @@
                     <p>{{ $article1->createtime}}</p>
                 </div>
                 <div id="imgDiv">
-                    <img src="data:image/jpeg;base64,{{base64_encode( $article1->fpicture)}}">
+                    <img src="{{ $article1->fpicture}}">
                 </div>
                 <div id="artCon">
                     {{$article1->content}}
@@ -98,7 +98,7 @@
                         @if(empty($comment->upicture))
                             <img src="{{ asset('pic/admin.png') }}" alt="">
                         @else
-                            <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $comment->upicture)}}">
+                            <img class="headDivPic" src="{{$comment->upicture}}">
                         @endif
                         
                         <p>{{$comment->name}}</p>
@@ -120,7 +120,7 @@
                         @if(empty($userData->upicture))
                             <img src="{{ asset('pic/admin.png') }}" alt="">
                         @else
-                            <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}">
+                            <img class="headDivPic" src="{{$userData->upicture}}">
                         @endif
                         <p>{{$userData->name}} ></p>
                     </div>
@@ -137,7 +137,7 @@
                         @if(empty($userData->upicture))
                             <img src="{{ asset('pic/admin.png') }}" alt="">
                         @else
-                            <img class="headDivPic" src="data:image/jpeg;base64,{{base64_encode( $userData->upicture)}}">
+                            <img class="headDivPic" src="{{$userData->upicture}}">
                         @endif
                         <p>{{$userData->name}} ></p>
                     </div>
@@ -157,7 +157,12 @@
                         <a href="{{route('fedetail',[ 'id'=> $data->fid ] )}}">
                             <h4>{{$data->title}}</h4>
                         </a>
-                        <p>作者：{{$data->name}}</p>
+                        <div class="new">
+                            <img class="newpic" src="{{$data->upicture}}">
+                            <span class="newname">{{$data->name}}</span>
+                            <span class="newtime">{{$data->createtime}}</span>
+                        </div>
+                        <!-- <p>作者：{{$data->name}}</p> -->
                     </div>
                 </div>
                 @endforeach
