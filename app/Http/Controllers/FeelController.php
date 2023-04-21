@@ -81,6 +81,11 @@ class FeelController extends Controller
         }
         $state = $request->input('btValue');
 
+        // 先判斷資料庫有沒有這一份資料，
+        // 有就update（currantime）
+        // 沒有就insert進去 （手動更新時間）
+
+
         $answer = $this->model->feelMes($uid, $title, $content, $src, $state);
         // return redirect("/feelIndex");
 
