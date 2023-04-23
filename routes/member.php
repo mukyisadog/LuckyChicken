@@ -15,8 +15,6 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::get('/member/carpool',[MemberController::class, 'getcpinfo'])->name('mbcp');
-
 // 論壇
 Route::get('/member/forum', [MemberController::class, 'getForumList'])->name('mbforum');
 Route::post('/editForum', [MemberController::class, 'editForum'])->name('editForum');

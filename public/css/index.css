@@ -1,46 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #b1bba0;
+  background-color: #D8DDCF;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#mainContent {
+  background-color: #f8f6f2;
+  width: 1200px;
+  margin: auto;
+}
+
 #logo {
-  font-size: 90px;
   text-align: center;
+  padding: 20px 0;
+  background-color: #B1BBA0;
 }
+
 /* 登入按鈕位置 */
+#memberSection {
+  position: absolute;
+  top: 50px;
+  right: 7%;
+  display: flex;
+  align-items: center;
+}
 
 #BtLogin {
-  position: absolute;
-  top: 30px;
-  right: 5%;
-  background-color: #f8f6f2;
+  background-color: #D8DDCF;
   border-radius: 5px;
   font-size: 25px;
   border: transparent;
+  color: #664c43;
 }
-/* 標題至中 */
-h1 {
+
+#BtLogin:hover {
+  background-color: #F8F6F2;
+}
+
+#memberIcon {
+  width: 60px;
+  border-radius: 50%;
+  margin-left: 20px;
+  padding: 3px;
+  border: 1px solid #664c43;
+}
+
+#memberIcon:hover {
+  opacity: 0.7;
+}
+
+/* 照片置中 */
+#section1 {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.webFeature {
+  width: 25%;
+  padding: 5px;
+  background-color: #B1BBA0;
   text-align: center;
+  border-radius: 5px;
 }
-/* 照片至中 */
-.row {
+
+.webFeature:hover {
+  opacity: 0.7;
+}
+
+.pngDiv {
+  background-color: #f8f6f2;
+  margin: 20px auto;
+  width: 90%;
+  height: 300px;
   display: flex;
   justify-content: center;
-  justify-items: center;
+  align-items: center;
 }
 
-.column {
-  float: left;
-  width: 30%;
-  padding: 5px;
-  margin-left: 20px;
-  background-color: #f8f6f2;
+.homePng {
+  width: 70%;
+  margin: 20px;
+}
+
+.featureTitle {
   text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #664c43;
 }
 
-/* Clearfix (clear floats) */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
+/* 標題置中 */
+h2 {
+  text-align: center;
+  color: #664c43;
+}
+
+#newFeel,
+#newForum {
+  margin-top: 60px;
 }
 
 /* 心得卡片 */
@@ -86,17 +154,6 @@ h5 {
   font-size: 18px;
 }
 
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover,
-a:hover {
-  opacity: 0.7;
-}
-
 .sliderContainer {
   display: flex;
   justify-content: center;
@@ -119,7 +176,43 @@ a:hover {
   transform: translateY(0%);
 }
 
+#footer {
+  background-color: #B1BBA0;
+  height: 100px;
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 60px 0 -20px 0;
+  color: #664c43;
+  font-size: 20px;
+}
 
+.menu {
+  float: right;
+  line-height: 70px;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.menu li {
+  float: left;
+  list-style-type: none;
+}
+
+.menu li a {
+  display: flex;
+  color: #664c43;
+  text-decoration: none;
+  line-height: 70px;
+  padding: 0 1em;
+}
+
+.menu li a:hover {
+  background-color: #a1ac8e;
+  color: #ffffff;
+}
 
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */

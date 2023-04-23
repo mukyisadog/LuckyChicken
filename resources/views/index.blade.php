@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('css/NavFooter.css') }}"> -->
-    <title>首頁</title>
+    <title>與山同行</title>
 
 </head>
 
 
 <body>
+    <div id="memberSection">
     @if(Auth::check())
         <form method="POST" action="{{ route('logout') }}">
             @csrf
@@ -29,44 +30,38 @@
                 {{ __('登出') }}
             </x-dropdown-link>
         </form>
+        <?php $user = Auth::user(); ?>
+        <a href="{{ route('mbinfo') }}"><img src="{{ $user->upicture }}" id="memberIcon"></a>
     @else
         <a href="{{ route('login') }}"><button id="BtLogin">登入/註冊</button></a>
     @endif
+    </div>
 
-
-
-    <div id="logo">與山同行LOGO</div>
-    <br><br><br><br>
-    <div class="row">
-        <a href="{{ route('feindex') }}">
-            <div class="column">
-                <div>
-                    <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                    <div style="margin: 24px 0;">
-                    </div>
-                    <a>心得</a>
-                </div>
+<div id="mainContent">
+    <div id="logo"><img src="{{ asset('img/logo.jpg') }}"></div>
+    <div id="section1">
+        <a href="{{ route('cphome') }}" class="webFeature">
+            <div class="pngDiv">
+                <img src="{{ asset('img/vehicle.png') }}" class="homePng">
             </div>
+            <div class="featureTitle">拼車</div>
         </a>
-        <a href="{{ route('foindex') }}">
-            <div class="column">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <div style="margin: 24px 0;">
-                </div>
-                <a>論壇</a>
+        <a href="{{ route('feindex') }}" class="webFeature">
+            <div class="pngDiv">
+                <img src="{{ asset('img/chat.png') }}" class="homePng">
             </div>
+            <div class="featureTitle">心得</div>
         </a>
-        <a href="{{ route('cphome') }}">
-            <div class="column">
-                <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
-                <div style="margin: 24px 0;">
-                </div>
-                <a>拼車</a>
+        <a href="{{ route('foindex') }}" class="webFeature">
+            <div class="pngDiv">
+                <img src="{{ asset('img/group.png') }}" class="homePng">
             </div>
+            <div class="featureTitle">論壇</div>
         </a>
     </div>
-    <br><br><br><br>
-    <h1>最新心得</h1>
+
+    <div id="newFeel">
+    <h2>最新心得</h2>
     <div class="sliderContainer">
         <div class="slider responsive">
         @foreach($feeldatas as $data)
@@ -84,8 +79,10 @@
         @endforeach
         </div>
     </div>
-    <br><br><br><br>
-    <h1>最新討論</h1>
+    </div>
+
+    <div id="newForum">
+    <h2>最新討論</h2>
     <div class="sliderContainer">
         <div class="slider responsive">
         @foreach($forumdatas as $data)
@@ -102,10 +99,20 @@
             </div>
         @endforeach
         </div>
-
+    </div>
     </div>
     <!-- 輪播控制 -->
     <script src="{{ asset('js/index.js') }}"></script>
+<footer id="footer">
+    <div id="left">Copyright © 2023 與山同行/Mountogether Rights Reserved.</div>
+    <ul class="menu">
+        <li><a href="{{route('cphome')}}">拼車</a></li>
+        <li><a href="/feelIndex">心得</a></li>
+        <li><a href="/forumIndex">論壇</a></li>
+    </ul>
+</footer>
+</div>
+
 
 </body>
 
