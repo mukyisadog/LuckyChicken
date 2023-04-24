@@ -48,7 +48,7 @@ a:hover {
   background-color: #F8F6F2;
 }
 
-#memberIcon {
+.memberIcon {
   width: 60px;
   border-radius: 50%;
   margin-left: 20px;
@@ -56,7 +56,7 @@ a:hover {
   border: 1px solid #664c43;
 }
 
-#memberIcon:hover {
+.memberIcon:hover {
   opacity: 0.7;
 }
 
@@ -121,7 +121,7 @@ h2 {
   text-align: center;
   font-family: arial;
   margin-bottom: 20px;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .articlePic {
@@ -181,6 +181,12 @@ h5 {
   left: 98%;
   bottom: 50%;
   transform: translateY(0%);
+}
+
+.slick-prev:before,
+.slick-next:before{
+  color: #B1BBA0;
+  font-size: 35px;
 }
 
 #footer {

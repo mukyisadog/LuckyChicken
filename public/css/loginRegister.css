@@ -87,7 +87,6 @@ hr {
 /* Set a style for the submit button */
 .loginbtn,
 .registerbtn {
-  width: 100px;
   border-radius: 10px;
   background-color: #b1bba0;
   color: #664c43;
@@ -96,6 +95,17 @@ hr {
   border: none;
   cursor: pointer;
   width: 30%;
+  font-size: 25px;
+}
+
+.forgotSubmit {
+  border-radius: 10px;
+  background-color: #b1bba0;
+  color: #664c43;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
   font-size: 25px;
 }
 
