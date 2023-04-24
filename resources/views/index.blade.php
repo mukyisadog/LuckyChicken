@@ -66,10 +66,10 @@
         <div class="slider responsive">
         @foreach($feeldatas as $data)
             <div class="card">
-                <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
+                <img src=" {{ $data->fpicture }}" class="articlePic">
                 <h5>{{$data->title}}</h5>
                 <p>作者：{{$data->name}}</p>
-                <p>發表日期：{{$data->createtime}}</p>
+                <p>發表日期：{{$data->date}}</p>
                 <div style="margin: 24px 0;">
                 </div>
                 <a href="{{ route('fedetail', ['id' => $data->fid]) }}">
@@ -87,10 +87,10 @@
         <div class="slider responsive">
         @foreach($forumdatas as $data)
             <div class="card">
-                <img src="data:image/jpeg;base64,{{base64_encode($data->fpicture)}}">
+                <img src="{{ $data->fpicture }}" class="articlePic">
                 <h5>{{$data->title}}</h5>
                 <p>作者：{{$data->name}}</p>
-                <p>發表日期：{{$data->createtime}}</p>
+                <p>發表日期：{{$data->date}}</p>
                 <div style="margin: 24px 0;">
                 </div>
                 <a href="{{ route('fodetail',['sfid'=>$data->sfid,'foid'=>$data->foid]) }}">
