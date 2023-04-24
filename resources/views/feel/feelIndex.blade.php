@@ -14,6 +14,11 @@
 <div id="content-container">
     <div class="row">
         <div class="column1">
+            @auth
+                <button id="btPublish" onclick="window.location.href = '{{ route('femes')}}'">
+                    發文
+                </button>
+            @endauth
             <div class="abcc"></div>
             <h1>心得</h1>
             <div>
@@ -27,7 +32,6 @@
                     @foreach($outputs as $output)
                     <div class="article">
                         <div class="articlePic">
-                            {{-- <img src="data:image/jpeg;base64,{{base64_encode($output->fpicture)}}"> --}}
                             <img src="{{$output->fpicture}}">
                         </div>
                         <div class="articleCon">
@@ -67,11 +71,7 @@
 
         </div>
 
-        @auth
-        <button id="btPublish" onclick="window.location.href = '{{ route('femes')}}'">
-            發文
-        </button>
-        @endauth
+        
 
         <aside class="column2">
             <h1>-最新文章-</h1>
@@ -82,8 +82,14 @@
                         <h3>{{$data->title}}</h3>
                     </a>
                     <div class="new">
-                        <img class="newpic" src="{{$data->upicture}}">
+                        @if(empty($data->upicture))
+                            <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
+                        @else
+                            <img class="newpic" src="{{$data->upicture}}">
+                        @endif                               
                         <span class="newname">{{$data->name}}</span>
+                        <br>
+                        <br>
                         <span class="newtime">{{$data->createtime}}</span>
                     </div>
                 </div>

@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="{{ asset('css/feelMessage.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
+
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script> -->
+
     
 
 @endsection
@@ -24,9 +27,20 @@
                     <div id="preview"></div>
                     <script src="{{asset('js/MesCanva.js')}}"></script>
                     <hr>
-                    <input type="text" placeholder="輸入標題" name="title" id="title" minlength="5" required>
+                    <input type="text" placeholder="輸入標題" name="title" id="title" minlength="5" maxlength="26" required>
                     <br>
                     <textarea placeholder="輸入內容" name="content" id="textarea" minlength="10" required></textarea>
+                    <!-- <div id="editor">This is some sample content.</div> -->
+                <!-- <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#editor' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script> -->
                     <br><br>
                     <hr>
                     <div id="bt">
@@ -35,8 +49,17 @@
                     </div>
                 </form>
             </div>
+
             <br><br>
         </div>
+
+
+
+
+
+
+
+
         @if(session()->has('answer'))
             @if(session('answer') === 1)
                 <script>alert("發佈成功！")</script>

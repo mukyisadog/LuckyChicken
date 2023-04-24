@@ -36,7 +36,7 @@
                                 @foreach($Qoutputs as $Qoutput)
                                 <div class="article">
                                     <div class="articlePic">                 
-                                        <img src="{{ $Qoutput->fpicture }}" >
+                                        <img src="{{ $Qoutput->fpicture}}" >
                                     </div>
                                     <div class="articleCon">
                                         <a href="{{route('fodetail',[ 'sfid'=> 1, 'foid'=>$Qoutput->foid ] )}}">
@@ -181,8 +181,14 @@
                                         <h4>{{$forumNew2->title}}</h4>
                                     </a>
                                     <div class="new">
+                                    @if(empty($forumNew2->upicture))
+                                        <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
+                                    @else
                                         <img class="newpic" src="{{$forumNew2->upicture}}">
+                                    @endif                                            
                                         <span class="newname">{{$forumNew2->name}}</span>
+                                        <br>
+                                        <br>
                                         <span class="newtime">{{$forumNew2->createtime}}</span>
                                     </div>
                                 </div>

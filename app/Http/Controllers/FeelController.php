@@ -40,6 +40,7 @@ class FeelController extends Controller
         $uid = Auth::id();
         $userDatas = $this->model->feelComPN($uid);
         $userPic = $this->model->UserPic($uid);
+        $isRed = $this->model->FeIsRed($ftid);
         return view('feel.feelDetail', [
             'article' => $article,
             'datas' => $datas,
@@ -47,7 +48,8 @@ class FeelController extends Controller
             'userDatas' => $userDatas,
             'uid' => $uid,
             'ftid' => $ftid,
-            'userPic' => $userPic
+            'userPic' => $userPic,
+            'isRed' => $isRed
         ]);
     }
 
@@ -81,11 +83,10 @@ class FeelController extends Controller
         }
         $state = $request->input('btValue');
 
+
         $answer = $this->model->feelMes($uid, $title, $content, $src, $state);
-        // return redirect("/feelIndex");
 
         if($answer === 0){
-            // return redirect()->back()->with(['answer' => $answer]);
             $request->session()->flash('answer', $answer);
             return redirect()->back()->with('answer', $answer);
         }else{
@@ -104,11 +105,11 @@ class FeelController extends Controller
     }
 
     public function feelUnsaved(Request $request){
-        $uid = $request->uid;
+        $uid = Auth::id();
         $ftid = $request->ftid;
         $this->model->feelUnsaved($uid,$ftid);
         return redirect("/feelDetail/{$ftid}");
-        // return $uid ;
+        
     }
     public function feelMesSaved(Request $request){
         $uid = $request->uid;      

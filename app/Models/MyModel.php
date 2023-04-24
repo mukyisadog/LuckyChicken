@@ -15,10 +15,6 @@ class MyModel extends Model
 
 
     // 心得
-    // function feelIndex(){
-    //     $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime");
-    //     return $datas;
-    // }
     function feelIndex(){
         $datas = DB::table('Feel_list')
                 ->leftJoin('users', 'Feel_list.uid', '=', 'users.id')
@@ -35,6 +31,11 @@ class MyModel extends Model
                 ->orderByDesc('Feel_list.createtime')
                 ->paginate(10);
         return $datas;
+    }
+
+    function FeIsRed($ftid){
+        $isRed = DB::select("select * from Feel_saved where fid = ?",[$ftid]);
+        return $isRed;
     }
 
     function UserPic($uid){
@@ -55,7 +56,7 @@ class MyModel extends Model
 
     
     function feelNews(){
-        $datas = DB::select("select *, Date(createtime) as date from Feel_list left join users on Feel_list.uid = users.id where state = 1 order by Feel_list.createtime desc LIMIT 9");
+        $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime LIMIT 10");
         return $datas;
     }
     function feelDetail($id){
@@ -78,10 +79,7 @@ class MyModel extends Model
         return $answer;
     }
 
-    function feelMes($uid,$title,$content,$src,$state){   
-        // DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$pic,$state]);
-        // $answer = "ok";
-        // return $answer;
+    function feelMes($uid,$title,$content,$src,$state){      
         try {
             DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$src,$state]);
             $answer = 1;
@@ -105,19 +103,10 @@ class MyModel extends Model
         return $answer;
     }
 
-    // function feelMesSaved($uid,$title,$content,$pic){
-    //     DB::insert("INSERT INTO FeelMes_saved SET uid = ?, title = ?, content = ?,fpicture = ? ",[$uid, $title, $content,$pic]);
-    //     $answer = "ok";
-    //     return $answer;
-    // }
 
     
     // 論壇
 
-    // function question(){
-    //     $questions = DB::select("select fpicture,foid,title,name,Forum_list.createtime as createtime from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = 1 order by Forum_list.createtime");
-    //     return $questions;
-    // }
     function question(){
         $questions = DB::table('Forum_list')
                 ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
@@ -201,19 +190,24 @@ class MyModel extends Model
         return $datas;
     }
 
+    function FoIsRed($ftid){
+        $isRed = DB::select("select * from Forum_saved where foid = ?",[$ftid]);
+        return $isRed;
+    }
+
     function FCquestion($foid){
         $FCquestions = DB::select("SELECT * FROM Forum_comment left join users on Forum_comment.uid = users.id where foid = ?",[$foid]);
         return $FCquestions;
     }
 
     function forumNew($sid,$foid){
-        $forumNews = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and state = 1 and Forum_list.foid <> ? order by Forum_list.createtime DESC",[$sid,$foid]);
+        $forumNews = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and state = 1 and Forum_list.foid <> ? order by Forum_list.createtime DESC LIMIT 13",[$sid,$foid]);
         return $forumNews;
     }
 
     function forumNew2(){
         // $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
-        $forumNew2s = DB::select("select *, Date(createtime) as date from Forum_list left join users on Forum_list.uid = users.id where state = 1 order by Forum_list.createtime DESC LIMIT 9");
+        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where state = 1 order by Forum_list.createtime DESC LIMIT 13");
         return $forumNew2s;
     }
     
