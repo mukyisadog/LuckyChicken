@@ -56,7 +56,7 @@
                 </div>
                 <div class="featureTitle">心得</div>
             </a>
-            <a href="{{ route('foindex') }}" class="webFeature">
+            <a href="{{ route('foqindex') }}" class="webFeature">
                 <div class="pngDiv">
                     <img src="{{ asset('img/group.png') }}" class="homePng">
                 </div>

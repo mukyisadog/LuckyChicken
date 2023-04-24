@@ -56,7 +56,7 @@ class MyModel extends Model
 
     
     function feelNews(){
-        $datas = DB::select("select * from Feel_list left join users on Feel_list.uid = users.id order by Feel_list.createtime LIMIT 10");
+        $datas = DB::select("select *, Date(createtime) as date from Feel_list left join users on Feel_list.uid = users.id where state = 1 order by Feel_list.createtime desc LIMIT 9");
         return $datas;
     }
     function feelDetail($id){
@@ -207,7 +207,7 @@ class MyModel extends Model
 
     function forumNew2(){
         // $forumNew2s = DB::select("select foid,title,name from Forum_list left join users on Forum_list.uid = users.id order by Forum_list.createtime");
-        $forumNew2s = DB::select("select * from Forum_list left join users on Forum_list.uid = users.id where state = 1 order by Forum_list.createtime DESC LIMIT 13");
+        $forumNew2s = DB::select("select *, Date(createtime) as date from Forum_list left join users on Forum_list.uid = users.id where state = 1 order by Forum_list.createtime DESC LIMIT 13");
         return $forumNew2s;
     }
     
