@@ -4,20 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
-
-class CpList extends Model
+class FeelList extends Model
 {
     use HasFactory;
 
-    protected $table = 'carpool_list1';
-    protected $primaryKey = 'cpid';
+    protected $table = 'Feel_list';
+    protected $primaryKey = 'fid';
     protected $keyType = 'integer';
     public $timestamps = false;
-
-    function poster(){
-        return $this->belongsTo(User::class, 'uid');
-    }
-    
 }

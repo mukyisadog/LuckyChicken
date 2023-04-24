@@ -22,7 +22,7 @@ body {
 }
 
 #navbar {
-    z-index: 1;
+    z-index: 999;
     background-color:#B1BBA0;
     height: 60px;
     position: sticky;

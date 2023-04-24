@@ -40,6 +40,7 @@ class FeelController extends Controller
         $uid = Auth::id();
         $userDatas = $this->model->feelComPN($uid);
         $userPic = $this->model->UserPic($uid);
+        $isRed = $this->model->FeIsRed($ftid);
         return view('feel.feelDetail', [
             'article' => $article,
             'datas' => $datas,
@@ -47,7 +48,8 @@ class FeelController extends Controller
             'userDatas' => $userDatas,
             'uid' => $uid,
             'ftid' => $ftid,
-            'userPic' => $userPic
+            'userPic' => $userPic,
+            'isRed' => $isRed
         ]);
     }
 
@@ -80,10 +82,7 @@ class FeelController extends Controller
             $src = null;
         }
         $state = $request->input('btValue');
-
-        // 先判斷資料庫有沒有這一份資料，
-        // 有就update（currantime）
-        // 沒有就insert進去 （手動更新時間）
+        // $now = date('Y-m-d H:i:s');
 
 
         $answer = $this->model->feelMes($uid, $title, $content, $src, $state);
@@ -109,11 +108,11 @@ class FeelController extends Controller
     }
 
     public function feelUnsaved(Request $request){
-        $uid = $request->uid;
+        $uid = Auth::id();
         $ftid = $request->ftid;
         $this->model->feelUnsaved($uid,$ftid);
         return redirect("/feelDetail/{$ftid}");
-        // return $uid ;
+        
     }
     public function feelMesSaved(Request $request){
         $uid = $request->uid;      

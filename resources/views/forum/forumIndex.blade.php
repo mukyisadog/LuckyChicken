@@ -181,8 +181,14 @@
                                         <h4>{{$forumNew2->title}}</h4>
                                     </a>
                                     <div class="new">
+                                    @if(empty($forumNew2->upicture))
+                                        <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
+                                    @else
                                         <img class="newpic" src="{{$forumNew2->upicture}}">
+                                    @endif                                            
                                         <span class="newname">{{$forumNew2->name}}</span>
+                                        <br>
+                                        <br>
                                         <span class="newtime">{{$forumNew2->createtime}}</span>
                                     </div>
                                 </div>

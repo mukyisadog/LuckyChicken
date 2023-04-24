@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{ asset('css/feelDetail.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
+
+
 @endsection
 
 
@@ -25,7 +27,7 @@
                 @endif
                     <div>{{$article1->name}}</div>
                     @auth
-                        <a id="heartHref" href="{{route('fesave',[ 'ftid'=>$ftid ] )}}">
+                        <a id="heartHref">
                             <i class="bi bi-suit-heart-fill" id="heart"></i>
                         </a>
                     @endauth
@@ -44,39 +46,35 @@
             </div>
         @auth
         <script>
-            // 获取图标元素和链接元素
-            const heartHref = document.getElementById('heartHref');
-            const heartIcon = heartHref.querySelector('i');
-            
-            // 检查用户是否已经收藏该文章
-            const isSaved = localStorage.getItem('isSaved') === 'true';
-            
-            // 初始化图标状态
-            if (isSaved) {
-              heartIcon.classList.add('text-danger');
-              heartHref.href = "{{route('feunsave',[ 'ftid'=>$ftid ] )}}";
-            } else {
-              heartIcon.classList.remove('text-danger');
-              heartHref.href = "{{route('fesave',[ 'ftid'=>$ftid ] )}}";
-            }
-            
-            // 监听点击事件
-            heartHref.addEventListener('click', () => {
-              // 切换图标颜色
-              if (heartIcon.classList.contains('text-danger')) {
-                heartIcon.classList.remove('text-danger');
-                localStorage.setItem('isSaved', 'false');
-                heartHref.href = "{{route('fesave',[ 'ftid'=>$ftid ] )}}";
-                alert("取消收藏");
-              } else {
-                heartIcon.classList.add('text-danger');
-                localStorage.setItem('isSaved', 'true');
-                heartHref.href = "{{route('feunsave',[ 'ftid'=>$ftid ] )}}";
-                alert("收藏成功");
-              }
-            });
 
-            </script>
+              // 获取图标元素和链接元素
+            const heartIcon = document.getElementById('heart');
+            const heartHref = document.getElementById('heartHref');
+            const isRed = {!! json_encode($isRed) !!};
+            if (isRed.length > 0) {
+                heartIcon.style.color = 'red';
+            }
+        
+            // 监听点击事件
+            heartIcon.addEventListener('click', () => {
+                event.preventDefault();
+            
+                // 切换图标颜色
+                if (isRed.length > 0) {
+                //   heartIcon.classList.add('text-danger');
+                
+                window.location.href = "{{route('feunsave',[ 'ftid'=>$ftid ] )}}";
+                    alert("取消收藏");
+                } else {
+                //   heartIcon.classList.remove('text-danger');
+                heartIcon.style.color = 'red';
+                    window.location.href = "{{route('fesave',[ 'ftid'=>$ftid ] )}}";
+                    alert("收藏成功"); 
+                }
+            });
+        </script>
+
+
         @endauth
             @if($comments == null)
             <div id="mesHis">
@@ -158,8 +156,14 @@
                             <h4>{{$data->title}}</h4>
                         </a>
                         <div class="new">
+                        @if(empty($data->upicture))
+                            <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
+                        @else
                             <img class="newpic" src="{{$data->upicture}}">
+                        @endif                       
                             <span class="newname">{{$data->name}}</span>
+                            <br>
+                            <br>
                             <span class="newtime">{{$data->createtime}}</span>
                         </div>
                         <!-- <p>作者：{{$data->name}}</p> -->

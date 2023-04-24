@@ -5,6 +5,7 @@
 <title>共乘首頁</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{asset('css/carpoolcp.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cphome.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     
 
@@ -15,7 +16,33 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/calendar.css')}}">
     <script src="{{asset('js/calendar.js')}}"></script>
+@endsection
 
+@php
+    class Events {
+        public $title;
+        public $date;
+        public $cpid;
+        public function __construct($title, $date, $cpid) {
+            $this->title = $title;
+            $this->date = $date;
+            $this->url = route('cpinfo',['cpid'=>$cpid]);
+        }
+    }
+
+    $a =[];
+    foreach($cplist as $c){
+    $event = new Events($c->cptitle, $c->departdate, $c->cpid);
+    array_push($a,$event);
+    }
+    $objstring = json_encode($a);
+
+@endphp
+
+
+@section('content')
+
+    <!-- 行事曆 -->
     <script>
 
         $(document).ready(function () {
@@ -123,52 +150,25 @@
 
                 // },
 
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: new Date(y, m, 1)
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d - 3, 16, 0),
-                        allDay: false,
-                        className: 'info'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d + 4, 16, 0),
-                        allDay: false,
-                        className: 'info'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: new Date(y, m, d, 10, 30),
-                        allDay: false,
-                        className: 'important'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: new Date(y, m, d, 12, 0),
-                        end: new Date(y, m, d, 14, 0),
-                        allDay: false,
-                        className: 'important'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: new Date(y, m, d + 1, 19, 0),
-                        end: new Date(y, m, d + 1, 22, 30),
-                        allDay: false,
-                    },
-                    {
-                        title: 'Click for Google',
-                        start: new Date(y, m, 27),
-                        end: new Date(y, m, 29),
+                events: <?php echo $objstring ?>
+                //  [
+                //     {
+                //         "title": 'All Day Event',
+                //         "start": new Date(y, m, 1)
+                //     },
+                //     {
+                //         title: 'All Day Event',
+                //         start: new Date(y, m, d, 10, 30),
+                //         allDay: false,
+                //         className: 'important'
                         // url: 'https://ccp.cloudaccess.net/aff.php?aff=5188',
-                        className: 'success'
-                    }
-                ],
+
+                //     },
+               
+                // ],
+
+                
+                
             });
 
 
@@ -176,28 +176,30 @@
 
     </script>
 
-@endsection
 
-@section('content')
-
-<div id="content-container">
-    <br>
-            <h1 id="carpool-title">拼車</h1>
-            <div id="carpool-link">
+    <div id="content-container">
+        <br>
+        <h1 id="carpool-title">拼車</h1>
+        <div id="carpool-link">
             @if(Auth::check())
                 <a href="{{ route('cpform') }}">我要揪共乘</a>
             @else
                 <a href="{{ route('login') }}">我要揪共乘</a>
             @endif
-                <!-- <a href="#">我有車</a> -->
-            </div>
-            <div id="carpool-tabs-container">
-                <div style="width: 80%;">
-                    <!-- Tab首列 -->
-                    <button class="tablink" onclick="openPage('carpool-calendar', this)" id="defaultOpen">出行月曆</button>
-                    <button class="tablink" onclick="openPage('carpool-list', this)">出行列表</button>
-                    <!-- Tab內容 -->
-                    <div id="carpool-calendar" class="tabcontent">
+        </div>
+        <div>
+            <form class="example" action="{{ route('cphome') }}">
+                <input type="text" placeholder="輸入關鍵字" name="search" id="search-input">
+                <button type="submit" id="searchbt">搜索</button>
+            </form>
+        </div>
+        <div id="carpool-tabs-container">
+            <div style="width: 80%;">
+                <!-- Tab首列 -->
+                <button class="tablink" onclick="openPage('carpool-calendar', this)" id="defaultOpen">出行月曆</button>
+                <button class="tablink" onclick="openPage('carpool-list', this)">出行列表</button>
+                <!-- Tab內容 -->
+                <div id="carpool-calendar" class="tabcontent">
                         <div style="height: 30px;"></div>
                         <div style="display: flex; justify-content: center;">
                             <div id='wrap' >
@@ -207,33 +209,42 @@
                         </div>
                         <div style="height: 50px;"></div>
 
-                    </div>
-
-                    <div id="carpool-list" class="tabcontent" style="text-align: center;">
-                    @foreach($cplist as $cp)
-                        <a href="{{route('cpinfo',[ 'cpid'=>$cp->cpid ] )}}">
-                            <div class="carpool-list2">
-                                <span>{{$cp->departdate}}</span>
-                                <span>{{$cp->cptitle}}</span>
-                                <img src="{{$cp->upicture}}" alt="">
-                                <span>2/4</span>
-                            </div>
-                        </a>
-                    @endforeach
-                        <a href="#">
-                            <div class="carpool-list2">
-                                <span>2023/03/28</span>
-                                <span>title</span>
-                                <img src="{{asset('img/dog1.jpg')}}" alt="">
-                                <span>2/4</span>
-                            </div>
-                        </a>
-                      
-
-                    </div>
                 </div>
+
+                <div id="carpool-list" class="tabcontent" style="text-align: center;">
+
+                @foreach($cplist as $cp)
+                    <a href="{{route('cpinfo',[ 'cpid'=>$cp->cpid ] )}}">
+                        <div class="carpool-list2">
+                            <span>{{$cp->departdate}}</span>
+                            <span>{{$cp->cptitle}}</span>
+                            @if(isset($cp->poster['upicture']))
+                            <img src="{{$cp->poster['upicture']}}" alt="">
+                            @else
+                            <img src="{{asset('pic/admin.png')}}" alt="">
+                            @endif
+                            
+                            @foreach($cplist2 as $c)
+                                @if($cp->createtime == $c->createtime)
+                                    @if(isset($c->joiner))
+                                        @if($cp->hire > $c->joiner)
+                                        <span>{{$c->joiner}}/{{$cp->hire}}</span>
+                                        @elseif($cp->hire == $c->joiner)
+                                        <span>已徵滿</span>
+                                        @endif
+                                    @else
+                                    <span>0/{{$cp->hire}}</span>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+                    </a>
+                @endforeach
+                </div>
+
             </div>
         </div>
+    </div>
 
         <!-- Tab切換  -->
         <script>
