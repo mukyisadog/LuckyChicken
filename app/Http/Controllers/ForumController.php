@@ -44,6 +44,66 @@ class ForumController extends Controller
             'userPic' => $userPic
         ]);
     }
+
+    public function forumQIndex(Request $request)
+    {
+        $search = $request->search;
+        $forumNew2s = $this->model->forumNew2();
+
+        $questions = $this->model->question();
+        $Qoutputs = $this->model->forumQSearch($search);
+
+        $uid = Auth::id();
+        $userPic = $this->model->UserPic($uid);
+        
+        return view('forum.forumQIndex',[
+            'forumNew2s' => $forumNew2s,
+            'questions' => $questions,
+            'uid' => $uid,
+            'Qoutputs' => $Qoutputs,
+            'userPic' => $userPic
+        ]);
+    }
+
+    public function forumGIndex(Request $request)
+    {
+        $search = $request->search;
+        $forumNew2s = $this->model->forumNew2();
+
+        $groups = $this->model->group();
+        $Goutputs = $this->model->forumGSearch($search);
+
+        $uid = Auth::id();
+        $userPic = $this->model->UserPic($uid);
+        
+        return view('forum.forumGIndex',[
+            'forumNew2s' => $forumNew2s,
+            'groups' => $groups,
+            'uid' => $uid,
+            'Goutputs' => $Goutputs,
+            'userPic' => $userPic
+        ]);
+    }
+
+    public function forumHIndex(Request $request)
+    {
+        $search = $request->search;
+        $forumNew2s = $this->model->forumNew2();
+
+        $haters = $this->model->hater();
+        $Houtputs = $this->model->forumHSearch($search);
+
+        $uid = Auth::id();
+        $userPic = $this->model->UserPic($uid);
+        
+        return view('forum.forumHIndex',[
+            'forumNew2s' => $forumNew2s,
+            'haters' => $haters,
+            'uid' => $uid,
+            'Houtputs' => $Houtputs,
+            'userPic' => $userPic
+        ]);
+    }
     public function forumDetail(Request $request)
     {
         $sfid = $request->sfid;

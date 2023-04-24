@@ -21,7 +21,7 @@
             </div>
             <ul class="menu">
                 <li><a href="/feelIndex">心得</a></li>
-                <li><a href="/forumIndex">論壇</a></li>
+                <li><a href="/forumQIndex">論壇</a></li>
                 <li><a href="{{route('cphome')}}">拼車</a></li>
                 @if (Auth::check())
                     <?php

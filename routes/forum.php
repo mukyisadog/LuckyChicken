@@ -5,7 +5,13 @@ use App\Http\Controllers\ForumController;
 
 
 // 論壇
-Route::get('/forumIndex',[ForumController::class,'forumIndex'])->name('foindex');
+// Route::get('/forumIndex',[ForumController::class,'forumIndex'])->name('foindex');
+
+Route::get('/forumQIndex',[ForumController::class,'forumQIndex'])->name('foqindex');
+
+Route::get('/forumGIndex',[ForumController::class,'forumGIndex'])->name('fogindex');
+
+Route::get('/forumHIndex',[ForumController::class,'forumHIndex'])->name('fohindex');
 
 Route::get('/forumDetail/{sfid}/{foid}', [ForumController::class,'forumDetail'])->name('fodetail');
 
