@@ -21,9 +21,9 @@
                 </a>
             </div>
             <ul class="menu">
-                <li><a href="{{route('cphome')}}">拼車</a></li>
-                <li><a href="/feelIndex">心得</a></li>
-                <li><a href="/forumIndex">論壇</a></li>
+                <li><a href="{{ route('cphome') }}">拼車</a></li>
+                <li><a href="{{ route('feindex') }}">心得</a></li>
+                <li><a href="{{ route('foqindex') }}">論壇</a></li>
                 @if (Auth::check())
                     <?php $user = Auth::user(); ?>
                     @if(empty($user->upicture))
@@ -47,10 +47,19 @@
             </label>
             <input type="checkbox" id="hamburgerInput">
             <ul class="menuForMobile">
-                <li><a href="map.html">心得</a></li>
-                <li><a href="all-memo.html">論壇</a></li>
-                <li><a href="index.html">拼車</a></li>
-                <li><a href="what-to-eat.html">個人頁面</a></li>
+                @if (Auth::check())
+                <?php $user = Auth::user(); ?>
+                @if(empty($user->upicture))
+                    <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}"></a></li>
+                @else
+                    <li><a href="{{ route('mbinfo') }}"><img src="{{ $user->upicture }}" ></a></li>
+                @endif
+            @else
+                <li><a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}"></a></li>
+            @endif
+                <li><a href="{{ route('cphome') }}">拼車</a></li>
+                <li><a href="{{ route('feindex') }}">心得</a></li>
+                <li><a href="{{ route('foqindex') }}">論壇</a></li>
             </ul>
         </nav>
 

@@ -18,19 +18,25 @@ a:hover {
   background-color: #f8f6f2;
   width: 1200px;
   margin: auto;
+  border-left: 1px solid #B1BBA0;
+  border-right: 1px solid #B1BBA0;
 }
 
 #logo {
   text-align: center;
-  padding: 20px 0;
   background-color: #B1BBA0;
-  margin-top: -10px;
+  margin: 0;
+  padding: 10px 0;
+}
+
+#logo img {
+  border-radius: 20px;
 }
 
 /* 登入按鈕位置 */
 #memberSection {
   position: absolute;
-  top: 50px;
+  top: 65px;
   right: 7%;
   display: flex;
   align-items: center;
@@ -39,9 +45,19 @@ a:hover {
 #BtLogin {
   background-color: #D8DDCF;
   border-radius: 5px;
-  font-size: 25px;
   border: transparent;
   color: #664c43;
+  font-size: 16px;
+  height: 32px;
+}
+
+#BtLogout {
+  background-color: #D8DDCF;
+  border-radius: 5px;
+  border: transparent;
+  color: #664c43;
+  font-size: 16px;
+  height: 30px;
 }
 
 #BtLogin:hover {
@@ -49,7 +65,7 @@ a:hover {
 }
 
 .memberIcon {
-  width: 60px;
+  width: 50px;
   border-radius: 50%;
   margin-left: 20px;
   padding: 3px;
@@ -64,34 +80,52 @@ a:hover {
 #section1 {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 30px;
+  flex-wrap: wrap;
+  margin-top: 70px;
+  padding-top: 50px;
 }
 
 .webFeature {
   width: 25%;
-  padding: 5px;
-  background-color: #B1BBA0;
+  padding-top: 5px 0;
+  background-color: #F8F6F2;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 20px;
+  border: 10px solid #B1BBA0;
+  min-width: 300px;
+  height: fit-content;
 }
 
 .webFeature:hover {
-  opacity: 0.7;
+  /* opacity: 0.7; */
+  box-shadow: 10px 10px 20px #D8DDCF;
 }
 
 .pngDiv {
+  width: 150px;
+  height: 75px;
   background-color: #f8f6f2;
-  margin: 20px auto;
-  width: 90%;
-  height: 300px;
+  margin: -75px auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  position: relative;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  border: 10px solid #B1BBA0;
+  border-bottom: 0;
 }
 
 .homePng {
-  width: 70%;
-  margin: 20px;
+  width: 60px;
+  height: 60px;
+  margin-top: 50px;
+  z-index: 10;
+}
+
+.txt {
+  padding: 20px;
+  margin-top: 25px;
 }
 
 .featureTitle {
@@ -99,6 +133,11 @@ a:hover {
   font-size: 24px;
   margin-bottom: 20px;
   color: #664c43;
+}
+
+.featureIntro {
+  color: #664c43;
+  margin-bottom: 10px;
 }
 
 /* 標題置中 */
@@ -115,19 +154,22 @@ h2 {
 /* 心得卡片 */
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width:300px;
+  max-width: 300px;
   height: fit-content;
   margin: 50px;
   text-align: center;
   font-family: arial;
   margin-bottom: 20px;
   margin-left: 10px;
+  border-radius: 20px;
 }
 
 .articlePic {
   width: 100%;
-  height:200px;
+  height: 200px;
   object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 h5 {
@@ -155,6 +197,8 @@ h5 {
   cursor: pointer;
   width: 100%;
   font-size: 18px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .card button:hover {
@@ -165,8 +209,9 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:0 100px;
+  padding: 0 100px;
 }
+
 .slider {
   width: 100%;
 }
@@ -184,9 +229,18 @@ h5 {
 }
 
 .slick-prev:before,
-.slick-next:before{
+.slick-next:before {
   color: #B1BBA0;
   font-size: 35px;
+}
+
+.slick-dots li button:before {
+  color: #B1BBA0;
+}
+
+.slick-dots li.slick-active button:before {
+  color:#B1BBA0 !important;
+  opacity: 1;
 }
 
 #footer {
@@ -231,31 +285,42 @@ h5 {
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 1200px) {
+  #logo {
+    margin: 0;
+    padding: 10px 0;
+  }
+  
+  #logo img {
+    height: 100px;
+  }
+
+  #memberSection {
+    top: 43px;
+    right: 20px;
+  }
+
+  #mainContent {
+    width: 100%;
+  }
+
   .column {
     width: 30%;
     margin-bottom: 5%;
   }
 
-  #BtLogin {
-    font-size: 20px;
-    text-align: right;
-    top: 20px;
-    right: 3%;
-    display: inline-block;
-  }
-
-  #logo {
-    font-size: 50px;
+  .webFeature:nth-child(-n+2) {
+    margin-bottom: 100px;
   }
 
   .sliderContainer {
     margin-left: 1%;
     padding: 20px;
   }
+
   .slick-prev {
     margin-left: 30px;
   }
-  
+
   .slick-next {
     left: 99%;
     transform: translateY(0%);
@@ -263,38 +328,44 @@ h5 {
 }
 
 @media screen and (max-width: 600px) {
+  #logo {
+    height: 70px;
+  }
+
+  #logo img {
+    float: left;
+    position: relative;
+    /* top: -5px; */
+    left: 30px;
+    height: 50px;
+  }
+
+  #memberSection {
+    top: 20px;
+    right: 30px;
+  }
+
   .column {
     width: 70%;
     margin-bottom: 5%;
-  }
-
-  #BtLogin {
-    font-size: 20px;
-    text-align: right;
-    top: 20px;
-    right: 3%;
-  }
-
-  #logo {
-    font-size: 40px;
-    text-align: left;
   }
 
   .sliderContainer {
     margin-left: 15%;
     padding: 20px;
   }
+
   .slick-prev {
     margin-left: -20px;
   }
-  
+
   .slick-next {
     left: 90%;
     transform: translateY(0%);
   }
 
   .slick-dots {
-    left:-35px;
+    left: -35px;
   }
 
 

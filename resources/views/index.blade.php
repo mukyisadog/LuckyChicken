@@ -26,7 +26,7 @@
                 <x-dropdown-link :href="route('logout')"
                     onclick="event.preventDefault();
                             this.closest('form').submit();"
-                    id="BtLogin">
+                    id="BtLogout">
                     {{ __('登出') }}
                 </x-dropdown-link>
             </form>
@@ -42,25 +42,37 @@
     </div>
 
     <div id="mainContent">
-        <div id="logo"><a href="/"><img src="{{ asset('img/logo.jpg') }}"></a></div>
+        <div id="logo">
+            <a href="/"><img src="{{ asset('img/logo.jpg') }}"></a>
+        </div>
+
         <div id="section1">
             <a href="{{ route('cphome') }}" class="webFeature">
                 <div class="pngDiv">
                     <img src="{{ asset('img/vehicle.png') }}" class="homePng">
                 </div>
-                <div class="featureTitle">拼車</div>
+                <div class="txt">
+                    <h2 class="featureTitle">拼車</h2>
+                    <p class="featureIntro">想出發卻沒有交通工具，自己包車又好貴；準備開車出發，想找相同目的地的夥伴嗎？輸入出發地、出發日期、目的地，動動手指讓拼車功能幫你找人同行！</p>
+                </div>
             </a>
             <a href="{{ route('feindex') }}" class="webFeature">
                 <div class="pngDiv">
                     <img src="{{ asset('img/chat.png') }}" class="homePng">
                 </div>
-                <div class="featureTitle">心得</div>
+                <div class="txt">
+                    <h2 class="featureTitle">心得</h2>
+                    <p class="featureIntro">想攻略哪座山，卻沒頭緒嗎？登山經驗、技巧、裝備、路線規劃⋯⋯等相關資訊分享都在這！快來分享心得、留言交流，讓登山的行前準備更輕鬆愉快！</p>
+                </div>
             </a>
             <a href="{{ route('foqindex') }}" class="webFeature">
                 <div class="pngDiv">
                     <img src="{{ asset('img/group.png') }}" class="homePng">
                 </div>
-                <div class="featureTitle">論壇</div>
+                <div class="txt">
+                    <h2 class="featureTitle">論壇</h2>
+                    <p class="featureIntro">各種登山相關的話題討論區，不論是任何登山相關的疑難雜症，還是想認識新的登山友人，就讓論壇來幫你！發文交流、留言互動，一起享受登山健行吧。</p>
+                </div>
             </a>
         </div>
 
