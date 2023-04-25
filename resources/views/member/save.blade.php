@@ -24,7 +24,7 @@
         <div class="pageContent">
             <div id="feelSave">
                 <h2>心得</h2>
-                @if(empty(json_encode($feelSaveList)))
+                @if(count($feelSaveList)>0)
                 @foreach($feelSaveList as $feelSaveArticle)
                 <div class="article">
                     <div class="articleDate">
@@ -49,7 +49,7 @@
 
             <div id="forumSave">
                 <h2>論壇</h2>
-                @if(empty(json_encode($forumSaveList)))
+                @if(count($forumSaveList)>0)
                 @foreach($forumSaveList as $forumSaveArticle)
                 <div class="article">
                     <div class="articleDate">

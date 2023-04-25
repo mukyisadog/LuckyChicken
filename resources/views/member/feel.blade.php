@@ -24,7 +24,7 @@
         <div class="pageContent">
             <div id="feelRecord">
                 <h2>我的心得</h2>
-                @if(empty(json_encode($feelList))==false)
+                @if(count($feelList)>0)
                 @foreach($feelList as $feelArticle)
                 <div class="article">
                     <div class="articleDate">
@@ -59,7 +59,7 @@
             <hr />
             <div id="comment">
                 <h2>我的留言</h2>
-                @if(empty(json_encode($feelComments))==false)
+                @if(count($feelComments)>0)
                 @foreach($feelComments as $feelComment)
                 <div class="article">
                     <div class="articleDate">

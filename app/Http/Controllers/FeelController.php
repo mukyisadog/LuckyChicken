@@ -50,7 +50,7 @@ class FeelController extends Controller
             'uid' => $uid,
             'ftid' => $ftid,
             'userPic' => $userPic,
-            'isRed' => $isRed
+            'isRed' => $isRed,
         ]);
     }
 
@@ -63,6 +63,21 @@ class FeelController extends Controller
         // return "ok";
         return redirect("/feelDetail/{$ftid}");
     }
+
+    public function feelComEdit(Request $request){
+        $feelcom = $request->content;
+        $fcid = $request->fcid;
+        $this->model->feelComEdit($fcid,$feelcom);
+        return redirect()->back();
+    }
+
+    public function feelComDelect(Request $request){
+        $fcid = $request->fcid;
+        $this->model->feelComDelect($fcid);
+        return redirect()->back();
+    }
+
+    
 
     public function feelMes(Request $request)
     {
