@@ -176,6 +176,9 @@ class MemberController extends Controller
                 ->where('Feel_comment.uid', $uid)
                 ->orderby('Feel_comment.createtime', 'desc')
                 ->get();
+        
+        // dd(json_encode($feelComments));
+        // dd($feelList);
 
     return view('member.feel', ['feelList' => $feelList, 'feelComments' => $feelComments]);    
     }
