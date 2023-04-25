@@ -24,6 +24,7 @@
         <div class="pageContent">
             <div id="forumRecord">
                 <h2>我的討論串</h2>
+                @if(empty(json_encode($forumList)))
                 @foreach($forumList as $forumArticle)
                 <div class="article">
                     <div class="articleDate">
@@ -49,11 +50,17 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <div class="article">
+                    目前沒有討論串，快去<a href="{{ route('foqindex') }}">論壇</a>發起討論吧！
+                </div>
+                @endif
             </div>
             <hr />
             
             <div id="comment">
                 <h2>我的留言</h2>
+                @if(empty(json_encode($forumList)))
                 @foreach($forumComments as $forumComment)
                 <div class="article">
                     <div class="articleDate">
@@ -68,6 +75,11 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <div class="article">
+                    目前沒有留言，快去<a href="{{ route('foqindex') }}">論壇</a>參與討論吧！
+                </div>
+                @endif
             </div>
         </div>
 
