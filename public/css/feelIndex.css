@@ -168,8 +168,8 @@ form.example::after {
     background-color: #b1bba0;
     /* margin-left: 90%; */
     position: absolute;
-    top: 170px;
-    left: 0;
+    top: 6.5%;
+    left: 0%;
     color: rgb(80, 78, 78);
     cursor: pointer;
 }

@@ -15,52 +15,52 @@ use App\Models\ForumSaved;
 class MemberController extends Controller
 {
 
-    public function getcpinfo()
-    {
-        $uid = Auth::id();
-        $cp = DB::table('carpool_list1')->where('uid', $uid)->get();
-        // dd($cp);
+    // public function getcpinfo()
+    // {
+    //     $uid = Auth::id();
+    //     $cp = DB::table('carpool_list1')->where('uid', $uid)->get();
+    //     // dd($cp);
 
-        $joiner = DB::table('carpool_list1')
-                    ->leftJoin('carpool_join', 'carpool_list1.cpid', '=', 'carpool_join.cpid')
-                    ->leftJoin('users', 'carpool_join.uid', '=', 'users.id')
-                    ->where('carpool_list1.uid',$uid)
-                    ->get();
-        // dd($joiner);
-        // $joiner = DB::table('carpool_join')
-        //             ->leftJoin('users', 'carpool_join.uid', '=', 'users.id')
-        //             ->leftJoin('carpool_list1', 'carpool_join.cpid', '=', 'carpool_list1.cpid')
-        //             ->where('carpool_list1.uid',$uid)
-        //             ->get();
+    //     $joiner = DB::table('carpool_list1')
+    //                 ->leftJoin('carpool_join', 'carpool_list1.cpid', '=', 'carpool_join.cpid')
+    //                 ->leftJoin('users', 'carpool_join.uid', '=', 'users.id')
+    //                 ->where('carpool_list1.uid',$uid)
+    //                 ->get();
+    //     // dd($joiner);
+    //     // $joiner = DB::table('carpool_join')
+    //     //             ->leftJoin('users', 'carpool_join.uid', '=', 'users.id')
+    //     //             ->leftJoin('carpool_list1', 'carpool_join.cpid', '=', 'carpool_list1.cpid')
+    //     //             ->where('carpool_list1.uid',$uid)
+    //     //             ->get();
                 
 
-        return view('member.carpool', ['cp'=> $cp, 'joiner' => $joiner]);
-    }
+    //     return view('member.carpool', ['cp'=> $cp, 'joiner' => $joiner]);
+    // }
 
    
-    public function comfirmjoin(Request $req)
-    {
-        $value = $req->input('cpconfirm');
-        $joiner = $req->input('joiner');
-        $cpid = $req->input('cpid');
-        DB::update('update carpool_join set status = ? where uid = ? and cpid = ?',[$value, $joiner, $cpid]);
+    // public function comfirmjoin(Request $req)
+    // {
+    //     $value = $req->input('cpconfirm');
+    //     $joiner = $req->input('joiner');
+    //     $cpid = $req->input('cpid');
+    //     DB::update('update carpool_join set status = ? where uid = ? and cpid = ?',[$value, $joiner, $cpid]);
 
-        return redirect('/member/carpool');
-    }
+    //     return redirect('/member/carpool');
+    // }
 
     // 論壇
     public function getForumList() {
         $uid = Auth::id();
         $forumList = ForumList::select('*', DB::raw('Date(createtime) as date'))
                    ->where('uid', $uid)
-                   ->orderby('date', 'desc')
+                   ->orderby('createtime', 'desc')
                    ->get();
 
         $forumComments = ForumList::leftJoin('Forum_comment', 'Forum_list.foid', '=', 'Forum_comment.foid')
                     ->select('Forum_list.*', 'Forum_comment.content as forumComment', DB::raw('Date(Forum_comment.createtime) as date'))
                     ->whereNotNull('Forum_comment.foid')
                     ->where('Forum_comment.uid', $uid)
-                    ->orderby('date', 'desc')
+                    ->orderby('Forum_comment.createtime', 'desc')
                     ->get();
 
         // dd($forumComments);
@@ -166,14 +166,14 @@ class MemberController extends Controller
         $uid = Auth::id();
         $feelList = FeelList::select('*', DB::raw('Date(createtime) as date'))
                 ->where('uid', $uid)
-                ->orderby('date', 'desc')
+                ->orderby('createtime', 'desc')
                 ->get();
 
         $feelComments = FeelList::leftJoin('Feel_comment', 'Feel_list.fid', '=', 'Feel_comment.fid')
                 ->select('Feel_list.*', 'Feel_comment.content as feelComment', DB::raw('Date(Feel_comment.createtime) as date'))
                 ->whereNotNull('Feel_comment.fid')
                 ->where('Feel_comment.uid', $uid)
-                ->orderby('date', 'desc')
+                ->orderby('Feel_comment.createtime', 'desc')
                 ->get();
 
     return view('member.feel', ['feelList' => $feelList, 'feelComments' => $feelComments]);    
