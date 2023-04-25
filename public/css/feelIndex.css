@@ -134,7 +134,9 @@ form.example::after {
 
 .articleCon > h5 {
   margin: 0;
+  font-weight: 400;
 }
+
 
 .articlePic img {
     width: 100%; /* 图片宽度 100% */
@@ -160,6 +162,11 @@ form.example::after {
 
 .searchtitle{
     padding-right: 20px;
+}
+
+.linking{
+    text-decoration: none;
+    color: #664c43;
 }
 /* 發文按鈕 */
 #btPublish {
@@ -236,7 +243,10 @@ aside {
     left: 5px;
 }
 
-
+.linking2 {
+    text-decoration: none;
+    color: #664c43;
+}
 /* 響應式 */
 @media screen and (max-width: 1199px) {
     .article {
