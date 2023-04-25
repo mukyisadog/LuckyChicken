@@ -84,6 +84,8 @@ class MemberController extends Controller
         $sfid = $request->sfid;
         $title = $request->title;
         $content = $request->content;
+        $state = $request->btValue;
+
 
         $src = null;
         if (isset($request->pic)) {
@@ -92,24 +94,64 @@ class MemberController extends Controller
             $imageData = base64_encode($data);
             $src = "data:{$mime_type};base64,{$imageData}";
         }
+        if($state){
+            if ($src == null) {
+                ForumList::where('foid', $foid)->update([
+                    'sfid' => $sfid,
+                    'title' => $title,
+                    'content' => $content,
+                    'state' => $state
+                ]); 
+                return redirect("/forumDetail/{$sfid}/{$foid}");   
+            } else {
+                ForumList::where('foid', $foid)->update([
+                    'fpicture' => $src,
+                    'sfid' => $sfid,
+                    'title' => $title,
+                    'content' => $content,
+                    'state' => $state
+                ]);  
+                return redirect("/forumDetail/{$sfid}/{$foid}");   
+            }
 
-        if ($src == null) {
-            ForumList::where('foid', $foid)->update([
-                'sfid' => $sfid,
-                'title' => $title,
-                'content' => $content
-            ]);    
-        } else {
-            ForumList::where('foid', $foid)->update([
-                'fpicture' => $src,
-                'sfid' => $sfid,
-                'title' => $title,
-                'content' => $content
-            ]);    
+        }else{
+            if ($src == null) {
+                ForumList::where('foid', $foid)->update([
+                    'sfid' => $sfid,
+                    'title' => $title,
+                    'content' => $content,
+                    'state' => $state
+                ]);   
+                return redirect("/forumQIndex");  
+            } else {
+                ForumList::where('foid', $foid)->update([
+                    'sfid' => $sfid,
+                    'title' => $title,
+                    'content' => $content,
+                    'state' => $state
+                ]);     
+                return redirect("/forumQIndex");
+            }
+            
         }
+        // if ($src == null) {
+        //     ForumList::where('foid', $foid)->update([
+        //         'sfid' => $sfid,
+        //         'title' => $title,
+        //         'content' => $content
+        //     ]);    
+        // } else {
+        //     ForumList::where('foid', $foid)->update([
+        //         'fpicture' => $src,
+        //         'sfid' => $sfid,
+        //         'title' => $title,
+        //         'content' => $content
+        //     ]);    
+        // }
+        
         // dd($request);
 
-        return redirect("/forumDetail/{$sfid}/{$foid}");
+        // return redirect("/forumDetail/{$sfid}/{$foid}");
     }
 
     public function delForum($foid) {
@@ -151,6 +193,7 @@ class MemberController extends Controller
         $fid = $request->fid;
         $title = $request->title;
         $content = $request->content;
+        $state = $request->btValue;
 
         $src = null;
         if (isset($request->pic)) {
@@ -160,21 +203,46 @@ class MemberController extends Controller
             $src = "data:{$mime_type};base64,{$imageData}";
         }
 
-        if ($src == null) {
-            FeelList::where('fid', $fid)->update([
-                'title' => $title,
-                'content' => $content
-            ]);    
-        } else {
-            FeelList::where('fid', $fid)->update([
-                'fpicture' => $src,
-                'title' => $title,
-                'content' => $content
-            ]);    
-        }
+        
         // dd($request);
+        if($state){
+            if ($src == null) {
+                FeelList::where('fid', $fid)->update([
+                    'title' => $title,
+                    'content' => $content,
+                    'state' =>$state
+                ]); 
+                return redirect("/feelDetail/{$fid}");   
+            } else {
+                FeelList::where('fid', $fid)->update([
+                    'fpicture' => $src,
+                    'title' => $title,
+                    'content' => $content,
+                    'state' =>$state
+                ]); 
+                return redirect("/feelDetail/{$fid}");   
+            }
 
-        return redirect("/feelDetail/{$fid}");
+        }else{
+            if ($src == null) {
+                FeelList::where('fid', $fid)->update([
+                    'title' => $title,
+                    'content' => $content,
+                    'state' =>$state
+                ]);  
+                return redirect("/feelIndex");  
+            } else {
+                FeelList::where('fid', $fid)->update([
+                    'fpicture' => $src,
+                    'title' => $title,
+                    'content' => $content,
+                    'state' =>$state
+                ]);    
+                return redirect("/feelIndex");
+            }
+            
+        }
+        
     }
 
     public function delFeel($fid) {

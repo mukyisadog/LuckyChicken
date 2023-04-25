@@ -79,7 +79,7 @@ class MyModel extends Model
         return $answer;
     }
 
-    function feelMes($uid,$title,$content,$src,$state){   
+    function feelMes($uid,$title,$content,$src,$state){      
         try {
             DB::insert("INSERT INTO Feel_list SET uid = ?, title = ?, content = ?,fpicture = ? ,state = ?",[$uid, $title, $content,$src,$state]);
             $answer = 1;

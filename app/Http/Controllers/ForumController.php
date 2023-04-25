@@ -32,7 +32,7 @@ class ForumController extends Controller
         $uid = Auth::id();
         $userPic = $this->model->UserPic($uid);
         
-        return view('forum.forumIndex',[
+        return view('forum.forumQIndex',[
             'forumNew2s' => $forumNew2s,
             'questions' => $questions,
             'groups' => $groups,
@@ -166,7 +166,7 @@ class ForumController extends Controller
             // $request->session()->flash('answer', $answer);
             return redirect()->back()->with('answer', $answer);
         }else{
-            return redirect("/forumIndex")->with(['answer' => $answer]);
+            return redirect("/forumQIndex")->with(['answer' => $answer]);
         }
     }
 

@@ -47,7 +47,7 @@
                 </div>
             </div>
         </a>
-        <a href="{{ route('foindex') }}">
+        <a href="{{ route('foqindex') }}">
             <div class="column">
                 <img src="https://picsum.photos/420/230/?random=1" alt="John" style="width:100%">
                 <div style="margin: 24px 0;">

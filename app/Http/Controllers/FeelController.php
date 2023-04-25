@@ -82,14 +82,11 @@ class FeelController extends Controller
             $src = null;
         }
         $state = $request->input('btValue');
-        // $now = date('Y-m-d H:i:s');
 
 
         $answer = $this->model->feelMes($uid, $title, $content, $src, $state);
-        // return redirect("/feelIndex");
 
         if($answer === 0){
-            // return redirect()->back()->with(['answer' => $answer]);
             $request->session()->flash('answer', $answer);
             return redirect()->back()->with('answer', $answer);
         }else{
