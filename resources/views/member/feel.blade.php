@@ -24,6 +24,7 @@
         <div class="pageContent">
             <div id="feelRecord">
                 <h2>我的心得</h2>
+                @if(empty(json_encode($feelList)))
                 @foreach($feelList as $feelArticle)
                 <div class="article">
                     <div class="articleDate">
@@ -49,10 +50,16 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <div class="article">
+                    目前沒有分享心得，快去<a href="{{ route('feindex') }}">心得</a>分享經驗吧！
+                </div>
+                @endif
             </div>
             <hr />
             <div id="comment">
                 <h2>我的留言</h2>
+                @if(empty(json_encode($feelComments)))
                 @foreach($feelComments as $feelComment)
                 <div class="article">
                     <div class="articleDate">
@@ -67,6 +74,11 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <div class="article">
+                    目前沒有留言，快去<a href="{{ route('feindex') }}">心得</a>看看別人的分享吧！
+                </div>
+                @endif
             </div>
         </div>
 

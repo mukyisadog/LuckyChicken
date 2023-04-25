@@ -35,7 +35,7 @@
                     </form>
                     <?php $user = Auth::user(); ?>
                     @if (empty($user->upicture))
-                        <a href="{{ route('login') }}"><img src="{{ asset('pic/admin.png') }}" class="memberIcon"></a>
+                        <a href="{{ route('mbinfo') }}"><img src="{{ asset('pic/admin.png') }}" class="memberIcon"></a>
                     @else
                         <a href="{{ route('mbinfo') }}"><img src="{{ $user->upicture }}" class="memberIcon"></a>
                     @endif
