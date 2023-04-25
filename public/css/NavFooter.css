@@ -9,6 +9,7 @@ body {
     height: 50px;
     width: 50px;
     margin-top: 5px;
+    object-fit: cover;
 }
 
 .menuForMobile img {
@@ -16,6 +17,7 @@ body {
     height: 100px;
     width: 100px;
     margin: 10px 0 -10px 0;
+    object-fit: cover;
 }
 
 
