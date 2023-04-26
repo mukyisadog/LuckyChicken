@@ -224,7 +224,7 @@
                             <img src="{{asset('pic/admin.png')}}" alt="">
                             @endif
                             
-                            @foreach($cplist as $c)
+                            @foreach($cplist2 as $c)
                                 @if($cp->createtime == $c->createtime)
                                     @if(isset($c->joiner))
                                         @if($cp->hire > $c->joiner)
