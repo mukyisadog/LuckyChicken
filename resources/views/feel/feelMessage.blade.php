@@ -2,7 +2,7 @@
 
 
 @section('head')
-<title>心得發表</title>
+<title>登山心得發表</title>
     <link rel="stylesheet" href="{{ asset('css/feelMessage.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>

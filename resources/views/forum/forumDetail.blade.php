@@ -2,7 +2,9 @@
 
 
 @section('head')
-<title>論壇文章內容</title>
+@foreach($articles as $article)
+<title>{{ $article->title }} - 論壇 | 與山同行</title>
+@endforeach
     <link rel="stylesheet" href="{{ asset('css/forumDetail.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 

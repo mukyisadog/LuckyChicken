@@ -2,7 +2,7 @@
 
 
 @section('head')
-<title>拼車/揪團紀錄</title>
+<title>拼車/揪團紀錄 | 與山同行</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('css/member-all.css')}}">
 <link rel="stylesheet" href="{{asset('css/member-carpool.css')}}">
