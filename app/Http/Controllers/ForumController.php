@@ -141,6 +141,19 @@ class ForumController extends Controller
         return redirect("/forumDetail/{$sfid}/{$foid}");
     }
 
+    public function forumComEdit(Request $request){
+        $forumcom = $request->content;
+        $focid = $request->focid;
+        $this->model->forumComEdit($focid,$forumcom);
+        return redirect()->back();
+    }
+
+    public function forumComDelect(Request $request){
+        $focid = $request->focid;
+        $this->model->forumComDelect($focid);
+        return redirect()->back();
+    }
+
 
     public function forumMes(Request $request)
     {
