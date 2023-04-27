@@ -46,7 +46,6 @@
                     @endif
                 </div>
                 @auth
-
                     <script>
                         // 获取图标元素和链接元素
                         const heartIcon = document.getElementById('heart');
@@ -102,7 +101,8 @@
                                     <p>{{ $FCquestion->name }}</p>
                                     @if ($FCquestion->uid === $uid)
                                         <div class="icons">
-                                            <a><i class="bi bi-pencil-square"></i></a>
+                                            <a class="edit-btn" data-id="{{ $FCquestion->focid }}"><i
+                                                    class="bi bi-pencil-square"></i></a>
                                             <span>|</span>
                                             <a href="{{ route('forumcomdelect', ['focid' => $FCquestion->focid]) }}"><i
                                                     class="bi bi-trash3"></i></a>
@@ -111,25 +111,50 @@
                                 </div>
                                 <div class="headDivChi2">{{ $FCquestion->content }}</div>
                             </div>
-                            <script>
-                                var editButtons = document.querySelectorAll('.bi-pencil-square');
-                                editButtons.forEach((button) => {
-                                    button.addEventListener('click', (event) => {
-                                        event.preventDefault();
-                                        var divToEdit = event.target.closest('.headDiv').querySelector('.headDivChi2');
-                                        // alert(divToEdit);
-                                        divToEdit.innerHTML = `
-                                    <form action="{{ route('forumcomedit', ['focid' => $FCquestion->focid]) }}" method="POST">
+                            <hr>
+                        @endforeach
+                        <script>
+                            // 获取所有编辑按钮
+                            var editButtons = document.querySelectorAll('.bi-pencil-square');
+                            // 定义处理编辑按钮点击事件的函数
+                            function handleEditButtonClick(button) {
+
+                                var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
+                                var fcidd = button.closest('.edit-btn').dataset.id;
+                                var text = divToEdit.innerText;
+                                // console.log(text);
+                                divToEdit.innerHTML = `
+                                    <form action="{{ route('forumcomedit') }}" method="POST">
                                         @csrf
-                                        <textarea name="content" required>{{ $FCquestion->content }}</textarea>
+                                        <input type="hidden" value="${fcidd}" name="focid">
+                                        <textarea name="content" required>${text}</textarea>
                                         <input class="editbt" type="submit" value="-更新留言-">
                                     </form>
                                     `;
-                                    });
+                            }
+                            // 给每个编辑按钮绑定点击事件处理函数
+                            editButtons.forEach((button) => {
+                                button.addEventListener('click', () => {
+                                    handleEditButtonClick(button);
                                 });
-                            </script>
-                            <hr>
-                        @endforeach
+                            });
+
+                            function handleFormSubmit(event) {
+                                // 防止表单提交
+                                event.preventDefault();
+                                // 获取表单元素和表单内容
+                                var form = event.target;
+                                var content = form.querySelector('textarea[name="content"]').value;
+                                // 如果内容为空，弹出提示框
+                                if (!content) {
+                                    alert('请输入留言内容！');
+                                } else {
+                                    // 否则提交表单
+                                    form.submit();
+                                }
+                            }
+                        </script>
+
                     </div>
                 @endif
 
@@ -139,7 +164,8 @@
                 <!-- 留言 -->
                 <div id="mes">
                     @if (Auth::check())
-                        <form method="post" action="{{ route('forumcom', ['sfid' => $sfid, 'foid' => $foid]) }}" id="myForm">
+                        <form method="post" action="{{ route('forumcom', ['sfid' => $sfid, 'foid' => $foid]) }}"
+                            id="myForm">
                             @csrf
                             @foreach ($userDatas as $userData)
                                 <div class="formPic">

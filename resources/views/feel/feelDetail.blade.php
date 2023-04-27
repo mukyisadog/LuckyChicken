@@ -91,14 +91,15 @@
                             <div class="headDiv">
                                 <div class="headDivChi">
                                     @if (empty($comment->upicture))
-                                        <img class="headDivPic" src="{{ asset('pic/admin.png') }}">
+                                        <img src="{{ asset('pic/admin.png') }}">
                                     @else
                                         <img class="headDivPic" src="{{ $comment->upicture }}">
                                     @endif
                                     <p>{{ $comment->name }}</p>
                                     @if ($comment->uid === $uid)
                                         <div class="icons">
-                                            <a><i class="bi bi-pencil-square"></i></a>
+                                            <a class="edit-btn" data-id="{{ $comment->fcid }}"><i
+                                                    class="bi bi-pencil-square"></i></a>
                                             <span>|</span>
                                             <a href="{{ route('feelcomdelect', ['fcid' => $comment->fcid]) }}"><i
                                                     class="bi bi-trash3"></i></a>
@@ -107,25 +108,34 @@
                                 </div>
                                 <div class="headDivChi2">{{ $comment->content }}</div>
                             </div>
-                            <script>
-                                var editButtons = document.querySelectorAll('.bi-pencil-square');
-                                editButtons.forEach((button) => {
-                                    button.addEventListener('click', (event) => {
-                                        event.preventDefault();
-                                        var divToEdit = event.target.closest('.headDiv').querySelector('.headDivChi2');
-                                        // alert(divToEdit);
-                                        divToEdit.innerHTML = `
-                        <form action="{{ route('feelcomedit', ['fcid' => $comment->fcid]) }}" method="POST">
+                            <hr>
+                        @endforeach
+                        <script>
+                            // 获取所有编辑按钮
+                            var editButtons = document.querySelectorAll('.bi-pencil-square');
+                            // 定义处理编辑按钮点击事件的函数
+                            function handleEditButtonClick(button) {
+                                var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
+                                var fcidd = button.closest('.edit-btn').dataset.id;
+                                var text = divToEdit.innerText;
+                                // console.log(text);
+                                divToEdit.innerHTML = `
+                        <form action="{{ route('feelcomedit') }}" method="POST">
                             @csrf
-                            <textarea id="feelcom" name="content" required>{{ $comment->content }}</textarea>
+                            <input type="hidden" value="${fcidd}" name="fcid">
+                            <textarea name="content" required>${text}</textarea>
                             <input class="editbt" type="submit" value="-更新留言-">
                         </form>
                         `;
-                                    });
+                            }
+                            // 给每个编辑按钮绑定点击事件处理函数
+                            editButtons.forEach((button) => {
+                                button.addEventListener('click', () => {
+                                    handleEditButtonClick(button);
                                 });
-                            </script>
-                            <hr>
-                        @endforeach
+                            });
+                        </script>
+
                     </div>
                 @endif
 
