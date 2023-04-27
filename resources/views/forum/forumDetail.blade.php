@@ -39,9 +39,7 @@
                             <div id="imgDiv">
                                 <img src="{{ $article->fpicture }}">
                             </div>
-                            <div id="artCon">
-                                {{ $article->content }}
-                            </div>
+                            <div id="artCon">{{ $article->content }}</div>
                         @endforeach
                     @endif
                 </div>
@@ -78,15 +76,10 @@
                 <!-- 留言紀錄 -->
                 @if ($FCquestions == null)
                     <div id="mesHis">
-                        <div class="headDiv">
-                            <div class="headDivChi">
-                            </div>
-                            <div class="noComment">
-                                <p>還沒有人留言喔～</p>
-                                <p>快來當頭香～</p>
-                            </div>
+                        <div class="noComment">
+                            <p>還沒有人留言喔～</p>
+                            <p>快來當頭香～</p>
                         </div>
-                        <hr>
                     </div>
                 @else
                     <div id="mesHis">
@@ -109,9 +102,10 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="headDivChi2">{{ $FCquestion->content }}</div>
+                                <div class="headDivChi2">
+                                    <div class="commentContent">{{ $FCquestion->content }}</div>
+                                </div>
                             </div>
-                            <hr>
                         @endforeach
                         <script>
                             // 获取所有编辑按钮
@@ -127,7 +121,7 @@
                                     <form action="{{ route('forumcomedit') }}" method="POST">
                                         @csrf
                                         <input type="hidden" value="${fcidd}" name="focid">
-                                        <textarea name="content" required>${text}</textarea>
+                                        <textarea name="content" class="editComment" required>${text}</textarea>
                                         <input class="editbt" type="submit" value="-更新留言-">
                                     </form>
                                     `;

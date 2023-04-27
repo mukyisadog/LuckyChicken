@@ -217,7 +217,7 @@ class MyModel extends Model
     }
 
     function forumNew($sid,$foid){
-        $forumNews = DB::select("select *, Date(createtime) as date from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and state = 1 and Forum_list.foid <> ? order by Forum_list.createtime DESC LIMIT 13",[$sid,$foid]);
+        $forumNews = DB::select("select *, Date(createtime) as date from Forum_list left join users on Forum_list.uid = users.id where state = 1 and Forum_list.foid <> ? order by Forum_list.createtime DESC LIMIT 10",[$foid]);
         return $forumNews;
     }
 
