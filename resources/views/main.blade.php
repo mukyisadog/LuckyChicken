@@ -41,7 +41,7 @@
 
         <!-- navbar for mobile -->
         <nav id="mobileNavbar">
-            <div class="mobileLogo"><a href="index.html"><img src="{{ asset('img/logo-2.jpg') }}"></a></div>
+            <div class="mobileLogo"><a href="/"><img src="{{ asset('img/logo-2.jpg') }}"></a></div>
             <label id="hamburgerIcon" for="hamburgerInput">
                 <i class="bi bi-list"></i>
             </label>

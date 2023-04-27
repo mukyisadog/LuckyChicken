@@ -2,9 +2,7 @@
 
 
 @section('head')
-@foreach($articles as $article)
-<title>{{ $article->title }} - 論壇 | 與山同行</title>
-@endforeach
+<title>論壇文章內容</title>
     <link rel="stylesheet" href="{{ asset('css/forumDetail.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
@@ -40,7 +38,7 @@
                         <div id="imgDiv">
                             <img src="{{$article->fpicture}}" >
                         </div>
-                        <div>
+                        <div id="artCon">
                             {{$article->content}}
                         </div>
                         @endforeach

@@ -16,32 +16,17 @@
 
 @section('content')
 <div id="content-container">
-            <br><br>
             <h1>分享心得</h1>
             <div id="FormContainer">
                 <form method="post" action="{{ route('feelmes')}}" enctype="multipart/form-data" id="myForm">
                     @csrf
                     選擇封面：<br>
-                    <p></p>
                     <input type="file" id="photo-upload" name="pic" accept="image/*" required>
                     <div id="preview"></div>
                     <script src="{{asset('js/MesCanva.js')}}"></script>
                     <hr>
                     <input type="text" placeholder="輸入標題" name="title" id="title" minlength="5" maxlength="26" required>
-                    <br>
                     <textarea placeholder="輸入內容" name="content" id="textarea" minlength="10" required></textarea>
-                    <!-- <div id="editor">This is some sample content.</div> -->
-                <!-- <script>
-                        ClassicEditor
-                                .create( document.querySelector( '#editor' ) )
-                                .then( editor => {
-                                        console.log( editor );
-                                } )
-                                .catch( error => {
-                                        console.error( error );
-                                } );
-                </script> -->
-                    <br><br>
                     <hr>
                     <div id="bt">
                         <button type="submit" value="0" name="btValue">儲存</button>
@@ -49,16 +34,7 @@
                     </div>
                 </form>
             </div>
-
-            <br><br>
         </div>
-
-
-
-
-
-
-
 
         @if(session()->has('answer'))
             @if(session('answer') === 1)

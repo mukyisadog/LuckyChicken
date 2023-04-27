@@ -10,7 +10,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin: 100px 0;
+    padding: 100px 0;
 }
 
 /* 標題 */
@@ -170,6 +170,7 @@ form.example button:hover {
 
 .pagination a {
     color: #664c43;
+    text-decoration: none;
 }
 
 .page-item{
@@ -182,6 +183,7 @@ form.example button:hover {
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    margin: 0;
     text-align: center;
 }
 

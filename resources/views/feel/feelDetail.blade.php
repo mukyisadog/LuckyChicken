@@ -81,7 +81,7 @@
                 <div class="headDiv">
                     <div class="headDivChi">
                     </div>
-                    <div class="headDivChi2">
+                    <div class="noComment">
                         <p>還沒有人留言喔～</p>
                         <p>快來當頭香～</p>
                     </div>
@@ -119,7 +119,7 @@
                         divToEdit.innerHTML = `
                         <form action="{{route('feelcomedit',['fcid'=>$comment->fcid])}}" method="POST">
                             @csrf
-                            <textarea name="content" required>{{$comment->content}}</textarea>
+                            <textarea id="feelcom" name="content" required>{{$comment->content}}</textarea>
                             <input class="editbt" type="submit" value="-更新留言-">
                         </form>
                         `;
@@ -164,7 +164,7 @@
                         <p>{{$userData->name}} ></p>
                     </div>
                     @endforeach
-                    <textarea name="feelcom" id="" cols="30" rows="10" placeholder="你需要先登入才能留言喔～" disabled></textarea>
+                    <textarea name="feelcom" id="feelcom" cols="30" rows="10" placeholder="你需要先登入才能留言喔～" disabled></textarea>
                     <input type="button" value="-送出-">
                 </form>
                 @endif
