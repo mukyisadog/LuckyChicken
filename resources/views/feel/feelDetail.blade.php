@@ -141,7 +141,7 @@
                             @foreach ($userDatas as $userData)
                                 <div class="formPic">
                                     @if (empty($userData->upicture))
-                                        <img src="{{ asset('pic/admin.png') }}">
+                                        <img class="headDivPic" src="{{ asset('pic/admin.png') }}">
                                     @else
                                         <img class="headDivPic" src="{{ $userData->upicture }}">
                                     @endif
@@ -158,7 +158,7 @@
                             @foreach ($userDatas as $userData)
                                 <div class="formPic">
                                     @if (empty($userData->upicture))
-                                        <img src="{{ asset('pic/admin.png') }}" alt="">
+                                        <img class="headDivPic" src="{{ asset('pic/admin.png') }}" alt="">
                                     @else
                                         <img class="headDivPic" src="{{ $userData->upicture }}">
                                     @endif
