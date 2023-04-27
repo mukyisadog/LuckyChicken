@@ -2,7 +2,7 @@
 
 
 @section('head')
-<title>收藏</title>
+<title>心得/討論串收藏 | 個人頁面</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('css/member-all.css')}}">
 <link rel="stylesheet" href="{{asset('css/save.css')}}">

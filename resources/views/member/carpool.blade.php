@@ -103,7 +103,9 @@
                 @endif
             </div>
 
-            <div id="join">
+<hr />
+
+            <div class="join">
                 <h2>參加中</h2>
                 @if(empty($cp2) == false)
                     @foreach($cp2 as $c)

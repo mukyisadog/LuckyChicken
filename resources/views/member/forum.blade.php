@@ -2,7 +2,7 @@
 
 
 @section('head')
-<title>論壇</title>
+<title>論壇討論串發表/留言紀錄 | 與山同行</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('css/member-all.css')}}">
 <link rel="stylesheet" href="{{asset('css/forum.css')}}">

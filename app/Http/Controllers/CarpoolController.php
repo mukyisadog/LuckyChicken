@@ -135,6 +135,7 @@ class CarpoolController extends Controller
         $searchresult = DB::table('carpool_list1')
                 ->leftJoin('users','carpool_list1.uid','=','users.id')
                 ->where('cptitle', 'REGEXP', $req->search)
+                ->orderBy('createtime', 'desc')
                 ->get();  
                 
         // dd($searchresult);        

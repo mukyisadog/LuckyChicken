@@ -7,9 +7,10 @@ use App\Models\MyModel;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
-
 use App\Notifications\ForumCommentNotice;
 use App\Models\User;
+
+
 
 class ForumController extends Controller
 {
