@@ -7,6 +7,10 @@ use App\Models\MyModel;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ForumCommentNotice;
+use App\Models\User;
+
+
 
 class ForumController extends Controller
 {
@@ -15,35 +19,35 @@ class ForumController extends Controller
     {
         $this->model = new MyModel;
     }
-    public function forumIndex(Request $request)
-    {
-        $search = $request->search;
-        $forumNew2s = $this->model->forumNew2();
+    // public function forumIndex(Request $request)
+    // {
+    //     $search = $request->search;
+    //     $forumNew2s = $this->model->forumNew2();
 
-        $questions = $this->model->question();
-        $Qoutputs = $this->model->forumQSearch($search);
+    //     $questions = $this->model->question();
+    //     $Qoutputs = $this->model->forumQSearch($search);
 
-        $groups = $this->model->group();
-        $Goutputs = $this->model->forumGSearch($search);
+    //     $groups = $this->model->group();
+    //     $Goutputs = $this->model->forumGSearch($search);
 
-        $haters = $this->model->hater();
-        $Houtputs = $this->model->forumHSearch($search);
+    //     $haters = $this->model->hater();
+    //     $Houtputs = $this->model->forumHSearch($search);
 
-        $uid = Auth::id();
-        $userPic = $this->model->UserPic($uid);
+    //     $uid = Auth::id();
+    //     $userPic = $this->model->UserPic($uid);
         
-        return view('forum.forumQIndex',[
-            'forumNew2s' => $forumNew2s,
-            'questions' => $questions,
-            'groups' => $groups,
-            'haters' => $haters,
-            'uid' => $uid,
-            'Qoutputs' => $Qoutputs,
-            'Goutputs' => $Goutputs,
-            'Houtputs' => $Houtputs,
-            'userPic' => $userPic
-        ]);
-    }
+    //     return view('forum.forumQIndex',[
+    //         'forumNew2s' => $forumNew2s,
+    //         'questions' => $questions,
+    //         'groups' => $groups,
+    //         'haters' => $haters,
+    //         'uid' => $uid,
+    //         'Qoutputs' => $Qoutputs,
+    //         'Goutputs' => $Goutputs,
+    //         'Houtputs' => $Houtputs,
+    //         'userPic' => $userPic
+    //     ]);
+    // }
 
     public function forumQIndex(Request $request)
     {
@@ -61,7 +65,8 @@ class ForumController extends Controller
             'questions' => $questions,
             'uid' => $uid,
             'Qoutputs' => $Qoutputs,
-            'userPic' => $userPic
+            'userPic' => $userPic,
+            'search' => $search
         ]);
     }
 
@@ -81,7 +86,8 @@ class ForumController extends Controller
             'groups' => $groups,
             'uid' => $uid,
             'Goutputs' => $Goutputs,
-            'userPic' => $userPic
+            'userPic' => $userPic,
+            'search' => $search
         ]);
     }
 
@@ -101,7 +107,8 @@ class ForumController extends Controller
             'haters' => $haters,
             'uid' => $uid,
             'Houtputs' => $Houtputs,
-            'userPic' => $userPic
+            'userPic' => $userPic,
+            'search' => $search
         ]);
     }
     public function forumDetail(Request $request)
@@ -135,7 +142,28 @@ class ForumController extends Controller
         $forumcom = $request->forumcom;
         // return [$uid,$foid,$sfid,$forumcom];
         $this->model->forumCom($uid,$sfid,$foid,$forumcom);
+
+        $list = $this->model->forumDetail($sfid, $foid);
+        $user = User::find($list[0]->uid); //要發送通知的對象poster
+        $someone = Auth::user()->name;
+        $title = $list[0]->title;
+        $comment =  $request->forumcom;
+        $user->notify(new ForumCommentNotice($someone, $title, $comment, $foid, $uid, $sfid));
+
         return redirect("/forumDetail/{$sfid}/{$foid}");
+    }
+
+    public function forumComEdit(Request $request){
+        $forumcom = $request->content;
+        $focid = $request->focid;
+        $this->model->forumComEdit($focid,$forumcom);
+        return redirect()->back();
+    }
+
+    public function forumComDelect(Request $request){
+        $focid = $request->focid;
+        $this->model->forumComDelect($focid);
+        return redirect()->back();
     }
 
 

@@ -38,7 +38,7 @@
                         <div id="imgDiv">
                             <img src="{{$article->fpicture}}" >
                         </div>
-                        <div>
+                        <div id="artCon">
                             {{$article->content}}
                         </div>
                         @endforeach
@@ -54,7 +54,7 @@
                         const heartHref = document.getElementById('heartHref');
                         const isRed = {!! json_encode($isRed) !!};
                         if (isRed.length > 0) {
-                            heartIcon.style.color = 'red';
+                            heartIcon.style.color = '#d64045';
                         }
 
                         // 监听点击事件
@@ -69,7 +69,7 @@
                             alert("取消收藏");
                         } else {
                           //   heartIcon.classList.remove('text-danger');
-                            heartIcon.style.color = 'red';
+                            heartIcon.style.color = '#d64045';
                             window.location.href = "{{route('fosave',[ 'sfid'=>$sfid, 'ftid'=>$foid ] )}}";
                             alert("收藏成功"); 
                         }
@@ -101,11 +101,63 @@
                                     <img src="{{$FCquestion->upicture}}">
                                 @endif
                                     <p>{{$FCquestion->name}}</p>
+                                @if($FCquestion->uid === $uid)
+                                    <div class="icons">
+                                        <a class="edit-btn" data-id="{{$FCquestion->focid}}"><i class="bi bi-pencil-square"></i></a>
+                                        <span>|</span>
+                                        <a href="{{route('forumcomdelect',['focid'=>$FCquestion->focid])}}"><i class="bi bi-trash3"></i></a>
+                                    </div>
+                                @endif
                                 </div>
                                 <div class="headDivChi2">{{$FCquestion->content}}</div>
                             </div>
                             <hr>
-                        @endforeach
+                            @endforeach
+                            <script>                       
+                                // 获取所有编辑按钮
+                                var editButtons = document.querySelectorAll('.bi-pencil-square');
+                                // 定义处理编辑按钮点击事件的函数
+                                function handleEditButtonClick(button) {
+                                    
+                                    var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
+                                    var fcidd = button.closest('.edit-btn').dataset.id;
+                                    var text = divToEdit.innerText;
+                                    // console.log(text);
+                                    divToEdit.innerHTML = `
+                                    <form action="{{route('forumcomedit')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="${fcidd}" name="focid">
+                                        <textarea name="content" required>${text}</textarea>
+                                        <input class="editbt" type="submit" value="-更新留言-">
+                                    </form>
+                                    `;
+                                }
+
+                                // 给每个编辑按钮绑定点击事件处理函数
+                                editButtons.forEach((button) => {
+                                    button.addEventListener('click', () => {
+                                        handleEditButtonClick(button);
+                                    });
+                                });
+
+                                function handleFormSubmit(event) {
+                                    // 防止表单提交
+                                    event.preventDefault();
+                                    // 获取表单元素和表单内容
+                                    var form = event.target;
+                                    var content = form.querySelector('textarea[name="content"]').value;
+                                    // 如果内容为空，弹出提示框
+                                    if (!content) {
+                                        alert('请输入留言内容！');
+                                    } else {
+                                        // 否则提交表单
+                                        form.submit();
+                                    }
+                                }
+
+
+                            </script>
+
                         </div>
                     @endif
 
@@ -150,11 +202,10 @@
                     <aside>
                         <h1>最新文章</h1>
                         @foreach($forumNews as $forumNew)
+                        <a href="{{route('fodetail',[ 'sfid'=> $forumNew->sfid, 'foid'=>$forumNew->foid ] )}}" class="linking">
                             <div class="article2">
-                                <div class="article2Con">
-                                    <a href="{{route('fodetail',[ 'sfid'=> $forumNew->sfid, 'foid'=>$forumNew->foid ] )}}">
-                                        <h4>{{$forumNew->title}}</h4>
-                                    </a>
+                                <div class="article2Con">                                   
+                                    <h4>{{$forumNew->title}}</h4>
                                     <div class="new">
                                         @if(empty($forumNew->upicture))
                                             <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
@@ -168,6 +219,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </a>
                         @endforeach
                     </aside>
                 </div>
