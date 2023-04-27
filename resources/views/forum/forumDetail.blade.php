@@ -20,7 +20,7 @@
                     @if (isset($articles))
                         @foreach ($articles as $article)
                             <div class="author">
-                                @if (empty($article1->upicture))
+                                @if (empty($article->upicture))
                                     <img src="{{ asset('pic/admin.png') }}" alt="">
                                 @else
                                     <img src="{{ $article->upicture }}">
@@ -34,7 +34,7 @@
                             </div>
                             <div>
                                 <h1>{{ $article->title }}</h1>
-                                <p>{{ $article->createtime }}</p>
+                                <p>{{ $article->date }}</p>
                             </div>
                             <div id="imgDiv">
                                 <img src="{{ $article->fpicture }}">
@@ -82,7 +82,7 @@
                         <div class="headDiv">
                             <div class="headDivChi">
                             </div>
-                            <div class="headDivChi2">
+                            <div class="noComment">
                                 <p>還沒有人留言喔～</p>
                                 <p>快來當頭香～</p>
                             </div>
@@ -95,9 +95,9 @@
                             <div class="headDiv">
                                 <div class="headDivChi">
                                     @if (empty($FCquestion->upicture))
-                                        <img src="{{ asset('pic/admin.png') }}" alt="">
+                                        <img class="headDivPic" src="{{ asset('pic/admin.png') }}" alt="">
                                     @else
-                                        <img src="{{ $FCquestion->upicture }}">
+                                        <img class="headDivPic" src="{{ $FCquestion->upicture }}">
                                     @endif
                                     <p>{{ $FCquestion->name }}</p>
                                     @if ($FCquestion->uid === $uid)
@@ -175,20 +175,18 @@
                     <h1>最新文章</h1>
                     @foreach ($forumNews as $forumNew)
                         <a href="{{ route('fodetail', ['sfid' => $forumNew->sfid, 'foid' => $forumNew->foid]) }}"
-                            class="linking">
+                            class="linking2">
                             <div class="article2">
                                 <div class="article2Con">
-                                    <h4>{{ $forumNew->title }}</h4>
+                                    <h3>{{ $forumNew->title }}</h3>
                                     <div class="new">
                                         @if (empty($forumNew->upicture))
                                             <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
                                         @else
                                             <img class="newpic" src="{{ $forumNew->upicture }}">
                                         @endif
-                                        <span class="newname">{{ $forumNew->name }}</span>
-                                        <br>
-                                        <br>
-                                        <span class="newtime">{{ $forumNew->createtime }}</span>
+                                        <span class="newname">{{ $forumNew->name }}</span><br />
+                                        <span class="newtime">{{ $forumNew->date }}</span>
                                     </div>
                                 </div>
                             </div>

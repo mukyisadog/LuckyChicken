@@ -91,7 +91,7 @@
                             <div class="headDiv">
                                 <div class="headDivChi">
                                     @if (empty($comment->upicture))
-                                        <img src="{{ asset('pic/admin.png') }}">
+                                        <img class="headDivPic" src="{{ asset('pic/admin.png') }}">
                                     @else
                                         <img class="headDivPic" src="{{ $comment->upicture }}">
                                     @endif

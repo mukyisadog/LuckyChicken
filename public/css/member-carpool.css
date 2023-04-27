@@ -147,3 +147,9 @@ h2 {
     object-fit: cover;
     object-position: center;
 }
+
+#comment {
+    width: 90%;
+    margin: 0 auto;
+}
+
