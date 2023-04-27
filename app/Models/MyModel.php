@@ -138,7 +138,7 @@ class MyModel extends Model
     function forumQSearch($search){
         $Qoutputs  = DB::table('Forum_list')
         ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
-        ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
+        ->select('fpicture', 'foid', 'title', 'name', DB::raw('Date(Forum_list.createtime) as date'))
         ->where('Forum_list.sfid', '=', 1)
         ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
@@ -165,7 +165,7 @@ class MyModel extends Model
     function forumGSearch($search){
         $Goutputs  = DB::table('Forum_list')
         ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
-        ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
+        ->select('fpicture', 'foid', 'title', 'name', DB::raw('Date(Forum_list.createtime) as date'))
         ->where('Forum_list.sfid', '=', 2)
         ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
@@ -192,7 +192,7 @@ class MyModel extends Model
     function forumHSearch($search){
         $Houtputs  = DB::table('Forum_list')
         ->leftJoin('users', 'Forum_list.uid', '=', 'users.id')
-        ->select('fpicture', 'foid', 'title', 'name', 'Forum_list.createtime as createtime')
+        ->select('fpicture', 'foid', 'title', 'name', DB::raw('Date(Forum_list.createtime) as date'))
         ->where('Forum_list.sfid', '=', 3)
         ->where('title', 'REGEXP', $search)
         ->where('state','=','1')
