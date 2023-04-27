@@ -149,11 +149,13 @@
                                 <div class="groupName">
                                     {{$c->cptitle}}
                                 </div>
-                                <form action="{{route('canceljoin')}}" method="post" onsubmit="return confirm('確定要取消嗎？')">
-                                @csrf
-                                <input type="hidden" name="cpid" value="{{$c->cpid}}">
-                                <button name="" id="" class="operate" type="submit">取消</button>
-                                </form>
+                                <div class="joinMember">
+                                    <form action="{{route('canceljoin')}}" method="post" onsubmit="return confirm('確定要取消嗎？')">
+                                    @csrf
+                                    <input type="hidden" name="cpid" value="{{$c->cpid}}">
+                                    <button name="" id="" class="operate" type="submit">取消</button>
+                                    </form>
+                                </div>
                             </div>
                         </a>
                     @endforeach

@@ -33,6 +33,7 @@ h2 {
     font-size: 24px;
     transition: 0.4s;
     border-radius: 10px;
+    margin-bottom: 20px;
 
     display: flex;
     flex-wrap: wrap;
@@ -63,6 +64,7 @@ h2 {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     border-radius: 10px;
+    margin: -20px 0 20px 0;
 }
 
 .memberList {
@@ -97,7 +99,7 @@ h2 {
 
 .join a {
     text-decoration: none;
-    color: #664c43;
+    color: #000;
 }
 
 .group {
