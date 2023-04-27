@@ -2,11 +2,12 @@
 
 
 @section('head')
-<title>拼車/揪團紀錄 | 與山同行</title>
+<title>拼車/揪團紀錄</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('css/member-all.css')}}">
 <link rel="stylesheet" href="{{asset('css/member-carpool.css')}}">
 <script type="text/javascript" src="{{asset('js/member-all.js')}}"></script>
+<!-- <script type="text/javascript" src="{{asset('js/car-record.js')}}"></script> -->
 
 @endsection
 
@@ -40,7 +41,7 @@
                                         <input type="hidden" name="cpid" value="{{$c->cpid}}">
                                         <button name="" id="" class="operate" type="submit">編輯</button>
                                     </form>
-                                    <form action="{{route('cpdelete')}}" method="post">
+                                    <form action="{{route('cpdelete')}}" method="post" onsubmit="return confirm('確定要刪除嗎？')">
                                         @csrf
                                         <input type="hidden" name="cpid" value="{{$c->cpid}}">
                                         <button name="" id="" class="operate" type="submit">刪除</button>
@@ -66,8 +67,8 @@
                                             <div class="memberState">
                                                 <form action="{{route('comfirmjoin')}}" method="post">
                                                     @csrf
-                                                    <button type="submit" name="cpconfirm" value="1" class="operate">加入</button>
-                                                    <button type="submit" name="cpconfirm" value="2" class="operate">拒絕</button>
+                                                    <button type="submit" name="cpconfirm" value="1" class="operate">✓</button>
+                                                    <button type="submit" name="cpconfirm" value="2" class="operate">✗</button>
                                                     <input type="hidden" name="joiner" value="{{$jo->id}}">
                                                     <input type="hidden" name="cpid" value="{{$c->cpid}}">
                                                 </form>
@@ -79,11 +80,11 @@
                                             @endif
                                         @elseif($jo->status == 1)
                                             <div class="memberState">
-                                                <button name="" id="" class="doneBtn">已加入</button>
+                                                <button name="" id="" class="operate">已加入</button>
                                             </div>
                                         @elseif($jo->status == 2)
                                             <div class="memberState">
-                                                <button name="" id="" class="doneBtn">已拒絕</button>
+                                                <button name="" id="" class="operate">已拒絕</button>
                                             </div>
                                         @endif
                                     </div>
@@ -101,8 +102,6 @@
                     </div>
                 @endif
             </div>
-
-<hr />
 
             <div class="join">
                 <h2>參加中</h2>
@@ -137,7 +136,6 @@
                 @endif
             </div>
 
-<hr />
 
             <div class="join">
                 <h2>確認中</h2>
@@ -151,13 +149,11 @@
                                 <div class="groupName">
                                     {{$c->cptitle}}
                                 </div>
-                                <div class="joinMember">
-                                    <form action="{{route('canceljoin')}}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="cpid" value="{{$c->cpid}}">
-                                        <button name="" id="" class="operate" type="submit">取消</button>
-                                        </form>        
-                                </div>
+                                <form action="{{route('canceljoin')}}" method="post" onsubmit="return confirm('確定要取消嗎？')">
+                                @csrf
+                                <input type="hidden" name="cpid" value="{{$c->cpid}}">
+                                <button name="" id="" class="operate" type="submit">取消</button>
+                                </form>
                             </div>
                         </a>
                     @endforeach
@@ -168,7 +164,9 @@
                 @endif
             </div>
 
-<hr />
+
+
+
 
             <div class="join">
                 <h2>歷史紀錄</h2>

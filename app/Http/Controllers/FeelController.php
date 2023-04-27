@@ -7,6 +7,8 @@ use App\Models\MyModel;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\FeelCommentNotice;
+use App\Models\User;
 
 
 class FeelController extends Controller
@@ -60,6 +62,14 @@ class FeelController extends Controller
         $ftid = $request->ftid;
         $feelcom = $request->feelcom;
         $this->model->feelCom($ftid, $uid, $feelcom);
+
+        $list = $this->model->feelDetail($ftid);
+        $user = User::find($list[0]->uid); //要發送通知的對象poster
+        $someone = Auth::user()->name;
+        $title = $list[0]->title;
+        $comment =  $request->feelcom;
+        $user->notify(new FeelCommentNotice($someone, $title, $comment, $ftid, $uid));
+
         // return "ok";
         return redirect("/feelDetail/{$ftid}");
     }
