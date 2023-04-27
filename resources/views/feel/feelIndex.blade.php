@@ -75,21 +75,21 @@
 
         <aside class="column2">
             <h1>-最新文章-</h1>
-            @foreach($datas as $data)
-            <a href="{{route('fedetail',[ 'id'=> $data->fid ] )}}" class="linking2">
+            @foreach($feelNews as $feelNew)
+            <a href="{{route('fedetail',[ 'id'=>  $feelNew->fid ] )}}" class="linking2">
                 <div class="article2">
                     <div class="article2Con">
-                            <h3>{{$data->title}}</h3>
+                            <h3>{{ $feelNew->title}}</h3>
                         <div class="new">
-                            @if(empty($data->upicture))
+                            @if(empty( $feelNew->upicture))
                                 <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
                             @else
-                                <img class="newpic" src="{{$data->upicture}}">
+                                <img class="newpic" src="{{ $feelNew->upicture}}">
                             @endif                               
-                            <span class="newname">{{$data->name}}</span>
+                            <span class="newname">{{ $feelNew->name}}</span>
                             <br>
                             <br>
-                            <span class="newtime">{{$data->createtime}}</span>
+                            <span class="newtime">{{ $feelNew->createtime}}</span>
                         </div>
                     </div>
                 </div>

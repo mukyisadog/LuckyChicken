@@ -24,13 +24,6 @@
         <div class="pageContent">
             <div id="feelRecord">
                 <h2>我的心得</h2>
-<<<<<<< HEAD
-                @if(count($feelList)>0)
-                @foreach($feelList as $feelArticle)
-                <div class="article">
-                    <div class="articleDate">
-                        {{ $feelArticle->date }}
-=======
                 @if(count($feelList) > 0)
                     @foreach($feelList as $feelArticle)
                     <div class="editArticle">
@@ -58,7 +51,6 @@
                                 <button type="submit" name="" id="" class="operate">刪除</button>
                             </form>
                         </div>
->>>>>>> df79b43503279fb3f65097de5fe13d4bd1b9ca11
                     </div>
                     @endforeach
                 @else
@@ -70,13 +62,6 @@
             <hr />
             <div id="comment">
                 <h2>我的留言</h2>
-<<<<<<< HEAD
-                @if(count($feelComments)>0)
-                @foreach($feelComments as $feelComment)
-                <div class="article">
-                    <div class="articleDate">
-                        {{ $feelComment->date }}
-=======
                 @if(count($feelComments) > 0)
                     @foreach($feelComments as $feelComment)
                     <div class="viewArticle">
@@ -93,7 +78,6 @@
                         <div class="buttons">
                             <a href="{{ route('fedetail', ['id'=>$feelComment->fid]) }}"><button type="button" name="" id="" class="operate">檢視文章</button></a>
                         </div>
->>>>>>> df79b43503279fb3f65097de5fe13d4bd1b9ca11
                     </div>
                     @endforeach
                 @else

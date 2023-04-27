@@ -103,6 +103,9 @@ font-size: 45px;
   color: rgb(231, 30, 70) !important;
 }
 
+#artCon{
+  white-space: pre-wrap;
+}
 /* 留言歷史 */
 #mesHis {
   margin-top: 3%;
@@ -110,6 +113,7 @@ font-size: 45px;
   width: 85%;
   margin-left: 0%;
   padding: 40px;
+  color: #664c43;
 }
 
 .headDiv > .headDivChi > * {
@@ -134,7 +138,8 @@ font-size: 45px;
   margin-top: 1%;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  white-space: normal;
+  /* white-space: normal; */
+  white-space: break-spaces;
 }
 
 .headDivChi2 > button {

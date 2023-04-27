@@ -24,11 +24,7 @@
         <div class="pageContent">
             <div id="feelSave">
                 <h2>心得</h2>
-<<<<<<< HEAD
-                @if(count($feelSaveList)>0)
-=======
                 @if(count($feelSaveList) > 0)
->>>>>>> df79b43503279fb3f65097de5fe13d4bd1b9ca11
                 @foreach($feelSaveList as $feelSaveArticle)
                 <div class="viewArticle">
                     <div class="articleDate">
@@ -53,11 +49,7 @@
 
             <div id="forumSave">
                 <h2>論壇</h2>
-<<<<<<< HEAD
-                @if(count($forumSaveList)>0)
-=======
                 @if(count($forumSaveList) > 0)
->>>>>>> df79b43503279fb3f65097de5fe13d4bd1b9ca11
                 @foreach($forumSaveList as $forumSaveArticle)
                 <div class="viewArticle">
                     <div class="articleDate">

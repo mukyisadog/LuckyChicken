@@ -199,7 +199,7 @@ class MyModel extends Model
     }
 
     function forumDetail($sid,$foid){
-        $datas = DB::select("select fpicture,name,title,Forum_list.createtime,upicture,Forum_list.content as content from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and Forum_list.foid = ? ",[$sid, $foid]);
+        $datas = DB::select("select uid,fpicture,name,title,Forum_list.createtime,upicture,Forum_list.content as content from Forum_list left join users on Forum_list.uid = users.id where Forum_list.sfid = ? and Forum_list.foid = ? ",[$sid, $foid]);
         return $datas;
     }
 
