@@ -83,9 +83,7 @@
                             @else
                                 <img class="newpic" src="{{ $feelNew->upicture}}">
                             @endif                               
-                            <span class="newname">{{ $feelNew->name}}</span>
-                            <br>
-                            <br>
+                            <span class="newname">{{ $feelNew->name}}</span><br />
                             <span class="newtime">{{ $feelNew->createtime}}</span>
                         </div>
                     </div>

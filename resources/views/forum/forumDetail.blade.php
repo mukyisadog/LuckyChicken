@@ -34,14 +34,22 @@
                             </div>
                             <div>
                                 <h1>{{ $article->title }}</h1>
+<<<<<<< HEAD
                                 <p>{{ $article->createtime }}</p>
+=======
+                                <p>{{ $article->date }}</p>
+>>>>>>> 6fe47e12e864610311697a1070ad17f6b1106720
                             </div>
                             <div id="imgDiv">
                                 <img src="{{ $article->fpicture }}">
                             </div>
+<<<<<<< HEAD
                             <div id="artCon">
                                 {{ $article->content }}
                             </div>
+=======
+                            <div id="artCon">{{ $article->content }}</div>
+>>>>>>> 6fe47e12e864610311697a1070ad17f6b1106720
                         @endforeach
                     @endif
                 </div>
@@ -78,22 +86,17 @@
                 <!-- 留言紀錄 -->
                 @if ($FCquestions == null)
                     <div id="mesHis">
-                        <div class="headDiv">
-                            <div class="headDivChi">
-                            </div>
-                            <div class="headDivChi2">
-                                <p>還沒有人留言喔～</p>
-                                <p>快來當頭香～</p>
-                            </div>
+                        <div class="noComment">
+                            <p>還沒有人留言喔～</p>
+                            <p>快來當頭香～</p>
                         </div>
-                        <hr>
                     </div>
                 @else
                     <div id="mesHis">
                         @foreach ($FCquestions as $FCquestion)
                             <div class="headDiv">
                                 <div class="headDivChi">
-                                    @if(empty($FCquestion->upicture))
+                                    @if (empty($FCquestion->upicture))
                                         <img class="headDivPic" src="{{ asset('pic/admin.png') }}" alt="">
                                     @else
                                         <img class="headDivPic" src="{{ $FCquestion->upicture }}">
@@ -101,58 +104,61 @@
                                     <p>{{ $FCquestion->name }}</p>
                                     @if ($FCquestion->uid === $uid)
                                         <div class="icons">
-                                            <a class="edit-btn" data-id="{{$FCquestion->focid}}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="edit-btn" data-id="{{ $FCquestion->focid }}"><i
+                                                    class="bi bi-pencil-square"></i></a>
                                             <span>|</span>
                                             <a href="{{ route('forumcomdelect', ['focid' => $FCquestion->focid]) }}"><i
                                                     class="bi bi-trash3"></i></a>
                                         </div>
                                     @endif
                                 </div>
-                                <div class="headDivChi2">{{ $FCquestion->content }}</div>
+                                <div class="headDivChi2">
+                                    <div class="commentContent">{{ $FCquestion->content }}</div>
+                                </div>
                             </div>
-                            <hr>
                         @endforeach
-                            <script>                       
-                                // 获取所有编辑按钮
-                                var editButtons = document.querySelectorAll('.bi-pencil-square');
-                                // 定义处理编辑按钮点击事件的函数
-                                function handleEditButtonClick(button) {
-                                    
-                                    var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
-                                    var fcidd = button.closest('.edit-btn').dataset.id;
-                                    var text = divToEdit.innerText;
-                                    // console.log(text);
-                                    divToEdit.innerHTML = `
-                                    <form action="{{route('forumcomedit')}}" method="POST">
+                        <script>
+                            // 获取所有编辑按钮
+                            var editButtons = document.querySelectorAll('.bi-pencil-square');
+                            // 定义处理编辑按钮点击事件的函数
+                            function handleEditButtonClick(button) {
+
+                                var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
+                                var fcidd = button.closest('.edit-btn').dataset.id;
+                                var text = divToEdit.innerText;
+                                // console.log(text);
+                                divToEdit.innerHTML = `
+                                    <form action="{{ route('forumcomedit') }}" method="POST">
                                         @csrf
                                         <input type="hidden" value="${fcidd}" name="focid">
-                                        <textarea name="content" required>${text}</textarea>
+                                        <textarea name="content" class="editComment" required>${text}</textarea>
                                         <input class="editbt" type="submit" value="-更新留言-">
                                     </form>
                                     `;
-                                }
-                                // 给每个编辑按钮绑定点击事件处理函数
-                                editButtons.forEach((button) => {
-                                    button.addEventListener('click', () => {
-                                        handleEditButtonClick(button);
-                                    });
+                            }
+                            // 给每个编辑按钮绑定点击事件处理函数
+                            editButtons.forEach((button) => {
+                                button.addEventListener('click', () => {
+                                    handleEditButtonClick(button);
                                 });
-                                function handleFormSubmit(event) {
-                                    // 防止表单提交
-                                    event.preventDefault();
-                                    // 获取表单元素和表单内容
-                                    var form = event.target;
-                                    var content = form.querySelector('textarea[name="content"]').value;
-                                    // 如果内容为空，弹出提示框
-                                    if (!content) {
-                                        alert('请输入留言内容！');
-                                    } else {
-                                        // 否则提交表单
-                                        form.submit();
-                                    }
+                            });
+
+                            function handleFormSubmit(event) {
+                                // 防止表单提交
+                                event.preventDefault();
+                                // 获取表单元素和表单内容
+                                var form = event.target;
+                                var content = form.querySelector('textarea[name="content"]').value;
+                                // 如果内容为空，弹出提示框
+                                if (!content) {
+                                    alert('请输入留言内容！');
+                                } else {
+                                    // 否则提交表单
+                                    form.submit();
                                 }
-                            </script>
-                            
+                            }
+                        </script>
+
                     </div>
                 @endif
 
@@ -162,7 +168,8 @@
                 <!-- 留言 -->
                 <div id="mes">
                     @if (Auth::check())
-                        <form method="post" action="{{ route('forumcom', ['sfid' => $sfid, 'foid' => $foid]) }}" id="myForm">
+                        <form method="post" action="{{ route('forumcom', ['sfid' => $sfid, 'foid' => $foid]) }}"
+                            id="myForm">
                             @csrf
                             @foreach ($userDatas as $userData)
                                 <div class="formPic">
@@ -198,20 +205,18 @@
                     <h1>最新文章</h1>
                     @foreach ($forumNews as $forumNew)
                         <a href="{{ route('fodetail', ['sfid' => $forumNew->sfid, 'foid' => $forumNew->foid]) }}"
-                            class="linking">
+                            class="linking2">
                             <div class="article2">
                                 <div class="article2Con">
-                                    <h4>{{ $forumNew->title }}</h4>
+                                    <h3>{{ $forumNew->title }}</h3>
                                     <div class="new">
                                         @if (empty($forumNew->upicture))
                                             <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
                                         @else
                                             <img class="newpic" src="{{ $forumNew->upicture }}">
                                         @endif
-                                        <span class="newname">{{ $forumNew->name }}</span>
-                                        <br>
-                                        <br>
-                                        <span class="newtime">{{ $forumNew->createtime }}</span>
+                                        <span class="newname">{{ $forumNew->name }}</span><br />
+                                        <span class="newtime">{{ $forumNew->date }}</span>
                                     </div>
                                 </div>
                             </div>

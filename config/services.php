@@ -31,4 +31,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 測試機器人
+    'openai' => [
+        'api_key' => env('OPENAI_API_KEY'),
+        'model' => 'text-davinci-002',
+        'temperature' => 0.5,
+        'max_tokens' => 50,
+        'timeout' => 10,
+    ],
+    
+    
+
 ];

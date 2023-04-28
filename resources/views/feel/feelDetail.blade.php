@@ -37,9 +37,7 @@
                         <div id="imgDiv">
                             <img src="{{ $article1->fpicture }}">
                         </div>
-                        <div id="artCon">
-                            {{ $article1->content }}
-                        </div>
+                        <div id="artCon">{{ $article1->content }}</div>
                     @endforeach
                 </div>
                 @auth
@@ -75,15 +73,10 @@
 
                 @if ($comments == null)
                     <div id="mesHis">
-                        <div class="headDiv">
-                            <div class="headDivChi">
-                            </div>
-                            <div class="noComment">
-                                <p>還沒有人留言喔～</p>
-                                <p>快來當頭香～</p>
-                            </div>
+                        <div class="noComment">
+                            <p>還沒有人留言喔～</p>
+                            <p>快來當頭香～</p>
                         </div>
-                        <hr>
                     </div>
                 @else
                     <div id="mesHis">
@@ -91,51 +84,51 @@
                             <div class="headDiv">
                                 <div class="headDivChi">
                                     @if (empty($comment->upicture))
-                                        <img src="{{ asset('pic/admin.png') }}">
+                                        <img class="headDivPic" src="{{ asset('pic/admin.png') }}">
                                     @else
                                         <img class="headDivPic" src="{{ $comment->upicture }}">
                                     @endif
                                     <p>{{ $comment->name }}</p>
                                     @if ($comment->uid === $uid)
                                         <div class="icons">
-                                            <a class="edit-btn" data-id="{{$comment->fcid}}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="edit-btn" data-id="{{ $comment->fcid }}"><i
+                                                    class="bi bi-pencil-square"></i></a>
                                             <span>|</span>
                                             <a href="{{ route('feelcomdelect', ['fcid' => $comment->fcid]) }}"><i
                                                     class="bi bi-trash3"></i></a>
                                         </div>
                                     @endif
                                 </div>
-                                <div class="headDivChi2">{{ $comment->content }}</div>
+                                <div class="headDivChi2">
+                                    <div class="commentContent">{{ $comment->content }}</div>
+                                </div>
                             </div>
-                            <hr>
                         @endforeach
-                            <script>
-                    // 获取所有编辑按钮
-                    var editButtons = document.querySelectorAll('.bi-pencil-square');
-                    // 定义处理编辑按钮点击事件的函数
-                    function handleEditButtonClick(button) {
-                        var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
-                        var fcidd = button.closest('.edit-btn').dataset.id;
-                        var text = divToEdit.innerText;
-                        // console.log(text);
-                        divToEdit.innerHTML = `
-                        <form action="{{route('feelcomedit')}}" method="POST">
+                        <script>
+                            // 获取所有编辑按钮
+                            var editButtons = document.querySelectorAll('.bi-pencil-square');
+                            // 定义处理编辑按钮点击事件的函数
+                            function handleEditButtonClick(button) {
+                                var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
+                                var fcidd = button.closest('.edit-btn').dataset.id;
+                                var text = divToEdit.innerText;
+                                // console.log(text);
+                                divToEdit.innerHTML = `
+                        <form action="{{ route('feelcomedit') }}" method="POST">
                             @csrf
                             <input type="hidden" value="${fcidd}" name="fcid">
-                            <textarea name="content" required>${text}</textarea>
+                            <textarea name="content" class="editComment" required>${text}</textarea>
                             <input class="editbt" type="submit" value="-更新留言-">
                         </form>
                         `;
-                    }
-                    // 给每个编辑按钮绑定点击事件处理函数
-                    editButtons.forEach((button) => {
-                        button.addEventListener('click', () => {
-                            handleEditButtonClick(button);
-                        });
-                    });
-                    
-                    
-                </script>
+                            }
+                            // 给每个编辑按钮绑定点击事件处理函数
+                            editButtons.forEach((button) => {
+                                button.addEventListener('click', () => {
+                                    handleEditButtonClick(button);
+                                });
+                            });
+                        </script>
 
                     </div>
                 @endif
