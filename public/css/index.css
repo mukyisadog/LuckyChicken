@@ -26,8 +26,11 @@ a:hover {
   text-align: center;
   background-color: #B1BBA0;
   margin: 0;
-  padding: 10px 0;
-  position: relative;
+  padding: 10px 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 #logoImg {
@@ -38,14 +41,25 @@ a:hover {
 .noticeBell {
   font-size: 30px;
   color: #664c43;
+  border: 0;
+  background-color: #B1BBA0;
+}
+
+.noticeBell:hover {
+  color: #F8F6F2;
+}
+
+#logOutSection {
+  display: flex;
+  align-items: center;
+  width: 20%;
 }
 
 #memberSection {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  width: 20%;
 }
 
 #BtLogin {
@@ -55,6 +69,10 @@ a:hover {
   color: #664c43;
   font-size: 16px;
   height: 32px;
+}
+
+#BtLogin:hover {
+  background-color: #F8F6F2;
 }
 
 #BtLogout {
@@ -68,7 +86,7 @@ a:hover {
   line-height: 16px;
 }
 
-#BtLogin:hover {
+#BtLogout:hover {
   background-color: #F8F6F2;
 }
 
@@ -84,13 +102,24 @@ a:hover {
   opacity: 0.7;
 }
 
+#notice {
+  display: none;
+}
+
 /* 照片置中 */
 #section1 {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-top: 70px;
-  padding-top: 50px;
+  padding: 150px 0 80px 0;
+
+  background-image: url("../img/01.jpg");
+  background-position-y: 48%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 .webFeature {
@@ -105,7 +134,7 @@ a:hover {
 }
 
 .webFeature:hover {
-  box-shadow: 0 10px 8px 0 #D8DDCF;
+  box-shadow: 0 10px 8px 0 #37373787;
 }
 
 .pngDiv {
@@ -147,15 +176,43 @@ a:hover {
   margin-bottom: 10px;
 }
 
+#weather {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 90px 0;
+}
+
 /* 標題置中 */
 h2 {
   text-align: center;
   color: #664c43;
 }
 
-#newFeel,
+#newCarpool {
+  padding: 90px 0;
+
+  background-image: url("../img/03.jpg");
+  background-position-y: 48%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#newFeel {
+  padding: 90px 0;
+}
+
 #newForum {
-  margin-top: 60px;
+  padding: 90px 0;
+
+  background-image: url("../img/02.jpg");
+  background-position-y: 48%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* 心得卡片 */
@@ -173,7 +230,7 @@ h2 {
 }
 
 .card:hover {
-  box-shadow: 0 10px 8px 0 #D8DDCF;
+  box-shadow: 0 10px 8px 0 #37373787;
 }
 
 .articlePic {
@@ -250,7 +307,7 @@ h5 {
 #footer {
   background-color: #B1BBA0;
   height: fit-content;
-  margin: 60px 0 -20px 0;
+  margin-bottom: -20px;
   color: #664c43;
   font-size: 20px;
   padding: 0 30px;
@@ -295,7 +352,7 @@ h5 {
 @media screen and (max-width: 1200px) {
   #logo {
     margin: 0;
-    padding: 10px 0;
+    padding: 10px 20px;
   }
   
   #logoImg {
@@ -303,7 +360,7 @@ h5 {
   }
 
   #memberSection {
-    top: 20px;
+    top: 15px;
     right: 20px;
   }
 
@@ -342,12 +399,10 @@ h5 {
 @media screen and (max-width: 600px) {
   #logo {
     height: 70px;
+    align-items: center;
   }
 
   #logoImg {
-    float: left;
-    position: relative;
-    left: 30px;
     height: 50px;
   }
 

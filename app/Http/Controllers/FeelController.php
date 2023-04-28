@@ -72,14 +72,6 @@ class FeelController extends Controller
         $comment =  $request->feelcom;
         $user->notify(new FeelCommentNotice($someone, $title, $comment, $ftid, $uid));
 
-
-        $list = $this->model->feelDetail($ftid);
-        $user = User::find($list[0]->uid); //要發送通知的對象poster
-        $someone = Auth::user()->name;
-        $title = $list[0]->title;
-        $comment =  $request->feelcom;
-        $user->notify(new FeelCommentNotice($someone, $title, $comment, $ftid, $uid));
-
         // return "ok";
         return redirect("/feelDetail/{$ftid}");
     }
