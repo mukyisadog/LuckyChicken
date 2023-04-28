@@ -32,7 +32,7 @@ h1 {
   overflow-wrap: break-word;
   white-space: normal;
   position: relative;
-  color: #664c43;
+  color: #1e232d;
   border-radius: 20px;
 }
 
@@ -51,7 +51,7 @@ h1 {
 }
 
 .author span {
-  font-size: 30px;
+  font-size: 24px;
   margin-left: 20px;
 }
 
@@ -89,7 +89,7 @@ h1 {
   background-color: #d8ddcf;
   margin-left: 0%;
   padding: 20px 40px;
-  color: #664c43;
+  color: #1e232d;
   border-radius: 20px;
 }
 
@@ -220,7 +220,7 @@ input[type="button"] {
   resize: none;
   position: relative;
   left: 10px;
-  color: #664c43;
+  color: #1e232d;
 }
 
 textarea:focus {
@@ -288,7 +288,7 @@ textarea:focus {
   resize: none;
   position: relative;
   left: 10px;
-  color: #664c43;
+  color: #1e232d;
 }
 
 /* 側邊欄 */
