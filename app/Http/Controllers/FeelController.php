@@ -7,7 +7,8 @@ use App\Models\MyModel;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
-
+use App\Notifications\FeelCommentNotice;
+use App\Models\User;
 
 class FeelController extends Controller
 {

@@ -34,22 +34,12 @@
                             </div>
                             <div>
                                 <h1>{{ $article->title }}</h1>
-<<<<<<< HEAD
-                                <p>{{ $article->createtime }}</p>
-=======
                                 <p>{{ $article->date }}</p>
->>>>>>> 6fe47e12e864610311697a1070ad17f6b1106720
                             </div>
                             <div id="imgDiv">
                                 <img src="{{ $article->fpicture }}">
                             </div>
-<<<<<<< HEAD
-                            <div id="artCon">
-                                {{ $article->content }}
-                            </div>
-=======
                             <div id="artCon">{{ $article->content }}</div>
->>>>>>> 6fe47e12e864610311697a1070ad17f6b1106720
                         @endforeach
                     @endif
                 </div>
