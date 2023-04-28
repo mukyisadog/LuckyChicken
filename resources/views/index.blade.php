@@ -24,17 +24,17 @@
         <div id="logo">
             <div id="logOutSection">
                 @if (Auth::check())
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault();
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
                                 this.closest('form').submit();"
-                        id="BtLogout">
-                        {{ __('登出') }}
-                    </x-dropdown-link>
-                </form>
+                            id="BtLogout">
+                            {{ __('登出') }}
+                        </x-dropdown-link>
+                    </form>
                 @else
-                <a href="{{ route('login') }}"><button id="BtLogin">登入/註冊</button></a>
+                    <a href="{{ route('login') }}"><button id="BtLogin">登入/註冊</button></a>
                 @endif
             </div>
             <a href="/"><img src="{{ asset('img/logo.jpg') }}" id="logoImg"></a>
@@ -197,6 +197,26 @@
             </div>
         </div>
 
+        <div id="newCarpool">
+            <h2>最近揪共乘</h2>
+            <div class="sliderContainer">
+                <div class="slider responsive">
+                    @foreach ($cplist as $cp)
+                        <a href="{{ route('cpinfo', [$cp->cpid]) }}" class="linking2">
+                            <div class="card">
+                                <h5>{{ $cp->cptitle }}</h5>
+                                <span>目的地：{{ $cp->arrive }}</span><br />
+                                <span>出發日期：{{ $cp->departdate }}</span>
+                                <div style="margin: 15px 0;">
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
+        </div>
+
         <div id="newFeel">
             <h2>最新心得</h2>
             <div class="sliderContainer">
@@ -254,6 +274,7 @@
                 }
             }
         </script>
+
         <footer id="footer">
             <ul class="footerMenu">
                 <li><a href="{{ route('cphome') }}">拼車</a></li>

@@ -111,8 +111,15 @@ a:hover {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-top: 70px;
-  padding-top: 50px;
+  padding: 150px 0 80px 0;
+
+  background-image: url("../img/01.jpg");
+  background-position-y: 48%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 .webFeature {
@@ -127,7 +134,7 @@ a:hover {
 }
 
 .webFeature:hover {
-  box-shadow: 0 10px 8px 0 #D8DDCF;
+  box-shadow: 0 10px 8px 0 #37373787;
 }
 
 .pngDiv {
@@ -169,15 +176,43 @@ a:hover {
   margin-bottom: 10px;
 }
 
+#weather {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 90px 0;
+}
+
 /* 標題置中 */
 h2 {
   text-align: center;
   color: #664c43;
 }
 
-#newFeel,
+#newCarpool {
+  padding: 90px 0;
+
+  background-image: url("../img/03.jpg");
+  background-position-y: 48%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#newFeel {
+  padding: 90px 0;
+}
+
 #newForum {
-  margin-top: 60px;
+  padding: 90px 0;
+
+  background-image: url("../img/02.jpg");
+  background-position-y: 48%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* 心得卡片 */
@@ -195,7 +230,7 @@ h2 {
 }
 
 .card:hover {
-  box-shadow: 0 10px 8px 0 #D8DDCF;
+  box-shadow: 0 10px 8px 0 #37373787;
 }
 
 .articlePic {
@@ -272,7 +307,7 @@ h5 {
 #footer {
   background-color: #B1BBA0;
   height: fit-content;
-  margin: 60px 0 -20px 0;
+  margin-bottom: -20px;
   color: #664c43;
   font-size: 20px;
   padding: 0 30px;
