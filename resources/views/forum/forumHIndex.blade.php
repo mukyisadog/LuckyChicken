@@ -33,9 +33,7 @@
                         <div id="articles">
                             @if (isset($Houtputs))
                                 @if ($Houtputs->isEmpty())
-                                    <div class="article">
-                                        <p>查無相關資料</p>
-                                    </div>
+                                    <p class="noResult">查無相關資料</p>
                                 @else
                                     @foreach ($Houtputs as $Houtput)
                                         <a href="{{ route('fodetail', ['sfid' => 3, 'foid' => $Houtput->foid]) }}"

@@ -14,7 +14,7 @@
 <div id="content-container">
     <h1 id="carpool-title">我要揪共乘</h1>
     <div id="carpoolform-container">
-        <img src="{{asset('img/carpool.jpg')}}" alt="">
+        <img src="{{asset('img/famous.png')}}" alt="">
         <form action="{{route('cpupdate')}}" method="post">
             @csrf
             <div style="display: flex; justify-content: center;">
