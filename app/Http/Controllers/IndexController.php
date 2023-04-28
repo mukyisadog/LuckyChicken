@@ -15,7 +15,7 @@ class IndexController extends Controller
         $this->model = new MyModel;
     }
     public function Index()
-    {      
+    {   
         $feeldatas = $this->model->feelNews();
         $forumdatas = $this->model->forumNew2();
         $cplist = DB::select('select * from carpool_list1 where departdate > now() order by departdate limit 6');
@@ -29,10 +29,9 @@ class IndexController extends Controller
             $notice = "";
         }
 
-
         return view('Index',[
             'feeldatas'=>$feeldatas,
-            'forumdatas'=>$forumdatas,,
+            'forumdatas'=>$forumdatas,
             'notice'=>$notice,
             'cplist'=>$cplist
         ]);
