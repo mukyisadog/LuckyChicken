@@ -241,6 +241,7 @@ class CarpoolController extends Controller
     //刪除 /member
     public function delete(Request $req){
         CpList::where('cpid', $req->cpid)->delete();
+        DB::table('carpool_comment')->where('cpid', $req->cpid)->delete();
         return redirect(route('mbcp'));
     }
     

@@ -82,11 +82,11 @@ body {
     color: #ffffff;
 }
 
-.menu li:nth-child(4) a:hover {
+.menu li:last-child a:hover {
     background-color: #a1ac8e;
     color: #ffffff;
     height: 70px;
-    }
+}
 
 /*  */
 

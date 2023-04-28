@@ -5,6 +5,7 @@ use App\Models\MyModel;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -18,9 +19,19 @@ class IndexController extends Controller
         $feeldatas = $this->model->feelNews();
         $forumdatas = $this->model->forumNew2();
 
+        if(Auth::check()) {
+            $user = Auth::user();
+            $notice = $user->notifications;
+            // dd($notice);
+            $notice->markAsRead();    
+        } else {
+            $notice = "";
+        }
+
         return view('Index',[
             'feeldatas'=>$feeldatas,
             'forumdatas'=>$forumdatas,
+            'notice'=>$notice
         ]);
         // return $datas;
     }

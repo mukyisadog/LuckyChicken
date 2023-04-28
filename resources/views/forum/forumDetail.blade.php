@@ -184,7 +184,7 @@
                                     <p>{{ $userData->name }} ></p>
                                 </div>
                             @endforeach
-                            <textarea name="forumcom" id="" cols="30" rows="10" placeholder="你需要先登入才能留言喔～" disabled></textarea>
+                            <textarea name="forumcom" id="feelcom" cols="30" rows="10" placeholder="你需要先登入才能留言喔～" disabled></textarea>
                             <input type="button" value="-送出-">
                         </form>
                     @endif

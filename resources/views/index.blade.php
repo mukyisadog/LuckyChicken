@@ -22,30 +22,89 @@
 <body>
     <div id="mainContent">
         <div id="logo">
+            <div id="logOutSection">
+                @if (Auth::check())
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                this.closest('form').submit();"
+                        id="BtLogout">
+                        {{ __('登出') }}
+                    </x-dropdown-link>
+                </form>
+                @else
+                <a href="{{ route('login') }}"><button id="BtLogin">登入/註冊</button></a>
+                @endif
+            </div>
             <a href="/"><img src="{{ asset('img/logo.jpg') }}" id="logoImg"></a>
             <div id="memberSection">
                 @if (Auth::check())
-                    <a href="#" class="noticeBell"><i class="bi bi-bell"></i></a>
+                    <button onclick="showNotice()" class="noticeBell"><i class="bi bi-bell"></i></button>
                     <?php $user = Auth::user(); ?>
                     @if (empty($user->upicture))
                         <a href="{{ route('mbinfo') }}"><img src="{{ asset('pic/admin.png') }}" class="memberIcon"></a>
                     @else
                         <a href="{{ route('mbinfo') }}"><img src="{{ $user->upicture }}" class="memberIcon"></a>
                     @endif
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-dropdown-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                    this.closest('form').submit();"
-                            id="BtLogout">
-                            {{ __('登出') }}
-                        </x-dropdown-link>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}"><button id="BtLogin">登入/註冊</button></a>
                 @endif
             </div>
         </div>
+
+        @if (Auth::check())
+            <div id="notice">
+                <h2>通知</h2>
+                @if (count($notice) > 0)
+                    @foreach ($notice as $n)
+                        @if ($n->type == 'App\Notifications\WannajoinNotice')
+                            <span>[揪共乘] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
+                                <p>"{{ $n->data['joiner'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;
+                                </p>
+                            </a>
+                        @elseif($n->type == 'App\Notifications\ConfirmJoinNotice')
+                            <span>[共乘確認] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
+                                <p>"{{ $n->data['poster'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;{{ $n->data['message2'] }}
+                                </p>
+                            </a>
+                        @elseif($n->type == 'App\Notifications\DeclineJoinNotice')
+                            <span>[共乘確認] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
+                                <p>"{{ $n->data['poster'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;{{ $n->data['message2'] }}
+                                </p>
+                            </a>
+                        @elseif($n->type == 'App\Notifications\CpcommentNotice')
+                            @if ($n->notifiable_id != $n->data['uid'])
+                                <span>[共乘留言] {{ $n->created_at }}</span><a
+                                    href="{{ route('cpinfo', ['cpid' => $n->data['cpid']]) }}">
+                                    <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
+                                        {{ $n->data['cptitle'] }} &#62; {{ $n->data['message2'] }}
+                                        "{{ $n->data['comment'] }}"</p>
+                                </a>
+                            @endif
+                        @elseif($n->type == 'App\Notifications\FeelCommentNotice')
+                            @if ($n->notifiable_id != $n->data['uid'])
+                                <span>[心得留言] {{ $n->created_at }}</span><a
+                                    href="{{ route('fedetail', ['id' => $n->data['ftid']]) }}">
+                                    <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
+                                        {{ $n->data['title'] }}
+                                        &#62; {{ $n->data['message2'] }} "{{ $n->data['comment'] }}"</p>
+                                </a>
+                            @endif
+                        @elseif($n->type == 'App\Notifications\ForumCommentNotice')
+                            @if ($n->notifiable_id != $n->data['uid'])
+                                <span>[論壇留言] {{ $n->created_at }}</span><a
+                                    href="{{ route('fodetail', ['sfid' => $n->data['sfid'], 'foid' => $n->data['foid']]) }}">
+                                    <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
+                                        {{ $n->data['title'] }}
+                                        &#62; {{ $n->data['message2'] }} "{{ $n->data['comment'] }}"</p>
+                                </a>
+                            @endif
+                        @endif
+                    @endforeach
+                @else
+                    <p>沒有通知喔</p>
+                @endif
+            </div>
+        @endif
 
         <div id="section1">
             <a href="{{ route('cphome') }}" class="webFeature">
@@ -185,6 +244,16 @@
         </div>
         <!-- 輪播控制 -->
         <script src="{{ asset('js/index.js') }}"></script>
+        <script>
+            function showNotice() {
+                var x = document.getElementById("notice");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
         <footer id="footer">
             <ul class="footerMenu">
                 <li><a href="{{ route('cphome') }}">拼車</a></li>
@@ -235,9 +304,9 @@
                     let row1_3 = "<td colspan=8>" + b[se1].weatherElement[0].time[y + 8].dataTime.toString()
                         .substring(0, 10) + "</td>"
                     let row1_4 = "<td colspan=8>" + b[se1].weatherElement[0].time[y + 16].dataTime
-                    .toString().substring(0, 10) + "</td>"
+                        .toString().substring(0, 10) + "</td>"
                     let row1_5 = `<td colspan =${z}>` + b[se1].weatherElement[0].time[29].dataTime
-                    .toString().substring(0, 10) + "</td>"
+                        .toString().substring(0, 10) + "</td>"
                     let col =
                         `<colgroup><col span=${y + 1} style='background-color:white;'><col span=8 style='background-color:rgb(201, 238, 252);'>
                             <col span=8 style='background-color:white;'><col span=8 style='background-color:rgb(201, 238, 252);'></colgroup>`
