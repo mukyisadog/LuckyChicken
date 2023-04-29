@@ -29,4 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/notice', [CarpoolController::class, 'cpjoinNotice'])->name('notice');
 });
 
+// 測試機器人
+Route::get('/test',function (){
+    return view();
+});
 require __DIR__.'/auth.php';
