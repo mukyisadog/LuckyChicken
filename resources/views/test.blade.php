@@ -1,5 +1,5 @@
-<div id="chat-window">
+<form id="chat-window" type="get" action="{{route('robot')}}">
     <div id="messages"></div>
     <input type="text" id="input-box">
-    <button id="send-button">Send</button>
-</div>
+    <input type="submit" id="send-button" name="Send">
+</form>

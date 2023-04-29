@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CarpoolController;
 use App\Http\Controllers\MemberController;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeelController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\IndexController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,5 @@ Route::middleware('auth')->group(function () {
 });
 
 // 測試機器人
-Route::get('/test',function (){
-    return view();
-});
+Route::get('/robot',[ChatbotController::class,'handle'])->name('robot');
 require __DIR__.'/auth.php';
