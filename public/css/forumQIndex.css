@@ -146,6 +146,10 @@ form.example::after {
     }  
 
 /* 文章 */
+.noResult {
+    font-size: 24px;
+}
+
 .articleContainer {
     background-color: white;
     font-size: 20px;

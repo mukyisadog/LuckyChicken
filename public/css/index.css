@@ -27,6 +27,7 @@ a:hover {
   background-color: #B1BBA0;
   margin: 0;
   padding: 10px 30px;
+  position: relative;
 
   display: flex;
   justify-content: space-between;
@@ -104,6 +105,50 @@ a:hover {
 
 #notice {
   display: none;
+  width: 30%;
+  /* height: 300px;
+  overflow: scroll; */
+  background-color: #f8f6f2;
+  padding: 0 20px 10px 20px;
+	border-radius: 20px;
+  box-shadow: 0 10px 8px 0 #37373787;
+
+  z-index: 100;
+  position: absolute;
+  top: 80px;
+  right: 10%;
+}
+
+#notice:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 5%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-bottom-color: #f8f6f2;
+	border-top: 0;
+	border-right: 0;
+	margin-left: -16px;
+	margin-top: -20px;
+}
+
+.notification {
+  padding: 10px 0;
+}
+
+.notification p {
+  margin: 10px 0;
+  color: #664c43;
+}
+
+#notice h2 {
+  margin: 20px 0;
+}
+
+#notice .notification:not(:last-of-type) {
+  border-bottom: 1px solid #664c43;
 }
 
 /* 照片置中 */
@@ -416,6 +461,12 @@ h5 {
     width: 30px;
     border: 0;
     padding: 0;
+  }
+
+  #notice {
+    width: 90%;
+    margin: auto;
+    position: static;
   }
 
   .column {

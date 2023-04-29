@@ -81,6 +81,10 @@ form.example button:hover {
 }
 
 /* 文章列表 */
+.noResult {
+    font-size: 24px;
+}
+
 #articles {
     background-color: #d8ddcf;
     width: 100%;

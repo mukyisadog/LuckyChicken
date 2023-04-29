@@ -35,9 +35,7 @@
                         <div id="articles">
                             @if (isset($Goutputs))
                                 @if ($Goutputs->isEmpty())
-                                    <div class="article">
-                                        <p>查無相關資料</p>
-                                    </div>
+                                    <p class="noResult">查無相關資料</p>
                                 @else
                                     @foreach ($Goutputs as $Goutput)
                                         <a href="{{ route('fodetail', ['sfid' => 2, 'foid' => $Goutput->foid]) }}"
@@ -86,7 +84,8 @@
             <aside class="column2">
                 <h1>-最新文章-</h1>
                 @foreach ($forumNew2s as $forumNew2)
-                    <a href="{{ route('fodetail', ['sfid' => $forumNew2->sfid, 'foid' => $forumNew2->foid]) }}" class="linking2">
+                    <a href="{{ route('fodetail', ['sfid' => $forumNew2->sfid, 'foid' => $forumNew2->foid]) }}"
+                        class="linking2">
                         <div class="article2">
                             <div class="article2Con">
                                 <h3>{{ $forumNew2->title }}</h3>
