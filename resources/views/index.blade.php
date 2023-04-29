@@ -51,72 +51,70 @@
             </div>
         </div>
 
-        @if (Auth::check())
-            <div id="notice">
-                <h2>通知</h2>
-                @if (count($notice) > 0)
-                    @foreach ($notice as $n)
-                        @if ($n->type == 'App\Notifications\WannajoinNotice')
+        <div id="notice">
+            <h2>通知</h2>
+            @if (count($notice) > 0)
+                @foreach ($notice as $n)
+                    @if ($n->type == 'App\Notifications\WannajoinNotice')
+                        <div class="notification">
+                            <span>[揪共乘] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
+                                <p>"{{ $n->data['joiner'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;
+                                </p>
+                            </a>
+                        </div>
+                    @elseif($n->type == 'App\Notifications\ConfirmJoinNotice')
+                        <div class="notification">
+                            <span>[共乘確認] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
+                                <p>"{{ $n->data['poster'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;{{ $n->data['message2'] }}
+                                </p>
+                            </a>
+                        </div>
+                    @elseif($n->type == 'App\Notifications\DeclineJoinNotice')
+                        <div class="notification">
+                            <span>[共乘確認] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
+                                <p>"{{ $n->data['poster'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;{{ $n->data['message2'] }}
+                                </p>
+                            </a>
+                        </div>
+                    @elseif($n->type == 'App\Notifications\CpcommentNotice')
+                        @if ($n->notifiable_id != $n->data['uid'])
                             <div class="notification">
-                                <span>[揪共乘] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
-                                    <p>"{{ $n->data['joiner'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;
-                                    </p>
+                                <span>[共乘留言] {{ $n->created_at }}</span><a
+                                    href="{{ route('cpinfo', ['cpid' => $n->data['cpid']]) }}">
+                                    <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
+                                        {{ $n->data['cptitle'] }} &#62; {{ $n->data['message2'] }}
+                                        "{{ $n->data['comment'] }}"</p>
                                 </a>
                             </div>
-                        @elseif($n->type == 'App\Notifications\ConfirmJoinNotice')
-                            <div class="notification">
-                                <span>[共乘確認] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
-                                    <p>"{{ $n->data['poster'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;{{ $n->data['message2'] }}
-                                    </p>
-                                </a>
-                            </div>
-                        @elseif($n->type == 'App\Notifications\DeclineJoinNotice')
-                            <div class="notification">
-                                <span>[共乘確認] {{ $n->created_at }}</span><a href="{{ route('mbcp') }}">
-                                    <p>"{{ $n->data['poster'] }}"{{ $n->data['message'] }}&#60;{{ $n->data['cptitle'] }}&#62;{{ $n->data['message2'] }}
-                                    </p>
-                                </a>
-                            </div>
-                        @elseif($n->type == 'App\Notifications\CpcommentNotice')
-                            @if ($n->notifiable_id != $n->data['uid'])
-                                <div class="notification">
-                                    <span>[共乘留言] {{ $n->created_at }}</span><a
-                                        href="{{ route('cpinfo', ['cpid' => $n->data['cpid']]) }}">
-                                        <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
-                                            {{ $n->data['cptitle'] }} &#62; {{ $n->data['message2'] }}
-                                            "{{ $n->data['comment'] }}"</p>
-                                    </a>
-                                </div>
-                            @endif
-                        @elseif($n->type == 'App\Notifications\FeelCommentNotice')
-                            @if ($n->notifiable_id != $n->data['uid'])
-                                <div class="notification">
-                                    <span>[心得留言] {{ $n->created_at }}</span><a
-                                        href="{{ route('fedetail', ['id' => $n->data['ftid']]) }}">
-                                        <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
-                                            {{ $n->data['title'] }}
-                                            &#62; {{ $n->data['message2'] }} "{{ $n->data['comment'] }}"</p>
-                                    </a>
-                                </div>
-                            @endif
-                        @elseif($n->type == 'App\Notifications\ForumCommentNotice')
-                            @if ($n->notifiable_id != $n->data['uid'])
-                                <div class="notification">
-                                    <span>[論壇留言] {{ $n->created_at }}</span><a
-                                        href="{{ route('fodetail', ['sfid' => $n->data['sfid'], 'foid' => $n->data['foid']]) }}">
-                                        <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
-                                            {{ $n->data['title'] }}
-                                            &#62; {{ $n->data['message2'] }} "{{ $n->data['comment'] }}"</p>
-                                    </a>
-                                </div>
-                            @endif
                         @endif
-                    @endforeach
-                @else
-                    <p>沒有通知喔</p>
-                @endif
-            </div>
-        @endif
+                    @elseif($n->type == 'App\Notifications\FeelCommentNotice')
+                        @if ($n->notifiable_id != $n->data['uid'])
+                            <div class="notification">
+                                <span>[心得留言] {{ $n->created_at }}</span><a
+                                    href="{{ route('fedetail', ['id' => $n->data['ftid']]) }}">
+                                    <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
+                                        {{ $n->data['title'] }}
+                                        &#62; {{ $n->data['message2'] }} "{{ $n->data['comment'] }}"</p>
+                                </a>
+                            </div>
+                        @endif
+                    @elseif($n->type == 'App\Notifications\ForumCommentNotice')
+                        @if ($n->notifiable_id != $n->data['uid'])
+                            <div class="notification">
+                                <span>[論壇留言] {{ $n->created_at }}</span><a
+                                    href="{{ route('fodetail', ['sfid' => $n->data['sfid'], 'foid' => $n->data['foid']]) }}">
+                                    <p>"{{ $n->data['someone'] }}"{{ $n->data['message'] }} &#60;
+                                        {{ $n->data['title'] }}
+                                        &#62; {{ $n->data['message2'] }} "{{ $n->data['comment'] }}"</p>
+                                </a>
+                            </div>
+                        @endif
+                    @endif
+                @endforeach
+            @else
+                <p>沒有通知喔</p>
+            @endif
+        </div>
 
         <div id="section1">
             <a href="{{ route('cphome') }}" class="webFeature">
@@ -149,9 +147,10 @@
         </div>
 
         <div id="weather">
+            <h2>天氣預報</h2>
             <div class="row" style="width: 85%">
                 <div class="col-md-12">
-                    <form>
+                    <form id="weatherForm">
                         <span>請選擇 &nbsp;:</span>
                         <select name="" id="se">
                             <optgroup label="雪山主東">
@@ -193,11 +192,11 @@
                                 <option value="87">庫哈諾辛山</option>
                             </optgroup>
                         </select>
-                        <button type="button" onclick=getTable() class="btn btn-outline-success">確定</button>
+                        <button type="button" onclick=getTable() id="chooseBtn">確定</button>
                     </form>
                 </div>
                 <div class="col-md-12 mt-4 d-flex justify-content-center">
-                    <h1 id="title"></h1>
+                    <h3 id="title"></h3>
                 </div>
                 <div id="mes" style="text-align: center;">
                     <img src="{{ asset('img/icons8-spinner.gif') }}" alt="" style="height: 50px;"> fetching
@@ -341,8 +340,8 @@
                     let row1_5 = `<td colspan =${z}>` + b[se1].weatherElement[0].time[29].dataTime
                         .toString().substring(0, 10) + "</td>"
                     let col =
-                        `<colgroup><col span=${y + 1} style='background-color:white;'><col span=8 style='background-color:rgb(201, 238, 252);'>
-                            <col span=8 style='background-color:white;'><col span=8 style='background-color:rgb(201, 238, 252);'></colgroup>`
+                        `<colgroup><col span=${y + 1} style='background-color:white;'><col span=8 style='background-color:#D8DDCF;'>
+                            <col span=8 style='background-color:white;'><col span=8 style='background-color:#D8DDCF;'></colgroup>`
 
                     for (let i = 0; i < 30; i++) {
                         row2 += "<td>" + b[se1].weatherElement[0].time[i].dataTime.toString().substring(11,

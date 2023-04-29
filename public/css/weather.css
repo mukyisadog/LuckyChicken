@@ -1,6 +1,29 @@
+.row {
+    display: block;
+    margin: auto;
+}
+
+#weatherForm {
+    width: fit-content;
+    margin: 20px auto;
+}
+
+#weather h3 {
+    color: #664c43;
+}
+
+#chooseBtn {
+    padding: 10px 20px;
+    border: 1px solid #664c43;
+    border-radius: 10px;
+    background-color: #D8DDCF;
+}
+
+#chooseBtn:hover {
+    background-color: #B1BBA0;
+}
+
 #weather table {
-    /* table-layout: fixed; */
-    /* width: 100%; */
     text-align: center;
     position: relative;
     border-collapse: collapse;
@@ -13,7 +36,7 @@
 #weather table,
 tr,
 td {
-    border: 2px solid black;
+    border: 1px solid #664c43;
     padding: 8px;
     width: max-content;
     height: 50px;
@@ -38,16 +61,16 @@ td {
 #weather .t1 {
     font-size: 18px;
     width: 100px;
-    background-color: rgb(112, 205, 238);
+    background-color: #B1BBA0;
     position: sticky;
     left: 0;
-    /* border-right: 2px solid black; */
-    /* z-index: 1; */
 }
 
 #weather .tablesticky {
     width: 100%;
     height: fit-content;
     overflow: auto;
-    border: 1px solid black;
+    border: 2px solid #664c43;
+    border-radius: 20px;
+    margin-bottom: 10px;
 }

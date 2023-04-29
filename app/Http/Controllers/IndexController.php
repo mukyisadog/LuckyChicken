@@ -20,19 +20,9 @@ class IndexController extends Controller
         $forumdatas = $this->model->forumNew2();
         $cplist = DB::select('select * from carpool_list1 where departdate > now() order by departdate limit 6');
 
-        if(Auth::check()) {
-            $user = Auth::user();
-            $notice = $user->notifications;
-            // dd($notice);
-            $notice->markAsRead();    
-        } else {
-            $notice = "";
-        }
-
         return view('Index',[
             'feeldatas'=>$feeldatas,
             'forumdatas'=>$forumdatas,
-            'notice'=>$notice,
             'cplist'=>$cplist
         ]);
         // return $datas;

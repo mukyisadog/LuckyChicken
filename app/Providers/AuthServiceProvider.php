@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,6 +28,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        view()->composer('*', function ($view) {
+            if (Auth::check()) {
+                $user = Auth::user();
+                $notice = $user->notifications;
+                $view->with('notice', $notice);    
+            } else {
+                $notice = [];
+                $view->with('notice', $notice);    
+            }
+        });
+        
     }
 }
