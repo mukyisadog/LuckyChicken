@@ -340,8 +340,8 @@
                     let row1_5 = `<td colspan =${z}>` + b[se1].weatherElement[0].time[29].dataTime
                         .toString().substring(0, 10) + "</td>"
                     let col =
-                        `<colgroup><col span=${y + 1} style='background-color:white;'><col span=8 style='background-color:#D8DDCF;'>
-                            <col span=8 style='background-color:white;'><col span=8 style='background-color:#D8DDCF;'></colgroup>`
+                        `<colgroup><col span=${y + 1} style='background-color:white;'><col span=8 style='background-color:#B1BBA0;'>
+                            <col span=8 style='background-color:white;'><col span=8 style='background-color:#B1BBA0;'></colgroup>`
 
                     for (let i = 0; i < 30; i++) {
                         row2 += "<td>" + b[se1].weatherElement[0].time[i].dataTime.toString().substring(11,
