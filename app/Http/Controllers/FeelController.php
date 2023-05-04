@@ -45,7 +45,7 @@ class FeelController extends Controller
         $uid = Auth::id();
         $userDatas = $this->model->feelComPN($uid);
         $userPic = $this->model->UserPic($uid);
-        $isRed = $this->model->FeIsRed($ftid);
+        $isRed = $this->model->FeIsRed($ftid,$uid);
         return view('feel.feelDetail', [
             'article' => $article,
             'datas' => $datas,

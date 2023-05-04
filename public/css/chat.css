@@ -1,0 +1,11 @@
+.contentAi {
+    border: 1px black solid;
+    /* display: inline-block; */
+    text-align: left;
+}
+
+.contentMe {
+    border: 1px black solid;
+    /* display: inline-block; */
+    text-align: right;
+}

@@ -20,6 +20,7 @@ a:hover {
   margin: auto;
   border-left: 1px solid #B1BBA0;
   border-right: 1px solid #B1BBA0;
+  position: relative;
 }
 
 #logo {
@@ -68,8 +69,8 @@ a:hover {
   border-radius: 5px;
   border: transparent;
   color: #664c43;
-  font-size: 16px;
-  height: 32px;
+  font-size: 24px;
+  padding: 3px 10px;
 }
 
 #BtLogin:hover {
@@ -81,10 +82,11 @@ a:hover {
   border-radius: 5px;
   border: transparent;
   color: #664c43;
-  font-size: 16px;
-  height: 32px;
+  font-size: 24px;
   display: block;
-  line-height: 16px;
+  line-height: 24px;
+  text-align: center !important;
+  padding: 10px !important;
 }
 
 #BtLogout:hover {
@@ -92,8 +94,8 @@ a:hover {
 }
 
 .memberIcon {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin: 0 10px;
   object-fit: cover;
@@ -116,7 +118,7 @@ a:hover {
   z-index: 100;
   position: absolute;
   top: 80px;
-  right: 10%;
+  right: 100px;
 }
 
 #notice:after {
@@ -222,9 +224,6 @@ a:hover {
 }
 
 #weather {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
   padding: 90px 0;
 }
 
@@ -245,6 +244,10 @@ h2 {
   background-size: cover;
 }
 
+#newCarpool h2 {
+  color: #F8F6F2;
+}
+
 #newFeel {
   padding: 90px 0;
 }
@@ -258,6 +261,10 @@ h2 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#newForum h2 {
+  color: #F8F6F2;
 }
 
 /* 心得卡片 */

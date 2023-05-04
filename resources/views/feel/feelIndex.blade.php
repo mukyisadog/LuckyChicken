@@ -13,11 +13,15 @@
         <div class="row">
             <div class="column1">
                 <h1>心得</h1>
-                @auth
+                @if(Auth::check())
                     <button id="btPublish" onclick="window.location.href = '{{ route('femes') }}'">
                         發文
                     </button>
-                @endauth
+                @else
+                <button id="btPublish" onclick="window.location.href = '{{ route('login') }}'">
+                        發文
+                    </button>
+                @endif
                 <div>
                     <div id="articles">
                         <form class="example" type="get" action="{{ route('feindex') }}">
@@ -82,7 +86,7 @@
                                         <img class="newpic" src="{{ $feelNew->upicture }}">
                                     @endif
                                     <span class="newname">{{ $feelNew->name }}</span><br />
-                                    <span class="newtime">{{ $feelNew->createtime }}</span>
+                                    <span class="newtime">{{ $feelNew->date }}</span>
                                 </div>
                             </div>
                         </div>

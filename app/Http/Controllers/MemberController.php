@@ -51,13 +51,17 @@ class MemberController extends Controller
     // 論壇
     public function getForumList() {
         $uid = Auth::id();
-        $forumList = ForumList::select('*', DB::raw('Date(createtime) as date'))
+        $forumList = ForumList::select('*',
+        DB::raw('YEAR(createtime) as year'), 
+        DB::raw('DATE_FORMAT(createtime, "%m-%d") as month_day'))
                    ->where('uid', $uid)
                    ->orderby('createtime', 'desc')
                    ->get();
 
         $forumComments = ForumList::leftJoin('Forum_comment', 'Forum_list.foid', '=', 'Forum_comment.foid')
-                    ->select('Forum_list.*', 'Forum_comment.content as forumComment', DB::raw('Date(Forum_comment.createtime) as date'))
+                    ->select('Forum_list.*', 'Forum_comment.content as forumComment',
+                    DB::raw('YEAR(Forum_comment.createtime) as year'), 
+                    DB::raw('DATE_FORMAT(Forum_comment.createtime, "%m-%d") as month_day'))
                     ->whereNotNull('Forum_comment.foid')
                     ->where('Forum_comment.uid', $uid)
                     ->orderby('Forum_comment.createtime', 'desc')
@@ -165,13 +169,17 @@ class MemberController extends Controller
     // 心得
     public function getFeelList() {
         $uid = Auth::id();
-        $feelList = FeelList::select('*', DB::raw('Date(createtime) as date'))
+        $feelList = FeelList::select('*',
+                                        DB::raw('YEAR(createtime) as year'), 
+                                        DB::raw('DATE_FORMAT(createtime, "%m-%d") as month_day'))
                 ->where('uid', $uid)
                 ->orderby('createtime', 'desc')
                 ->get();
 
         $feelComments = FeelList::leftJoin('Feel_comment', 'Feel_list.fid', '=', 'Feel_comment.fid')
-                ->select('Feel_list.*', 'Feel_comment.content as feelComment', DB::raw('Date(Feel_comment.createtime) as date'))
+                ->select('Feel_list.*', 'Feel_comment.content as feelComment',
+                DB::raw('YEAR(Feel_comment.createtime) as year'), 
+                DB::raw('DATE_FORMAT(Feel_comment.createtime, "%m-%d") as month_day'))
                 ->whereNotNull('Feel_comment.fid')
                 ->where('Feel_comment.uid', $uid)
                 ->orderby('Feel_comment.createtime', 'desc')
@@ -262,13 +270,17 @@ class MemberController extends Controller
         $uid = Auth::id();
 
         $feelSaveList = FeelSaved::leftJoin('Feel_list', 'Feel_list.fid', '=', 'Feel_saved.fid')
-                ->select('*', DB::raw('Date(createtime) as date'))
+                ->select('*',
+                DB::raw('YEAR(createtime) as year'), 
+                DB::raw('DATE_FORMAT(createtime, "%m-%d") as month_day'))
                 ->whereNotNull('Feel_list.fid')
                 ->where('Feel_saved.uid', $uid)
                 ->get();
 
         $forumSaveList = ForumSaved::leftJoin('Forum_list', 'Forum_list.foid', '=', 'Forum_saved.foid')
-                ->select('*', DB::raw('Date(createtime) as date'))
+                ->select('*',
+                DB::raw('YEAR(createtime) as year'), 
+                DB::raw('DATE_FORMAT(createtime, "%m-%d") as month_day'))
                 ->whereNotNull('Forum_list.foid')
                 ->where('Forum_saved.uid', $uid)
                 ->get();

@@ -28,7 +28,8 @@
                     @foreach($feelList as $feelArticle)
                     <div class="editArticle">
                         <div class="articleDate">
-                            {{ $feelArticle->date }}
+                            {{ $feelArticle->year }}
+                            {{ $feelArticle->month_day }}
                         </div>
                         <div class="articleTitle">
                             @if( !$feelArticle->state)
@@ -66,7 +67,8 @@
                     @foreach($feelComments as $feelComment)
                     <div class="viewArticle">
                         <div class="articleDate">
-                            {{ $feelComment->date }}
+                            {{ $feelComment->year }}
+                            {{ $feelComment->month_day }}
                         </div>
                         <div class="articleTitleComment">
                             <div class="articleTitle">{{ $feelComment->title }}</div>

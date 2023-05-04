@@ -35,8 +35,8 @@ class MyModel extends Model
         return $datas;
     }
 
-    function FeIsRed($ftid){
-        $isRed = DB::select("select * from Feel_saved where fid = ?",[$ftid]);
+    function FeIsRed($ftid,$uid){
+        $isRed = DB::select("select * from Feel_saved where fid = ? and uid =?",[$ftid,$uid]);
         return $isRed;
     }
 
@@ -143,7 +143,7 @@ class MyModel extends Model
         ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
         ->orderByDesc('Forum_list.createtime')
-        ->paginate(10);
+        ->paginate(6);
         return $Qoutputs;
     }
 
@@ -170,7 +170,7 @@ class MyModel extends Model
         ->where('state','=','1')
         ->where('title', 'REGEXP', $search)
         ->orderByDesc('Forum_list.createtime')
-        ->paginate(10);
+        ->paginate(6);
         return $Goutputs;
     }
 
@@ -197,7 +197,7 @@ class MyModel extends Model
         ->where('title', 'REGEXP', $search)
         ->where('state','=','1')
         ->orderByDesc('Forum_list.createtime')
-        ->paginate(10);
+        ->paginate(6);
         return $Houtputs;
     }
 
@@ -206,8 +206,8 @@ class MyModel extends Model
         return $datas;
     }
 
-    function FoIsRed($ftid){
-        $isRed = DB::select("select * from Forum_saved where foid = ?",[$ftid]);
+    function FoIsRed($ftid,$uid){
+        $isRed = DB::select("select * from Forum_saved where foid = ? and uid =?",[$ftid,$uid]);
         return $isRed;
     }
 

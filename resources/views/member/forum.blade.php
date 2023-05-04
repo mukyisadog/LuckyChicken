@@ -28,12 +28,24 @@
                     @foreach($forumList as $forumArticle)
                     <div class="editArticle">
                         <div class="articleDate">
-                            {{ $forumArticle->date }}
+                            {{ $forumArticle->year }}
+                            {{ $forumArticle->month_day }}
                         </div>
                         <div class="articleTitle">
                             @if( !$forumArticle->state)
                             <span>[草稿]</span>&nbsp;
                             @endif
+                            @switch ($forumArticle->sfid)
+                                @case(1)
+                                    [問題]
+                                    @break
+                                @case(2)
+                                    [揪團]
+                                    @break
+                                @case(3)
+                                    [黑特]
+                                    @break
+                            @endswitch
                             {{ $forumArticle->title }}
                         </div>
                         <div class="buttons">
@@ -67,17 +79,31 @@
                     @foreach($forumComments as $forumComment)
                     <div class="viewArticle">
                         <div class="articleDate">
-                            {{ $forumComment->date }}
+                            {{ $forumComment->year }}
+                            {{ $forumComment->month_day }}
                         </div>
                         <div class="articleTitleComment">
-                            <div class="articleTitle">{{ $forumComment->title }}</div>
+                            <div class="articleTitle">
+                            @switch ($forumArticle->sfid)
+                                @case(1)
+                                    [問題]
+                                    @break
+                                @case(2)
+                                    [揪團]
+                                    @break
+                                @case(3)
+                                    [黑特]
+                                    @break
+                            @endswitch
+                                {{ $forumComment->title }}
+                            </div>
                             <div class="articleComment">
                                 留言內容：<br />
                                 {{ $forumComment->forumComment }}
                             </div>
                         </div>
                         <div class="buttons">
-                            <a href="{{route('fodetail',[ 'sfid'=>$forumArticle->sfid, 'foid'=>$forumArticle->foid ] )}}"><button type="button" name="" id="" class="operate">檢視文章</button></a>
+                            <a href="{{route('fodetail',[ 'sfid'=>$forumComment->sfid, 'foid'=>$forumComment->foid ] )}}"><button type="button" name="" id="" class="operate">檢視文章</button></a>
                         </div>
                     </div>
                     @endforeach

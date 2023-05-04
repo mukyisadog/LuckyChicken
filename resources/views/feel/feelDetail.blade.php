@@ -88,7 +88,8 @@
                                     @else
                                         <img class="headDivPic" src="{{ $comment->upicture }}">
                                     @endif
-                                    <p>{{ $comment->name }}</p>
+                                    <p class="userName">{{ $comment->name }}</p>
+                                    <div class="commentTime">{{ $comment->createtime }}</div>
                                     @if ($comment->uid === $uid)
                                         <div class="icons">
                                             <a class="edit-btn" data-id="{{ $comment->fcid }}"><i

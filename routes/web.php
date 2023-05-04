@@ -32,5 +32,11 @@ Route::middleware('auth')->group(function () {
 });
 
 // 測試機器人
-Route::get('/robot',[ChatbotController::class,'handle'])->name('robot');
+Route::get('/robot',function (){
+    return view('robot');
+})->name('robot');
+
+Route::get('/saveContent',[ChatbotController::class,'saveContent'])->name('saveContent');
+
+Route::get('/takeOutContent',[ChatbotController::class,'takeOutContent'])->name('takeOutContent');
 require __DIR__.'/auth.php';

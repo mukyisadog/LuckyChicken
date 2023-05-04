@@ -256,7 +256,7 @@ class CarpoolController extends Controller
         $uid = Auth::id();
 
         //開團中
-        $cp = DB::select('select carpool_list1.cpid, departdate, cptitle, hire, number, createtime from carpool_list1 left join 
+        $cp = DB::select('select carpool_list1.cpid, YEAR(departdate) as year, DATE_FORMAT(departdate, "%m-%d") as month_day, cptitle, hire, number, createtime from carpool_list1 left join 
                             ( select cpid, count(*) as number from carpool_join where status=1 GROUP by cpid ) as a
                             on carpool_list1.cpid = a.cpid where departdate > now() and uid = ? order by departdate ',[$uid]);
         // dd($cp);
@@ -275,7 +275,7 @@ class CarpoolController extends Controller
                 
        
         //參加中
-        $cp2 = DB::select('select * from carpool_join left join carpool_list1 
+        $cp2 = DB::select('select *, YEAR(departdate) as year, DATE_FORMAT(departdate, "%m-%d") as month_day from carpool_join left join carpool_list1 
                             on carpool_join.cpid = carpool_list1.cpid where carpool_join.status = 1
                             and carpool_join.uid = ? and carpool_list1.departdate > now()',[$uid]);
 
@@ -283,17 +283,17 @@ class CarpoolController extends Controller
                         ->leftJoin('users', 'carpool_join.uid', '=', 'users.id')->get();
 
         //確認中
-        $cp3 = DB::select('select * from carpool_join left join carpool_list1 
+        $cp3 = DB::select('select *, YEAR(departdate) as year, DATE_FORMAT(departdate, "%m-%d") as month_day from carpool_join left join carpool_list1 
                             on carpool_join.cpid = carpool_list1.cpid where carpool_join.status = 0
                             and carpool_join.uid = ? and carpool_list1.departdate > now()',[$uid]); 
                           
                                                 
         //歷史紀錄
-        $cp4 = DB::select('select carpool_join.cpid, carpool_join.uid, status, cptitle, departdate from carpool_join 
+        $cp4 = DB::select('select carpool_join.cpid, carpool_join.uid, status, cptitle, departdate, YEAR(departdate) as year, DATE_FORMAT(departdate, "%m-%d") as month_day from carpool_join 
                             left join carpool_list1 on carpool_join.cpid = carpool_list1.cpid where status = 1 
                             and carpool_join.uid = ? and departdate < now() 
                             union all
-                            select cpid, uid, 4, cptitle, departdate from carpool_list1 where uid = ? and departdate < now() 
+                            select cpid, uid, 4, cptitle, departdate, YEAR(departdate) as year, DATE_FORMAT(departdate, "%m-%d") as month_day from carpool_list1 where uid = ? and departdate < now() 
                             order by departdate desc',[$uid, $uid]); 
         
         // dd(json_decode($cp2));
@@ -301,7 +301,9 @@ class CarpoolController extends Controller
         //我的留言
         $cp5 = DB::table('carpool_comment')
                         ->leftJoin('carpool_list1','carpool_comment.cpid','=','carpool_list1.cpid')
-                        ->select('*', DB::raw('Date(carpool_comment.createtime) as date'))
+                        ->select('*',
+                        DB::raw('YEAR(carpool_comment.createtime) as year'), 
+                        DB::raw('DATE_FORMAT(carpool_comment.createtime, "%m-%d") as month_day'))
                         ->where('carpool_comment.uid', $uid)
                         ->orderBy('carpool_comment.createtime','desc')
                         ->get();

@@ -28,7 +28,8 @@
                 @foreach($feelSaveList as $feelSaveArticle)
                 <div class="viewArticle">
                     <div class="articleDate">
-                        {{ $feelSaveArticle->date }}
+                        {{ $feelSaveArticle->year }}
+                        {{ $feelSaveArticle->month_day }}
                     </div>
                     <div class="articleTitle">
                         {{ $feelSaveArticle->title }}<br>
@@ -53,7 +54,8 @@
                 @foreach($forumSaveList as $forumSaveArticle)
                 <div class="viewArticle">
                     <div class="articleDate">
-                        {{ $forumSaveArticle->date }}
+                        {{ $forumSaveArticle->year }}
+                        {{ $forumSaveArticle->month_day }}
                     </div>
                     <div class="articleTitle">
                         {{ $forumSaveArticle->title }}<br>

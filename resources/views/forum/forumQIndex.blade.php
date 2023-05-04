@@ -13,11 +13,15 @@
         <div class="row">
             <div class="column1">
                 <h1>論壇</h1>
-                @auth
+                @if(Auth::check())
                     <button id="btPublish" onclick="window.location.href ='{{ route('fomes') }}'">
                         發文
                     </button>
-                @endauth
+                @else
+                    <button id="btPublish" onclick="window.location.href ='{{ route('login') }}'">
+                        發文
+                    </button>
+                @endif
                 <div id="tabContainer">
                     <div class="tab">
                         <button class="tablinks" onclick="openCity(event, 'abc')" id="defaultOpen">問題</button>

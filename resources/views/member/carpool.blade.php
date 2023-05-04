@@ -29,7 +29,8 @@
                     @foreach($cp as $c)
                             <div class="accordion">
                                 <div class="groupDate">
-                                    {{$c->departdate}}
+                                    {{$c->year}}
+                                    {{$c->month_day}}
                                 </div>
                                 <div class="groupName">
                                     {{$c->cptitle}}
@@ -112,7 +113,8 @@
                         <a href="{{route('cpinfo',[ 'cpid'=>$c->cpid ] )}}">
                             <div class="group">
                                 <div class="groupDate">
-                                    {{$c->departdate}}
+                                    {{$c->year}}
+                                    {{$c->month_day}}
                                 </div>
                                 <div class="groupName">
                                     {{$c->cptitle}}
@@ -147,7 +149,8 @@
                         <a href="{{route('cpinfo',[ 'cpid'=>$c->cpid ] )}}">
                             <div class="group">
                                 <div class="groupDate">
-                                    {{$c->departdate}}
+                                    {{$c->year}}
+                                    {{$c->month_day}}
                                 </div>
                                 <div class="groupName">
                                     {{$c->cptitle}}
@@ -178,20 +181,21 @@
                     <a href="{{route('cpinfo',[ 'cpid'=>$c->cpid ] )}}">
                         <div class="group">
                             <div class="groupDate">
-                                {{$c->departdate}}
+                                {{$c->year}}
+                                {{$c->month_day}}
                             </div>
                             <div class="groupName">
                                 {{$c->cptitle}}
                             </div>
                             <div class="joinMember">
                                 @foreach($joiner2 as $jo)
-                                    @if($jo->cpid == $c->cpid && $jo->status == $c->status)
+                                    @if($jo->cpid == $c->cpid && $jo->status == 1)
                                         @if(empty($jo->upicture) == false)
                                         <img src="{{$jo->upicture}}" class="memberIcon">
                                         @else
                                         <img src="{{asset('pic/admin.png')}}" class="memberIcon">
                                         @endif
-                                    @endif    
+                                    @endif  
                                 @endforeach
                             </div>
                         </div>
@@ -212,7 +216,8 @@
                     @foreach($cp5 as $cpComment)
                     <div class="viewArticle">
                         <div class="articleDate">
-                            {{ $cpComment->date }}
+                            {{ $cpComment->year }}
+                            {{ $cpComment->month_day }}
                         </div>
                         <div class="articleTitleComment">
                             <div class="articleTitle">{{ $cpComment->cptitle }}</div>

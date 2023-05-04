@@ -121,7 +121,7 @@ class ForumController extends Controller
         $uid = Auth::id();
         $userPic = $this->model->UserPic($uid);
         $userDatas = $this->model->feelComPN($uid);
-        $isRed = $this->model->FoIsRed($foid);
+        $isRed = $this->model->FoIsRed($foid,$uid);
         return view('forum.forumDetail',[
             'articles' => $articles,
             'FCquestions' => $FCquestions,

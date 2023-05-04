@@ -85,7 +85,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="height: 50px;">{{ $cp->note }}</td>
+                                    <td class="cpnote" colspan="2" style="height: 50px;">{{ $cp->note }}</td>
                                 </tr>
                             </table>
                         </div>

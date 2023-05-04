@@ -82,6 +82,10 @@ h1 {
     margin-bottom: 30px;
 }
 
+.cpnote {
+    white-space: break-spaces;
+}
+
 .text-danger {
     color: rgb(244, 4, 4) !important;
   }
