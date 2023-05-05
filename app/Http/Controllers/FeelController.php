@@ -72,8 +72,6 @@ class FeelController extends Controller
         $comment =  $request->feelcom;
         $user->notify(new FeelCommentNotice($someone, $title, $comment, $ftid, $uid));
 
-<<<<<<< HEAD
-=======
 
         $list = $this->model->feelDetail($ftid);
         $user = User::find($list[0]->uid); //要發送通知的對象poster
@@ -82,7 +80,6 @@ class FeelController extends Controller
         $comment =  $request->feelcom;
         $user->notify(new FeelCommentNotice($someone, $title, $comment, $ftid, $uid));
 
->>>>>>> 2bc9be31cec9b5780f7e0fa5505a1b3bfae2337c
         // return "ok";
         return redirect("/feelDetail/{$ftid}");
     }

@@ -12,7 +12,6 @@
 
 
 @section('content')
-<<<<<<< HEAD
     <div id="content-container">
         <div class="row">
             <div class="column1">
@@ -41,39 +40,6 @@
                                 <img src="{{ $article->fpicture }}">
                             </div>
                             <div id="artCon">{{ $article->content }}</div>
-=======
-<div id="content-container">
-            <div class="abc"></div>
-            <div class="row">
-                <div class="column1">
-                    <!-- 文章內容 -->
-                    <div id="content">
-                    @if(isset($articles))
-                        @foreach($articles as $article)
-                        <div>
-                            @if(empty($article1->upicture))
-                                <img src="{{ asset('pic/admin.png') }}" alt="">
-                            @else
-                                <img src="{{$article->upicture}}">
-                            @endif
-                            <div>{{$article->name}}</div>
-                            @auth
-                                <a id="heartHref">
-                                    <i class="bi bi-suit-heart-fill" id="heart"></i>
-                                </a>
-                            @endauth
-                        </div>
-                        <div>
-                            <h1>{{$article->title}}</h1>
-                            <p>{{$article->createtime}}</p>
-                        </div>
-                        <div id="imgDiv">
-                            <img src="{{$article->fpicture}}" >
-                        </div>
-                        <div id="artCon">
-                            {{$article->content}}
-                        </div>
->>>>>>> 2bc9be31cec9b5780f7e0fa5505a1b3bfae2337c
                         @endforeach
                     @endif
                 </div>
@@ -89,7 +55,6 @@
 
                         // 监听点击事件
                         heartIcon.addEventListener('click', () => {
-<<<<<<< HEAD
                             event.preventDefault();
 
                             // 切换图标颜色
@@ -104,22 +69,6 @@
                                 window.location.href = "{{ route('fosave', ['sfid' => $sfid, 'ftid' => $foid]) }}";
                                 alert("收藏成功");
                             }
-=======
-                        event.preventDefault();
-                        
-                          // 切换图标颜色
-                        if (isRed.length > 0) {
-                          //   heartIcon.classList.add('text-danger');
-                        
-                        window.location.href = "{{route('founsave',[ 'sfid'=>$sfid, 'ftid'=>$foid ] )}}";
-                            alert("取消收藏");
-                        } else {
-                          //   heartIcon.classList.remove('text-danger');
-                            heartIcon.style.color = '#d64045';
-                            window.location.href = "{{route('fosave',[ 'sfid'=>$sfid, 'ftid'=>$foid ] )}}";
-                            alert("收藏成功"); 
-                        }
->>>>>>> 2bc9be31cec9b5780f7e0fa5505a1b3bfae2337c
                         });
                     </script>
 
@@ -137,7 +86,6 @@
                         @foreach ($FCquestions as $FCquestion)
                             <div class="headDiv">
                                 <div class="headDivChi">
-<<<<<<< HEAD
                                     @if (empty($FCquestion->upicture))
                                         <img class="headDivPic" src="{{ asset('pic/admin.png') }}" alt="">
                                     @else
@@ -156,24 +104,8 @@
                                 </div>
                                 <div class="headDivChi2">
                                     <div class="commentContent">{{ $FCquestion->content }}</div>
-=======
-                                @if(empty($FCquestion->upicture))
-                                    <img src="{{ asset('pic/admin.png') }}" alt="">
-                                @else
-                                    <img src="{{$FCquestion->upicture}}">
-                                @endif
-                                    <p>{{$FCquestion->name}}</p>
-                                @if($FCquestion->uid === $uid)
-                                    <div class="icons">
-                                        <a class="edit-btn" data-id="{{$FCquestion->focid}}"><i class="bi bi-pencil-square"></i></a>
-                                        <span>|</span>
-                                        <a href="{{route('forumcomdelect',['focid'=>$FCquestion->focid])}}"><i class="bi bi-trash3"></i></a>
-                                    </div>
-                                @endif
->>>>>>> 2bc9be31cec9b5780f7e0fa5505a1b3bfae2337c
                                 </div>
                             </div>
-<<<<<<< HEAD
                         @endforeach
                         <script>
                             // 获取所有编辑按钮
@@ -219,57 +151,6 @@
 
                     </div>
                 @endif
-=======
-                            <hr>
-                            @endforeach
-                            <script>                       
-                                // 获取所有编辑按钮
-                                var editButtons = document.querySelectorAll('.bi-pencil-square');
-                                // 定义处理编辑按钮点击事件的函数
-                                function handleEditButtonClick(button) {
-                                    
-                                    var divToEdit = button.closest('.headDiv').querySelector('.headDivChi2');
-                                    var fcidd = button.closest('.edit-btn').dataset.id;
-                                    var text = divToEdit.innerText;
-                                    // console.log(text);
-                                    divToEdit.innerHTML = `
-                                    <form action="{{route('forumcomedit')}}" method="POST">
-                                        @csrf
-                                        <input type="hidden" value="${fcidd}" name="focid">
-                                        <textarea name="content" required>${text}</textarea>
-                                        <input class="editbt" type="submit" value="-更新留言-">
-                                    </form>
-                                    `;
-                                }
-
-                                // 给每个编辑按钮绑定点击事件处理函数
-                                editButtons.forEach((button) => {
-                                    button.addEventListener('click', () => {
-                                        handleEditButtonClick(button);
-                                    });
-                                });
-
-                                function handleFormSubmit(event) {
-                                    // 防止表单提交
-                                    event.preventDefault();
-                                    // 获取表单元素和表单内容
-                                    var form = event.target;
-                                    var content = form.querySelector('textarea[name="content"]').value;
-                                    // 如果内容为空，弹出提示框
-                                    if (!content) {
-                                        alert('请输入留言内容！');
-                                    } else {
-                                        // 否则提交表单
-                                        form.submit();
-                                    }
-                                }
-
-
-                            </script>
-
-                        </div>
-                    @endif
->>>>>>> 2bc9be31cec9b5780f7e0fa5505a1b3bfae2337c
 
 
 
@@ -308,7 +189,6 @@
                         </form>
                     @endif
                 </div>
-<<<<<<< HEAD
             </div>
             <div class="column2">
                 <aside>
@@ -319,16 +199,6 @@
                             <div class="article2">
                                 <div class="article2Con">
                                     <h3>{{ $forumNew->title }}</h3>
-=======
-                <div class="column2">
-                    <aside>
-                        <h1>最新文章</h1>
-                        @foreach($forumNews as $forumNew)
-                        <a href="{{route('fodetail',[ 'sfid'=> $forumNew->sfid, 'foid'=>$forumNew->foid ] )}}" class="linking">
-                            <div class="article2">
-                                <div class="article2Con">                                   
-                                    <h4>{{$forumNew->title}}</h4>
->>>>>>> 2bc9be31cec9b5780f7e0fa5505a1b3bfae2337c
                                     <div class="new">
                                         @if (empty($forumNew->upicture))
                                             <img class="newpic" src="{{ asset('pic/admin.png') }}" alt="">
@@ -341,14 +211,8 @@
                                 </div>
                             </div>
                         </a>
-<<<<<<< HEAD
                     @endforeach
                 </aside>
-=======
-                        @endforeach
-                    </aside>
-                </div>
->>>>>>> 2bc9be31cec9b5780f7e0fa5505a1b3bfae2337c
             </div>
         </div>
     </div>
